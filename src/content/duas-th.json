@@ -36,7 +36,13 @@
       "meaning_th": "ด้วยพระนามของอัลลอฮ์ ข้าพเจ้ามอบหมายต่ออัลลอฮ์ และไม่มีพลังและความสามารถใด ๆ นอกจากด้วยอัลลอฮ์",
       "source": "อบูดาวูด 5095, อัตติรมิซีย์ 3426",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Du'a when leaving home",
+      "reading_en": "Bismillah, tawakkaltu 'ala Allah, wa la hawla wa la quwwata illa billah",
+      "meaning_en": "In the name of Allah, I place my trust in Allah, and there is no might nor power except with Allah.",
+      "source_en": "Sunan Abi Dawud 5095, Jami' at-Tirmidhi 3426",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "farewell_traveler",
@@ -51,7 +57,13 @@
       "meaning_th": "ข้าพเจ้าขอฝากพวกท่านไว้กับอัลลอฮ์ ผู้ซึ่งสิ่งที่ถูกฝากไว้กับพระองค์จะไม่มีวันสูญหาย",
       "source": "อิบนุมาญะฮ์ 2825, อะห์มัด",
       "grade_th": "เศาะฮีห์ (อัลอัลบานีย์)",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "The traveller's farewell to those staying behind",
+      "reading_en": "Astawdi'ukumullaha alladhi la tadi'u wada'i'uh",
+      "meaning_en": "I entrust you to Allah, whose trusts are never lost.",
+      "source_en": "Sunan Ibn Majah 2825, Musnad Ahmad",
+      "grade_en": "Sahih (al-Albani)",
+      "note_en": ""
     },
     {
       "id": "farewell_resident",
@@ -67,6 +79,12 @@
       "source": "อบูดาวูด 2600, อัตติรมิซีย์ 3443",
       "grade_th": "เศาะฮีห์",
       "note_th": "ใช้แทนคำอวยพรภาษาอินโดนีเซียของ NPC ในฉากเตรียมตัว",
+      "title_en": "Those staying behind bid the traveller farewell",
+      "reading_en": "Astawdi'ullaha dinaka, wa amanataka, wa khawatima 'amalik",
+      "meaning_en": "I entrust to Allah your religion, your trust, and the final outcome of your deeds.",
+      "source_en": "Sunan Abi Dawud 2600, Jami' at-Tirmidhi 3443",
+      "grade_en": "Sahih",
+      "note_en": "Family and friends say this to the person setting off on the journey.",
       "replaces": "neighbor_duas"
     },
     {
@@ -83,7 +101,13 @@
       "meaning_th": "อัลลอฮ์ทรงยิ่งใหญ่ อัลลอฮ์ทรงยิ่งใหญ่ อัลลอฮ์ทรงยิ่งใหญ่ มหาบริสุทธิ์แด่พระผู้ทรงทำให้พาหนะนี้อยู่ในบังคับของเรา ซึ่งเราไม่อาจควบคุมมันได้ด้วยตัวเอง และแท้จริงเราจะกลับไปยังพระเจ้าของเรา โอ้อัลลอฮ์ เราขอความดีงามและความยำเกรงในการเดินทางครั้งนี้ และขอการงานที่พระองค์ทรงพอพระทัย โอ้อัลลอฮ์ โปรดทำให้การเดินทางนี้ง่ายดายสำหรับเรา และโปรดย่นระยะทางอันไกลให้แก่เรา โอ้อัลลอฮ์ พระองค์คือผู้ร่วมทางในการเดินทาง และผู้ดูแลครอบครัวที่อยู่เบื้องหลัง โอ้อัลลอฮ์ ข้าพเจ้าขอความคุ้มครองต่อพระองค์จากความยากลำบากของการเดินทาง จากภาพที่น่าเศร้าใจ และจากการกลับมาพบสิ่งเลวร้ายในทรัพย์สินและครอบครัว",
       "source": "มุสลิม 1342",
       "grade_th": "เศาะฮีห์",
-      "note_th": "ตอนเดินทางกลับ ให้กล่าวบทเดิมแล้วต่อด้วยบท return_home"
+      "note_th": "ตอนเดินทางกลับ ให้กล่าวบทเดิมแล้วต่อด้วยบท return_home",
+      "title_en": "Du'a for travelling",
+      "reading_en": "Allahu akbar, Allahu akbar, Allahu akbar. Subhanalladhi sakhkhara lana hadha wa ma kunna lahu muqrinin, wa inna ila rabbina lamunqalibun. Allahumma inna nas'aluka fi safarina hadhal-birra wat-taqwa, wa minal-'amali ma tarda. Allahumma hawwin 'alayna safarana hadha watwi 'anna bu'dah. Allahumma antas-sahibu fis-safar, wal-khalifatu fil-ahl. Allahumma inni a'udhu bika min wa'tha'is-safar, wa ka'abatil-manzar, wa su'il-munqalabi fil-mali wal-ahl",
+      "meaning_en": "Allah is the Greatest, Allah is the Greatest, Allah is the Greatest. Glory be to the One who has placed this (means of transport) at our service, for we could not have done so ourselves, and surely to our Lord we shall return. O Allah, on this journey of ours we ask You for righteousness and piety, and for deeds that please You. O Allah, make this journey easy for us and shorten its distance for us. O Allah, You are the Companion on the journey and the One who looks after the family left behind. O Allah, I seek refuge in You from the hardships of travel, from distressing sights, and from returning to find harm in my wealth and family.",
+      "source_en": "Sahih Muslim 1342",
+      "grade_en": "Sahih",
+      "note_en": "On the way back, say the same du'a and then add the du'a for returning (Ayibuna, ta'ibuna...)."
     },
     {
       "id": "return_home",
@@ -98,7 +122,13 @@
       "meaning_th": "เรากลับมาแล้ว ในฐานะผู้สำนึกผิด ผู้เคารพภักดี และผู้สรรเสริญพระเจ้าของเรา",
       "source": "มุสลิม 1342, อัลบุคอรีย์ 1797",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Du'a when returning from a journey",
+      "reading_en": "Ayibuna, ta'ibuna, 'abiduna, li rabbina hamidun",
+      "meaning_en": "We return, repenting, worshipping, and praising our Lord.",
+      "source_en": "Sahih Muslim 1342, Sahih al-Bukhari 1797",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "niyyah_umrah",
@@ -114,6 +144,12 @@
       "source": "ถ้อยคำตามแบบหะดีษอนัส (มุสลิม 1232)",
       "grade_th": "เศาะฮีห์",
       "note_th": "การเนียตคือความตั้งใจในใจ ตำราสายชาฟิอีย์ในไทยนิยมสอนให้กล่าวว่า \"นะวัยตุล อุมเราะตะ วะอะห์รอมตุ บิฮา ลิลลาฮิตะอาลา\" (نَوَيْتُ الْعُمْرَةَ وَأَحْرَمْتُ بِهَا لِلَّهِ تَعَالَى — ข้าพเจ้าตั้งเจตนาทำอุมเราะฮ์และครองอิห์รอมเพื่ออัลลอฮ์) ใช้ได้ทั้งสองแบบ ข้อห้ามของอิห์รอมเริ่มมีผลนับจากนี้",
+      "title_en": "Intention (niyyah) for Umrah",
+      "reading_en": "Labbayka Allahumma 'umratan",
+      "meaning_en": "Here I am, O Allah, answering Your call, to perform Umrah.",
+      "source_en": "Wording as in the hadith of Anas (Sahih Muslim 1232)",
+      "grade_en": "Sahih",
+      "note_en": "The intention is made in the heart. Shafi'i books in Thailand often teach the wording \"Nawaytul-'umrata wa ahramtu biha lillahi ta'ala\" (نَوَيْتُ الْعُمْرَةَ وَأَحْرَمْتُ بِهَا لِلَّهِ تَعَالَى — I intend to perform Umrah and I enter ihram for it for the sake of Allah the Exalted). Either wording is fine. The prohibitions of ihram apply from this moment.",
       "replaces": "niyyah_umrah"
     },
     {
@@ -130,7 +166,13 @@
       "meaning_th": "โอ้อัลลอฮ์ ที่ที่ข้าพเจ้าจะออกจากอิห์รอม คือที่ที่พระองค์ทรงกักข้าพเจ้าไว้",
       "source": "อัลบุคอรีย์ 5089, มุสลิม 1207",
       "grade_th": "เศาะฮีห์",
-      "note_th": "ท่านนบี ﷺ สอนให้ฎุบาอะฮ์ บินติซุบัยร์ ซึ่งป่วยอยู่ กล่าวบทนี้ ถ้าเกิดเหตุจนทำพิธีต่อไม่ได้ จะออกจากอิห์รอมได้โดยไม่ต้องเสียดัม"
+      "note_th": "ท่านนบี ﷺ สอนให้ฎุบาอะฮ์ บินติซุบัยร์ ซึ่งป่วยอยู่ กล่าวบทนี้ ถ้าเกิดเหตุจนทำพิธีต่อไม่ได้ จะออกจากอิห์รอมได้โดยไม่ต้องเสียดัม",
+      "title_en": "Making a condition when entering ihram (for those who fear illness)",
+      "reading_en": "Allahumma mahilli haythu habastani",
+      "meaning_en": "O Allah, my place of leaving ihram is wherever You hold me back.",
+      "source_en": "Sahih al-Bukhari 5089, Sahih Muslim 1207",
+      "grade_en": "Sahih",
+      "note_en": "The Prophet ﷺ taught this to Duba'ah bint az-Zubayr, who was ill. If something then prevents you from completing the rites, you may leave ihram without paying a dam."
     },
     {
       "id": "niyyah_hajj_tamattu_umrah",
@@ -146,6 +188,12 @@
       "source": "ถ้อยคำที่นักวิชาการใช้ อิงจากหะดีษเรื่องตะมัตตุอ์ (อัลบุคอรีย์ 1568, มุสลิม 1216)",
       "grade_th": "ถ้อยคำเรียบเรียงโดยนักวิชาการ (ความหมายมีหลักฐาน)",
       "note_th": "สำคัญ: ต้นฉบับใช้บทนี้ในขั้น hajjIhram (วันที่ 8 ที่โรงแรม) ซึ่งไม่ถูกต้อง เพราะวันที่ 8 ผู้ทำตะมัตตุอ์ต้องเนียตฮัจญ์ด้วยบท niyyah_hajj",
+      "title_en": "Intention for the Umrah of Hajj tamattu'",
+      "reading_en": "Labbayka Allahumma 'umratan mutamatti'an biha ilal-hajj",
+      "meaning_en": "Here I am, O Allah, answering Your call, to perform Umrah, then enjoying release from ihram until Hajj.",
+      "source_en": "Wording used by scholars, based on the hadiths about tamattu' (Sahih al-Bukhari 1568, Sahih Muslim 1216)",
+      "grade_en": "Wording compiled by scholars (its meaning is supported by evidence)",
+      "note_en": "Use this at the miqat for the Umrah part only. On the 8th of Dhul-Hijjah a tamattu' pilgrim makes a new intention for Hajj (Labbayka Allahumma hajjan).",
       "replaces": "talbiyah_tamattu"
     },
     {
@@ -162,6 +210,12 @@
       "source": "ถ้อยคำตามแบบหะดีษอนัส (มุสลิม 1232)",
       "grade_th": "เศาะฮีห์",
       "note_th": "",
+      "title_en": "Intention for Hajj (tamattu' on the 8th, and ifrad)",
+      "reading_en": "Labbayka Allahumma hajjan",
+      "meaning_en": "Here I am, O Allah, answering Your call, to perform Hajj.",
+      "source_en": "Wording as in the hadith of Anas (Sahih Muslim 1232)",
+      "grade_en": "Sahih",
+      "note_en": "",
       "replaces": "talbiyah_ifrad"
     },
     {
@@ -178,6 +232,12 @@
       "source": "มุสลิม 1232 (ท่านอนัสได้ยินท่านนบี ﷺ กล่าว)",
       "grade_th": "เศาะฮีห์",
       "note_th": "",
+      "title_en": "Intention for Hajj qiran",
+      "reading_en": "Labbayka Allahumma 'umratan wa hajjan",
+      "meaning_en": "Here I am, O Allah, answering Your call, to perform Umrah and Hajj together.",
+      "source_en": "Sahih Muslim 1232 (Anas heard the Prophet ﷺ say it)",
+      "grade_en": "Sahih",
+      "note_en": "",
       "replaces": "talbiyah_qiran"
     },
     {
@@ -198,6 +258,12 @@
       "source": "อัลบุคอรีย์ 1549, มุสลิม 1184",
       "grade_th": "เศาะฮีห์",
       "note_th": "ผู้ชายกล่าวเสียงดัง ผู้หญิงกล่าวเบา ๆ กล่าวซ้ำบ่อย ๆ ตลอดทางจนเริ่มเฏาะวาฟ",
+      "title_en": "Talbiyah",
+      "reading_en": "Labbayka Allahumma labbayk, labbayka la sharika laka labbayk, innal-hamda wan-ni'mata laka wal-mulk, la sharika lak",
+      "meaning_en": "Here I am, O Allah, here I am. Here I am, You have no partner, here I am. Truly all praise, all blessings and all sovereignty belong to You. You have no partner.",
+      "source_en": "Sahih al-Bukhari 1549, Sahih Muslim 1184",
+      "grade_en": "Sahih",
+      "note_en": "Men say it aloud and women say it quietly. Repeat it often along the way until you begin tawaf.",
       "replaces": "talbiyah_umrah_overlay"
     },
     {
@@ -217,6 +283,12 @@
       "source": "มุสลิม 713, อิบนุมาญะฮ์ 771",
       "grade_th": "เศาะฮีห์",
       "note_th": "",
+      "title_en": "Du'a for entering the mosque",
+      "reading_en": "Bismillah, was-salatu was-salamu 'ala rasulillah, Allahummaftah li abwaba rahmatik",
+      "meaning_en": "In the name of Allah, and blessings and peace be upon the Messenger of Allah. O Allah, open for me the gates of Your mercy.",
+      "source_en": "Sahih Muslim 713, Sunan Ibn Majah 771",
+      "grade_en": "Sahih",
+      "note_en": "",
       "replaces": "masjid_entry"
     },
     {
@@ -233,7 +305,13 @@
       "meaning_th": "ข้าพเจ้าขอความคุ้มครองต่ออัลลอฮ์ผู้ทรงยิ่งใหญ่ ต่อพระพักตร์อันทรงเกียรติของพระองค์ และต่ออำนาจอันเป็นนิรันดร์ของพระองค์ ให้พ้นจากชัยฏอนผู้ถูกขับไล่",
       "source": "อบูดาวูด 466",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Seeking protection when entering the mosque",
+      "reading_en": "A'udhu billahil-'azim, wa bi wajhihil-karim, wa sultanihil-qadim, minash-shaytanir-rajim",
+      "meaning_en": "I seek refuge in Allah the Almighty, in His noble Face, and in His eternal authority, from Satan the outcast.",
+      "source_en": "Sunan Abi Dawud 466",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "masjid_exit",
@@ -250,7 +328,13 @@
       "meaning_th": "ด้วยพระนามของอัลลอฮ์ ขอความโปรดปรานและความสันติจงมีแด่ร่อซูลของอัลลอฮ์ โอ้อัลลอฮ์ ข้าพเจ้าขอความกรุณาจากพระองค์",
       "source": "มุสลิม 713, อิบนุมาญะฮ์ 773",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Du'a for leaving the mosque",
+      "reading_en": "Bismillah, was-salatu was-salamu 'ala rasulillah, Allahumma inni as'aluka min fadlik",
+      "meaning_en": "In the name of Allah, and blessings and peace be upon the Messenger of Allah. O Allah, I ask You of Your bounty.",
+      "source_en": "Sahih Muslim 713, Sunan Ibn Majah 773",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "see_kaabah",
@@ -265,7 +349,13 @@
       "meaning_th": "โอ้อัลลอฮ์ โปรดเพิ่มพูนเกียรติ ความยิ่งใหญ่ ความสูงส่ง และความน่าเกรงขามแก่บ้านหลังนี้",
       "source": "อัชชาฟิอีย์ใน อัลอุมม์, อัลบัยฮะกีย์ (อัสสุนัน อัลกุบรอ 5/73)",
       "grade_th": "สายรายงานอ่อน (มุรซัล)",
-      "note_th": "ไม่มีดุอาอ์เมื่อเห็นกะอ์บะฮ์ที่รายงานไว้อย่างถูกต้อง ให้แสดงบทนี้ในฐานะดุอาอ์ทั่วไปที่ตำราสายชาฟิอีย์นิยมใช้ และบอกผู้ใช้ว่าจะขอดุอาอ์ใดก็ได้"
+      "note_th": "ไม่มีดุอาอ์เมื่อเห็นกะอ์บะฮ์ที่รายงานไว้อย่างถูกต้อง ให้แสดงบทนี้ในฐานะดุอาอ์ทั่วไปที่ตำราสายชาฟิอีย์นิยมใช้ และบอกผู้ใช้ว่าจะขอดุอาอ์ใดก็ได้",
+      "title_en": "On seeing the Ka'bah",
+      "reading_en": "Allahumma zid hadhal-bayta tashrifan wa ta'ziman wa takriman wa mahabah",
+      "meaning_en": "O Allah, increase this House in honour, greatness, nobility and awe.",
+      "source_en": "Al-Shafi'i in al-Umm; al-Bayhaqi, as-Sunan al-Kubra 5/73",
+      "grade_en": "Weak chain (mursal)",
+      "note_en": "No du'a on seeing the Ka'bah is authentically reported. This one is commonly used in Shafi'i books and is shown as a general du'a — you may ask Allah for anything you wish."
     },
     {
       "id": "istilam",
@@ -283,6 +373,12 @@
       "source": "อัลบุคอรีย์ 1613 (ท่านนบี ﷺ ชี้แล้วกล่าวตักบีร), อัลบัยฮะกีย์ 5/79 (ท่านอิบนุอุมัรกล่าว \"บิสมิลลาฮิ วัลลอฮุอักบัร\")",
       "grade_th": "เศาะฮีห์",
       "note_th": "ถ้าคนไม่แน่น ให้สัมผัสหรือจูบหินดำได้ ถ้าคนแน่นให้ชี้แล้วกล่าวตักบีรโดยไม่ต้องเบียดเข้าไป เมื่อเริ่มเฏาะวาฟให้หยุดกล่าวตัลบิยะฮ์ (อุมเราะฮ์)",
+      "title_en": "Istilam at the Black Stone",
+      "reading_en": "Bismillahi wallahu akbar",
+      "meaning_en": "In the name of Allah, and Allah is the Greatest.",
+      "source_en": "Sahih al-Bukhari 1613 (the Prophet ﷺ pointed and said the takbir); al-Bayhaqi 5/79 (Ibn 'Umar said \"Bismillahi wallahu akbar\")",
+      "grade_en": "Sahih",
+      "note_en": "If it is not crowded, you may touch or kiss the Black Stone. If it is crowded, point towards it and say the takbir without pushing in. Stop the talbiyah when you begin tawaf (for Umrah).",
       "replaces": "istilam_takbir"
     },
     {
@@ -301,6 +397,12 @@
       "source": "อัลบะเกาะเราะฮ์ 2:201; อบูดาวูด 1892",
       "grade_th": "หะสัน",
       "note_th": "ถ้าสัมผัสมุมยะมานีได้ให้สัมผัส (ไม่จูบ) ถ้าคนแน่นให้เดินผ่านไปโดยไม่ต้องชี้",
+      "title_en": "Between the Yamani corner and the Black Stone",
+      "reading_en": "Rabbana atina fid-dunya hasanah, wa fil-akhirati hasanah, wa qina 'adhaban-nar",
+      "meaning_en": "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.",
+      "source_en": "Al-Baqarah 2:201; Sunan Abi Dawud 1892",
+      "grade_en": "Hasan",
+      "note_en": "Touch the Yamani corner if you can (do not kiss it). If it is crowded, simply walk past without pointing.",
       "replaces": "rabbana_atina"
     },
     {
@@ -318,7 +420,13 @@
       "meaning_th": "โอ้พระเจ้าของเรา โปรดรับ (การงาน) จากเราด้วยเถิด แท้จริงพระองค์คือผู้ทรงได้ยิน ผู้ทรงรอบรู้",
       "source": "อัลบะเกาะเราะฮ์ 2:127 (ดุอาอ์ของนบีอิบรอฮีมและนบีอิสมาอีลขณะสร้างกะอ์บะฮ์)",
       "grade_th": "อัลกุรอาน",
-      "note_th": "ไม่มีดุอาอ์เฉพาะรายรอบในซุนนะฮ์ ขอดุอาอ์ใดก็ได้ อ่านอัลกุรอาน หรือกล่าวซิกร์ได้ทั้งหมด"
+      "note_th": "ไม่มีดุอาอ์เฉพาะรายรอบในซุนนะฮ์ ขอดุอาอ์ใดก็ได้ อ่านอัลกุรอาน หรือกล่าวซิกร์ได้ทั้งหมด",
+      "title_en": "Suggested du'a for lap 1",
+      "reading_en": "Rabbana taqabbal minna innaka antas-sami'ul-'alim",
+      "meaning_en": "Our Lord, accept (this) from us. Indeed, You are the All-Hearing, the All-Knowing.",
+      "source_en": "Al-Baqarah 2:127 (the du'a of the Prophets Ibrahim and Isma'il while building the Ka'bah)",
+      "grade_en": "Qur'an",
+      "note_en": "The Sunnah does not set a specific du'a for each lap. You may make any du'a, recite the Qur'an or do dhikr."
     },
     {
       "id": "tawaf_lap_2",
@@ -335,7 +443,13 @@
       "meaning_th": "โอ้พระเจ้าของเรา เราได้อธรรมต่อตัวเราเอง และหากพระองค์ไม่ทรงอภัยและไม่ทรงเมตตาเรา แน่นอนเราจะเป็นผู้ขาดทุน",
       "source": "อัลอะอ์รอฟ 7:23 (ดุอาอ์ของนบีอาดัมและพระนางเฮาวาอ์)",
       "grade_th": "อัลกุรอาน",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Suggested du'a for lap 2 — seeking forgiveness",
+      "reading_en": "Rabbana zalamna anfusana wa in lam taghfir lana wa tarhamna lanakunanna minal-khasirin",
+      "meaning_en": "Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy on us, we will surely be among the losers.",
+      "source_en": "Al-A'raf 7:23 (the du'a of the Prophet Adam and Hawwa')",
+      "grade_en": "Qur'an",
+      "note_en": ""
     },
     {
       "id": "tawaf_lap_3",
@@ -352,7 +466,13 @@
       "meaning_th": "โอ้พระเจ้าของเรา โปรดอย่าให้หัวใจของเราเบี่ยงเบน หลังจากที่พระองค์ทรงชี้ทางแก่เราแล้ว และโปรดประทานความเมตตาจากพระองค์แก่เรา แท้จริงพระองค์คือผู้ทรงประทานอย่างมากมาย",
       "source": "อาลิอิมรอน 3:8",
       "grade_th": "อัลกุรอาน",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Suggested du'a for lap 3 — steadfast faith",
+      "reading_en": "Rabbana la tuzigh qulubana ba'da idh hadaytana wa hab lana min ladunka rahmah, innaka antal-wahhab",
+      "meaning_en": "Our Lord, do not let our hearts deviate after You have guided us, and grant us mercy from Yourself. Indeed, You are the Bestower.",
+      "source_en": "Al 'Imran 3:8",
+      "grade_en": "Qur'an",
+      "note_en": ""
     },
     {
       "id": "tawaf_lap_4",
@@ -369,7 +489,13 @@
       "meaning_th": "โอ้พระเจ้าของข้าพเจ้า โปรดทำให้ข้าพเจ้าและลูกหลานของข้าพเจ้าเป็นผู้ดำรงการละหมาด โอ้พระเจ้าของเรา โปรดรับดุอาอ์ของข้าพเจ้าด้วยเถิด",
       "source": "อิบรอฮีม 14:40 (ดุอาอ์ของนบีอิบรอฮีม)",
       "grade_th": "อัลกุรอาน",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Suggested du'a for lap 4 — prayer for yourself and your children",
+      "reading_en": "Rabbij'alni muqimas-salati wa min dhurriyyati, rabbana wa taqabbal du'a'",
+      "meaning_en": "My Lord, make me one who establishes prayer, and (also) among my descendants. Our Lord, and accept my supplication.",
+      "source_en": "Ibrahim 14:40 (the du'a of the Prophet Ibrahim)",
+      "grade_en": "Qur'an",
+      "note_en": ""
     },
     {
       "id": "tawaf_lap_5",
@@ -386,7 +512,13 @@
       "meaning_th": "โอ้พระเจ้าของเรา โปรดอภัยแก่ข้าพเจ้า แก่บิดามารดาของข้าพเจ้า และแก่บรรดาผู้ศรัทธา ในวันที่การชำระบัญชีจะเกิดขึ้น",
       "source": "อิบรอฮีม 14:41",
       "grade_th": "อัลกุรอาน",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Suggested du'a for lap 5 — for your parents",
+      "reading_en": "Rabbanaghfir li wa li walidayya wa lil-mu'minina yawma yaqumul-hisab",
+      "meaning_en": "Our Lord, forgive me, my parents and the believers on the Day the reckoning is established.",
+      "source_en": "Ibrahim 14:41",
+      "grade_en": "Qur'an",
+      "note_en": ""
     },
     {
       "id": "tawaf_lap_6",
@@ -403,7 +535,13 @@
       "meaning_th": "โอ้พระเจ้าของเรา โปรดประทานคู่ครองและลูกหลานที่เป็นความชื่นใจแก่เรา และโปรดทำให้เราเป็นแบบอย่างแก่บรรดาผู้ยำเกรง",
       "source": "อัลฟุรกอน 25:74",
       "grade_th": "อัลกุรอาน",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Suggested du'a for lap 6 — for your family",
+      "reading_en": "Rabbana hab lana min azwajina wa dhurriyyatina qurrata a'yunin waj'alna lil-muttaqina imama",
+      "meaning_en": "Our Lord, grant us from our spouses and offspring comfort to our eyes, and make us a leader for the righteous.",
+      "source_en": "Al-Furqan 25:74",
+      "grade_en": "Qur'an",
+      "note_en": ""
     },
     {
       "id": "tawaf_lap_7",
@@ -420,7 +558,13 @@
       "meaning_th": "มหาบริสุทธิ์แด่อัลลอฮ์ การสรรเสริญทั้งมวลเป็นของอัลลอฮ์ ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ และอัลลอฮ์ทรงยิ่งใหญ่",
       "source": "มุสลิม 2137",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Suggested dhikr for lap 7 — the words most beloved to Allah",
+      "reading_en": "Subhanallah, walhamdulillah, wa la ilaha illallah, wallahu akbar",
+      "meaning_en": "Glory be to Allah, all praise is for Allah, there is no god but Allah, and Allah is the Greatest.",
+      "source_en": "Sahih Muslim 2137",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "maqam_ibrahim",
@@ -437,6 +581,12 @@
       "source": "อัลบะเกาะเราะฮ์ 2:125; ท่านนบี ﷺ อ่านอายะฮ์นี้ในหะดีษญาบิร (มุสลิม 1218)",
       "grade_th": "อัลกุรอาน / เศาะฮีห์",
       "note_th": "จากนั้นละหมาด 2 ร็อกอะฮ์ ร็อกอะฮ์แรกอ่านอัลกาฟิรูน ร็อกอะฮ์ที่สองอ่านอัลอิคลาศ (มุสลิม 1218) ถ้าคนแน่น ละหมาดที่ใดก็ได้ในมัสยิด",
+      "title_en": "On reaching Maqam Ibrahim",
+      "reading_en": "Wattakhidhu min maqami Ibrahima musalla",
+      "meaning_en": "And take the standing place of Ibrahim as a place of prayer.",
+      "source_en": "Al-Baqarah 2:125; the Prophet ﷺ recited this verse in the hadith of Jabir (Sahih Muslim 1218)",
+      "grade_en": "Qur'an / Sahih",
+      "note_en": "Then pray 2 rak'at: recite al-Kafirun in the first and al-Ikhlas in the second (Sahih Muslim 1218). If it is crowded, you may pray anywhere in the mosque.",
       "replaces": "prayer_surahs"
     },
     {
@@ -453,6 +603,12 @@
       "source": "อิบนุมาญะฮ์ 3062, อะห์มัด",
       "grade_th": "เศาะฮีห์ (อัลอัลบานีย์)",
       "note_th": "ดื่มโดยกล่าวบิสมิลลาฮ์ หันหน้าไปทางกิบลัต ดื่มสามอึก แล้วกล่าวอัลฮัมดุลิลลาฮ์ ขอดุอาอ์ตามที่ต้องการขณะดื่ม",
+      "title_en": "The virtue of Zamzam water",
+      "reading_en": "Ma'u zamzama lima shuriba lah",
+      "meaning_en": "The water of Zamzam is for whatever it is drunk for.",
+      "source_en": "Sunan Ibn Majah 3062, Musnad Ahmad",
+      "grade_en": "Sahih (al-Albani)",
+      "note_en": "Say Bismillah, face the qiblah, drink in three sips, then say Alhamdulillah. Make any du'a you wish while drinking.",
       "replaces": "zamzam"
     },
     {
@@ -468,7 +624,13 @@
       "meaning_th": "โอ้อัลลอฮ์ ข้าพเจ้าขอความรู้ที่เป็นประโยชน์ ปัจจัยยังชีพที่กว้างขวาง และการหายจากทุกโรคภัย",
       "source": "อัดดาเราะกุฏนีย์, อัลฮากิม (รายงานจากท่านอิบนุอับบาส)",
       "grade_th": "สายรายงานมีข้อวิจารณ์",
-      "note_th": "เป็นคำพูดของเศาะฮาบะฮ์ ไม่ใช่ของท่านนบี ﷺ แสดงเป็นตัวอย่างดุอาอ์ ไม่ใช่บทบังคับ"
+      "note_th": "เป็นคำพูดของเศาะฮาบะฮ์ ไม่ใช่ของท่านนบี ﷺ แสดงเป็นตัวอย่างดุอาอ์ ไม่ใช่บทบังคับ",
+      "title_en": "Du'a when drinking Zamzam",
+      "reading_en": "Allahumma inni as'aluka 'ilman nafi'a, wa rizqan wasi'a, wa shifa'an min kulli da'",
+      "meaning_en": "O Allah, I ask You for beneficial knowledge, abundant provision, and healing from every illness.",
+      "source_en": "Al-Daraqutni, al-Hakim (reported from Ibn 'Abbas)",
+      "grade_en": "Its chain has been criticised",
+      "note_en": "These are the words of a Companion, not of the Prophet ﷺ. It is shown as an example du'a, not a required one."
     },
     {
       "id": "safa_approach",
@@ -484,7 +646,13 @@
       "meaning_th": "แท้จริงเศาะฟาและมัรวะฮ์เป็นส่วนหนึ่งของเครื่องหมายแห่งอัลลอฮ์ ข้าพเจ้าขอเริ่มด้วยสิ่งที่อัลลอฮ์ทรงเริ่มไว้",
       "source": "อัลบะเกาะเราะฮ์ 2:158; มุสลิม 1218",
       "grade_th": "เศาะฮีห์",
-      "note_th": "กล่าวครั้งเดียวตอนเริ่ม ไม่ต้องกล่าวซ้ำที่มัรวะฮ์หรือรอบถัดไป"
+      "note_th": "กล่าวครั้งเดียวตอนเริ่ม ไม่ต้องกล่าวซ้ำที่มัรวะฮ์หรือรอบถัดไป",
+      "title_en": "When first approaching Safa",
+      "reading_en": "Innas-safa wal-marwata min sha'a'irillah. Abda'u bima bada'allahu bih",
+      "meaning_en": "Indeed, Safa and Marwah are among the symbols of Allah. I begin with what Allah began with.",
+      "source_en": "Al-Baqarah 2:158; Sahih Muslim 1218",
+      "grade_en": "Sahih",
+      "note_en": "Say it once at the start only; do not repeat it at Marwah or on later laps."
     },
     {
       "id": "safa_marwah_dhikr",
@@ -500,7 +668,13 @@
       "meaning_th": "อัลลอฮ์ทรงยิ่งใหญ่ (3 ครั้ง) ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ พระองค์เดียว ไม่มีภาคีใดสำหรับพระองค์ อำนาจการปกครองและการสรรเสริญเป็นของพระองค์ และพระองค์ทรงมีอานุภาพเหนือทุกสิ่ง ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ พระองค์เดียว พระองค์ทรงทำให้สัญญาของพระองค์เป็นจริง ทรงช่วยเหลือบ่าวของพระองค์ และทรงทำให้กองทัพพันธมิตรพ่ายแพ้แต่เพียงพระองค์เดียว",
       "source": "มุสลิม 1218 (หะดีษญาบิร)",
       "grade_th": "เศาะฮีห์",
-      "note_th": "ท่านนบี ﷺ กล่าวบทนี้ 3 ครั้ง และขอดุอาอ์ระหว่างแต่ละครั้ง"
+      "note_th": "ท่านนบี ﷺ กล่าวบทนี้ 3 ครั้ง และขอดุอาอ์ระหว่างแต่ละครั้ง",
+      "title_en": "Dhikr on Safa and Marwah",
+      "reading_en": "Allahu akbar, Allahu akbar, Allahu akbar. La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu, wa huwa 'ala kulli shay'in qadir. La ilaha illallahu wahdah, anjaza wa'dah, wa nasara 'abdah, wa hazamal-ahzaba wahdah",
+      "meaning_en": "Allah is the Greatest (3 times). There is no god but Allah alone; He has no partner. His is the dominion and His is the praise, and He has power over all things. There is no god but Allah alone. He fulfilled His promise, helped His servant, and defeated the confederates alone.",
+      "source_en": "Sahih Muslim 1218 (hadith of Jabir)",
+      "grade_en": "Sahih",
+      "note_en": "The Prophet ﷺ said this 3 times, making du'a in between each time."
     },
     {
       "id": "sai_green_lights",
@@ -516,7 +690,13 @@
       "meaning_th": "โอ้พระเจ้าของข้าพเจ้า โปรดอภัยและโปรดเมตตา แท้จริงพระองค์คือผู้ทรงเดชานุภาพยิ่ง ผู้ทรงเกียรติยิ่ง",
       "source": "อิบนุอบีชัยบะฮ์ ใน อัลมุศ็อนนัฟ (การปฏิบัติของท่านอิบนุมัสอูดและท่านอิบนุอุมัร)",
       "grade_th": "เศาะฮีห์ (คำพูดของเศาะฮาบะฮ์)",
-      "note_th": "ผู้ชายวิ่งเหยาะ ๆ ระหว่างไฟเขียวสองจุด ผู้หญิงเดินตามปกติ"
+      "note_th": "ผู้ชายวิ่งเหยาะ ๆ ระหว่างไฟเขียวสองจุด ผู้หญิงเดินตามปกติ",
+      "title_en": "Between the two green lights",
+      "reading_en": "Rabbighfir warham, innaka antal-a'azzul-akram",
+      "meaning_en": "My Lord, forgive and have mercy. Indeed, You are the Most Mighty, the Most Generous.",
+      "source_en": "Ibn Abi Shaybah, al-Musannaf (the practice of Ibn Mas'ud and Ibn 'Umar)",
+      "grade_en": "Sahih (words of the Companions)",
+      "note_en": "Men jog lightly between the two green lights; women walk normally."
     },
     {
       "id": "tahallul_hadith",
@@ -532,7 +712,13 @@
       "meaning_th": "โอ้อัลลอฮ์ โปรดเมตตาผู้ที่โกนศีรษะ ... และผู้ที่ตัดผมให้สั้น",
       "source": "อัลบุคอรีย์ 1727, มุสลิม 1301",
       "grade_th": "เศาะฮีห์",
-      "note_th": "ท่านนบี ﷺ ขอให้ผู้โกน 3 ครั้ง และให้ผู้ตัดสั้น 1 ครั้ง ผู้ชายจึงควรโกน ผู้หญิงตัดปลายผมประมาณข้อนิ้ว ไม่มีดุอาอ์เฉพาะสำหรับตะฮัลลุล"
+      "note_th": "ท่านนบี ﷺ ขอให้ผู้โกน 3 ครั้ง และให้ผู้ตัดสั้น 1 ครั้ง ผู้ชายจึงควรโกน ผู้หญิงตัดปลายผมประมาณข้อนิ้ว ไม่มีดุอาอ์เฉพาะสำหรับตะฮัลลุล",
+      "title_en": "The Prophet ﷺ prays for those who shave their heads",
+      "reading_en": "Allahummarhamil-muhalliqin ... wal-muqassirin",
+      "meaning_en": "O Allah, have mercy on those who shave their heads ... and those who shorten their hair.",
+      "source_en": "Sahih al-Bukhari 1727, Sahih Muslim 1301",
+      "grade_en": "Sahih",
+      "note_en": "The Prophet ﷺ prayed three times for those who shaved and once for those who shortened, so it is better for men to shave. Women trim about a fingertip's length from the ends of their hair. There is no specific du'a for tahallul."
     },
     {
       "id": "salam_prophet",
@@ -547,7 +733,13 @@
       "meaning_th": "ขอความสันติจงมีแด่ท่าน โอ้ร่อซูลของอัลลอฮ์ ขอความสันติจงมีแด่ท่าน โอ้อบูบักร์ ขอความสันติจงมีแด่ท่าน โอ้อุมัร",
       "source": "การปฏิบัติของท่านอิบนุอุมัร (มาลิก ใน อัลมุวัฏเฏาะอ์, อัลบัยฮะกีย์ 5/245)",
       "grade_th": "เศาะฮีห์ (คำพูดของเศาะฮาบะฮ์)",
-      "note_th": "ให้สลามด้วยความสงบ ไม่ส่งเสียงดัง ไม่ลูบหรือแตะผนัง เมื่อจะขอดุอาอ์ให้หันหน้าไปทางกิบลัต"
+      "note_th": "ให้สลามด้วยความสงบ ไม่ส่งเสียงดัง ไม่ลูบหรือแตะผนัง เมื่อจะขอดุอาอ์ให้หันหน้าไปทางกิบลัต",
+      "title_en": "Greeting the Prophet ﷺ, Abu Bakr and 'Umar",
+      "reading_en": "As-salamu 'alayka ya rasulallah, as-salamu 'alayka ya Aba Bakr, as-salamu 'alayka ya 'Umar",
+      "meaning_en": "Peace be upon you, O Messenger of Allah. Peace be upon you, O Abu Bakr. Peace be upon you, O 'Umar.",
+      "source_en": "The practice of Ibn 'Umar (Malik, al-Muwatta'; al-Bayhaqi 5/245)",
+      "grade_en": "Sahih (words of a Companion)",
+      "note_en": "Give salam calmly and quietly, without raising your voice and without touching or wiping the walls. When you make du'a, face the qiblah."
     },
     {
       "id": "salawat_ibrahimiyyah",
@@ -562,7 +754,13 @@
       "meaning_th": "โอ้อัลลอฮ์ โปรดประทานความโปรดปรานแด่มุฮัมมัดและวงศ์วานของมุฮัมมัด เช่นเดียวกับที่พระองค์ทรงประทานแด่อิบรอฮีมและวงศ์วานของอิบรอฮีม แท้จริงพระองค์ทรงเป็นผู้ควรแก่การสรรเสริญ ผู้ทรงเกียรติยิ่ง โอ้อัลลอฮ์ โปรดประทานความจำเริญแด่มุฮัมมัดและวงศ์วานของมุฮัมมัด เช่นเดียวกับที่พระองค์ทรงประทานความจำเริญแด่อิบรอฮีมและวงศ์วานของอิบรอฮีม แท้จริงพระองค์ทรงเป็นผู้ควรแก่การสรรเสริญ ผู้ทรงเกียรติยิ่ง",
       "source": "อัลบุคอรีย์ 3370",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "As-Salat al-Ibrahimiyyah",
+      "reading_en": "Allahumma salli 'ala Muhammadin wa 'ala ali Muhammad, kama sallayta 'ala Ibrahima wa 'ala ali Ibrahim, innaka hamidun majid. Allahumma barik 'ala Muhammadin wa 'ala ali Muhammad, kama barakta 'ala Ibrahima wa 'ala ali Ibrahim, innaka hamidun majid",
+      "meaning_en": "O Allah, send blessings upon Muhammad and upon the family of Muhammad, as You sent blessings upon Ibrahim and upon the family of Ibrahim; indeed, You are Praiseworthy, Glorious. O Allah, bless Muhammad and the family of Muhammad, as You blessed Ibrahim and the family of Ibrahim; indeed, You are Praiseworthy, Glorious.",
+      "source_en": "Sahih al-Bukhari 3370",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "raudhah_hadith",
@@ -577,7 +775,13 @@
       "meaning_th": "พื้นที่ระหว่างบ้านของฉันกับมิมบัรของฉัน คือสวนหนึ่งจากบรรดาสวนแห่งสวรรค์",
       "source": "อัลบุคอรีย์ 1196, มุสลิม 1391",
       "grade_th": "เศาะฮีห์",
-      "note_th": "ละหมาดซุนนะฮ์และขอดุอาอ์ที่นี่ได้ ปัจจุบันต้องจองเวลาเข้าผ่านแอป Nusuk"
+      "note_th": "ละหมาดซุนนะฮ์และขอดุอาอ์ที่นี่ได้ ปัจจุบันต้องจองเวลาเข้าผ่านแอป Nusuk",
+      "title_en": "The virtue of the Raudhah",
+      "reading_en": "Ma bayna bayti wa minbari rawdatun min riyadil-jannah",
+      "meaning_en": "What is between my house and my pulpit is one of the gardens of Paradise.",
+      "source_en": "Sahih al-Bukhari 1196, Sahih Muslim 1391",
+      "grade_en": "Sahih",
+      "note_en": "You may pray voluntary prayers and make du'a here. Today a visiting time must be booked through the Nusuk app."
     },
     {
       "id": "quba_hadith",
@@ -592,7 +796,13 @@
       "meaning_th": "ผู้ใดอาบน้ำละหมาดที่บ้านของเขา แล้วมายังมัสยิดกุบาอ์ และละหมาดในนั้น เขาจะได้รับผลบุญเท่ากับการทำอุมเราะฮ์",
       "source": "อิบนุมาญะฮ์ 1412, อันนะสาอีย์ 699",
       "grade_th": "เศาะฮีห์",
-      "note_th": "เป็นหลักฐานยืนยันข้อความ \"ผลบุญเท่าอุมเราะฮ์\" ที่ฉบับอินโดนีเซียเขียนไว้"
+      "note_th": "เป็นหลักฐานยืนยันข้อความ \"ผลบุญเท่าอุมเราะฮ์\" ที่ฉบับอินโดนีเซียเขียนไว้",
+      "title_en": "The virtue of praying at Masjid Quba",
+      "reading_en": "Man tatahhara fi baytihi thumma ata masjida Quba'in fa salla fihi salatan kana lahu ka-ajri 'umrah",
+      "meaning_en": "Whoever purifies himself in his house, then comes to Masjid Quba and prays in it, will have a reward like that of an Umrah.",
+      "source_en": "Sunan Ibn Majah 1412, Sunan an-Nasa'i 699",
+      "grade_en": "Sahih",
+      "note_en": "This hadith is the evidence for the reward \"like an Umrah\" for praying at Quba."
     },
     {
       "id": "graves_visit",
@@ -607,7 +817,13 @@
       "meaning_th": "ขอความสันติจงมีแด่ท่านทั้งหลาย ผู้พำนักในที่แห่งนี้ จากบรรดาผู้ศรัทธาและมุสลิม และแท้จริงเราจะตามพวกท่านไปหากอัลลอฮ์ทรงประสงค์ ข้าพเจ้าขอให้อัลลอฮ์ประทานความปลอดภัยแก่เราและแก่พวกท่าน",
       "source": "มุสลิม 975",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Du'a when visiting graves",
+      "reading_en": "As-salamu 'alaykum ahlad-diyari minal-mu'minina wal-muslimin, wa inna in sha' Allahu bikum lalahiqun, as'alullaha lana wa lakumul-'afiyah",
+      "meaning_en": "Peace be upon you, O inhabitants of these dwellings, from among the believers and the Muslims. Indeed, if Allah wills, we shall join you. I ask Allah for well-being for us and for you.",
+      "source_en": "Sahih Muslim 975",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "arafah_best_dua",
@@ -622,7 +838,13 @@
       "meaning_th": "ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ พระองค์เดียว ไม่มีภาคีใดสำหรับพระองค์ อำนาจการปกครองและการสรรเสริญเป็นของพระองค์ และพระองค์ทรงมีอานุภาพเหนือทุกสิ่ง",
       "source": "อัตติรมิซีย์ 3585: «ดุอาอ์ที่ดีที่สุดคือดุอาอ์ในวันอะรอฟะฮ์ และถ้อยคำที่ดีที่สุดที่ฉันและบรรดานบีก่อนหน้าฉันกล่าวคือ …»",
       "grade_th": "หะสัน (อัลอัลบานีย์)",
-      "note_th": "ยืนหรือนั่งหันหน้าไปทางกิบลัต ยกมือ ขอดุอาอ์ให้มาก ไม่จำเป็นต้องขึ้นภูเขาเราะห์มะฮ์"
+      "note_th": "ยืนหรือนั่งหันหน้าไปทางกิบลัต ยกมือ ขอดุอาอ์ให้มาก ไม่จำเป็นต้องขึ้นภูเขาเราะห์มะฮ์",
+      "title_en": "The best du'a on the Day of Arafah",
+      "reading_en": "La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu, wa huwa 'ala kulli shay'in qadir",
+      "meaning_en": "There is no god but Allah alone; He has no partner. His is the dominion and His is the praise, and He has power over all things.",
+      "source_en": "Jami' at-Tirmidhi 3585: «The best du'a is the du'a on the Day of Arafah, and the best words that I and the prophets before me have said are …»",
+      "grade_en": "Hasan (al-Albani)",
+      "note_en": "Stand or sit facing the qiblah, raise your hands and make plenty of du'a. There is no need to climb Jabal ar-Rahmah (the Mount of Mercy)."
     },
     {
       "id": "sayyid_istighfar",
@@ -638,7 +860,13 @@
       "meaning_th": "โอ้อัลลอฮ์ พระองค์คือพระเจ้าของข้าพเจ้า ไม่มีพระเจ้าอื่นใดนอกจากพระองค์ พระองค์ทรงสร้างข้าพเจ้า และข้าพเจ้าคือบ่าวของพระองค์ ข้าพเจ้าจะยึดมั่นในพันธสัญญาและคำมั่นต่อพระองค์เท่าที่ข้าพเจ้าสามารถ ข้าพเจ้าขอความคุ้มครองต่อพระองค์จากความชั่วที่ข้าพเจ้าได้กระทำ ข้าพเจ้ายอมรับในความโปรดปรานที่พระองค์ทรงประทานแก่ข้าพเจ้า และยอมรับในบาปของข้าพเจ้า ดังนั้นโปรดอภัยแก่ข้าพเจ้า เพราะไม่มีผู้ใดอภัยบาปได้นอกจากพระองค์",
       "source": "อัลบุคอรีย์ 6306",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Sayyid al-Istighfar (the best prayer for forgiveness)",
+      "reading_en": "Allahumma anta rabbi la ilaha illa ant, khalaqtani wa ana 'abduk, wa ana 'ala 'ahdika wa wa'dika mastata't, a'udhu bika min sharri ma sana't, abu'u laka bi ni'matika 'alayya, wa abu'u bi dhanbi, faghfir li, fa innahu la yaghfirudh-dhunuba illa ant",
+      "meaning_en": "O Allah, You are my Lord; there is no god but You. You created me and I am Your servant. I keep Your covenant and Your promise as best I can. I seek refuge in You from the evil of what I have done. I acknowledge Your blessings upon me, and I acknowledge my sin, so forgive me, for none forgives sins but You.",
+      "source_en": "Sahih al-Bukhari 6306",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "muzdalifah_mashar",
@@ -653,7 +881,13 @@
       "meaning_th": "ครั้นเมื่อพวกเจ้าออกจากอะรอฟาตแล้ว ก็จงกล่าวรำลึกถึงอัลลอฮ์ ณ อัลมัชอะริลฮะรอม",
       "source": "อัลบะเกาะเราะฮ์ 2:198; การปฏิบัติของท่านนบี ﷺ ในหะดีษญาบิร (มุสลิม 1218)",
       "grade_th": "อัลกุรอาน / เศาะฮีห์",
-      "note_th": "ท่านนบี ﷺ หันหน้าไปทางกิบลัต ขอดุอาอ์ กล่าวตักบีร ตะฮ์ลีล (ลาอิลาฮะอิลลัลลอฮ์) และให้เอกภาพแด่อัลลอฮ์ จนฟ้าสว่าง ใช้บท arafah_best_dua ได้"
+      "note_th": "ท่านนบี ﷺ หันหน้าไปทางกิบลัต ขอดุอาอ์ กล่าวตักบีร ตะฮ์ลีล (ลาอิลาฮะอิลลัลลอฮ์) และให้เอกภาพแด่อัลลอฮ์ จนฟ้าสว่าง ใช้บท arafah_best_dua ได้",
+      "title_en": "Dhikr at al-Mash'ar al-Haram",
+      "reading_en": "Fa idha afadtum min 'arafatin fadhkurullaha 'indal-mash'aril-haram",
+      "meaning_en": "And when you depart from Arafat, remember Allah at al-Mash'ar al-Haram.",
+      "source_en": "Al-Baqarah 2:198; the practice of the Prophet ﷺ in the hadith of Jabir (Sahih Muslim 1218)",
+      "grade_en": "Qur'an / Sahih",
+      "note_en": "The Prophet ﷺ faced the qiblah, made du'a, said the takbir and tahlil (La ilaha illallah) and declared Allah's oneness until the sky became bright. You may use the best du'a of Arafah (La ilaha illallahu wahdah...)."
     },
     {
       "id": "jamarat_takbir",
@@ -669,7 +903,13 @@
       "meaning_th": "อัลลอฮ์ทรงยิ่งใหญ่",
       "source": "อัลบุคอรีย์ 1751, 1753",
       "grade_th": "เศาะฮีห์",
-      "note_th": "วันที่ 10: หยุดตัลบิยะฮ์เมื่อขว้างก้อนแรกที่ญัมเราะฮ์อะกอบะฮ์ (อัลบุคอรีย์ 1685) วันตัชรีก: หลังขว้างญัมเราะฮ์ศุฆรอและวุสฏอ ให้เดินพ้นออกมา หันหน้าไปทางกิบลัต ยกมือ แล้วขอดุอาอ์ยาว ๆ แต่หลังญัมเราะฮ์อะกอบะฮ์ไม่ต้องหยุดขอดุอาอ์"
+      "note_th": "วันที่ 10: หยุดตัลบิยะฮ์เมื่อขว้างก้อนแรกที่ญัมเราะฮ์อะกอบะฮ์ (อัลบุคอรีย์ 1685) วันตัชรีก: หลังขว้างญัมเราะฮ์ศุฆรอและวุสฏอ ให้เดินพ้นออกมา หันหน้าไปทางกิบลัต ยกมือ แล้วขอดุอาอ์ยาว ๆ แต่หลังญัมเราะฮ์อะกอบะฮ์ไม่ต้องหยุดขอดุอาอ์",
+      "title_en": "Takbir when throwing the pebbles",
+      "reading_en": "Allahu akbar",
+      "meaning_en": "Allah is the Greatest.",
+      "source_en": "Sahih al-Bukhari 1751, 1753",
+      "grade_en": "Sahih",
+      "note_en": "On the 10th: stop the talbiyah when you throw the first pebble at Jamrat al-Aqabah (Sahih al-Bukhari 1685). On the days of tashriq: after stoning the small and the middle jamrah, step aside, face the qiblah, raise your hands and make a long du'a. After Jamrat al-Aqabah, do not stop for du'a."
     },
     {
       "id": "slaughter_dam",
@@ -684,7 +924,13 @@
       "meaning_th": "ด้วยพระนามของอัลลอฮ์ และอัลลอฮ์ทรงยิ่งใหญ่ โอ้อัลลอฮ์ (สัตว์นี้) มาจากพระองค์และเพื่อพระองค์ โอ้อัลลอฮ์ โปรดรับจากข้าพเจ้าด้วยเถิด",
       "source": "มุสลิม 1966, 1967; อบูดาวูด 2795",
       "grade_th": "เศาะฮีห์",
-      "note_th": "ถ้ามอบหมายให้ผู้อื่นเชือดแทน (เช่น ซื้อคูปองฮัดย์) ผู้เชือดเป็นผู้กล่าว"
+      "note_th": "ถ้ามอบหมายให้ผู้อื่นเชือดแทน (เช่น ซื้อคูปองฮัดย์) ผู้เชือดเป็นผู้กล่าว",
+      "title_en": "Du'a when slaughtering an animal",
+      "reading_en": "Bismillahi wallahu akbar, Allahumma minka wa lak, Allahumma taqabbal minni",
+      "meaning_en": "In the name of Allah, and Allah is the Greatest. O Allah, (this animal) is from You and for You. O Allah, accept it from me.",
+      "source_en": "Sahih Muslim 1966, 1967; Sunan Abi Dawud 2795",
+      "grade_en": "Sahih",
+      "note_en": "If you appoint someone to slaughter on your behalf (for example by buying a hady voucher), the person slaughtering says it."
     },
     {
       "id": "takbir_tashriq",
@@ -700,7 +946,13 @@
       "meaning_th": "อัลลอฮ์ทรงยิ่งใหญ่ อัลลอฮ์ทรงยิ่งใหญ่ ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ และอัลลอฮ์ทรงยิ่งใหญ่ อัลลอฮ์ทรงยิ่งใหญ่ และการสรรเสริญทั้งมวลเป็นของอัลลอฮ์",
       "source": "อิบนุอบีชัยบะฮ์ ใน อัลมุศ็อนนัฟ (รายงานจากท่านอิบนุมัสอูด)",
       "grade_th": "เศาะฮีห์ (คำพูดของเศาะฮาบะฮ์)",
-      "note_th": "มีถ้อยคำตักบีรหลายแบบที่รายงานจากเศาะฮาบะฮ์ แบบนี้เป็นที่นิยม"
+      "note_th": "มีถ้อยคำตักบีรหลายแบบที่รายงานจากเศาะฮาบะฮ์ แบบนี้เป็นที่นิยม",
+      "title_en": "Takbir of Eid and the days of tashriq",
+      "reading_en": "Allahu akbar, Allahu akbar, la ilaha illallah, wallahu akbar, Allahu akbar, wa lillahil-hamd",
+      "meaning_en": "Allah is the Greatest, Allah is the Greatest. There is no god but Allah. Allah is the Greatest, Allah is the Greatest, and all praise is for Allah.",
+      "source_en": "Ibn Abi Shaybah, al-Musannaf (reported from Ibn Mas'ud)",
+      "grade_en": "Sahih (words of a Companion)",
+      "note_en": "Several wordings of the takbir are reported from the Companions; this one is widely used."
     },
     {
       "id": "guidance_ihram_wear",
@@ -716,7 +968,13 @@
       "meaning_th": "ไม่มีดุอาอ์เฉพาะขณะสวมผ้าอิห์รอม ซุนนะฮ์คืออาบน้ำ (ฆุสล์) ตัดเล็บ และใส่น้ำหอมที่ร่างกาย (ไม่ใช่ที่ผ้า) สำหรับผู้ชาย ควรทำตั้งแต่ที่บ้านหรือที่พักก่อนขึ้นเครื่อง แล้วสวมผ้าอิห์รอม มัซฮับชาฟิอีย์ส่งเสริมให้ละหมาดซุนนะฮ์อิห์รอม 2 ร็อกอะฮ์ก่อนเนียต (ถ้าตรงกับเวลาละหมาดฟัรฎู ให้ละหมาดฟัรฎูแทน) จากนั้นจึงเนียตและเริ่มกล่าวตัลบิยะฮ์",
       "source": "อัลบุคอรีย์ 1539 (ท่านหญิงอาอิชะฮ์ใส่น้ำหอมให้ท่านนบี ﷺ ก่อนครองอิห์รอม), มุสลิม 1218",
       "grade_th": "เศาะฮีห์",
-      "note_th": ""
+      "note_th": "",
+      "title_en": "Putting on the ihram",
+      "reading_en": "",
+      "meaning_en": "There is no specific du'a for putting on the ihram garments. The Sunnah is to take a bath (ghusl), trim your nails, and for men to apply perfume to the body (not to the cloth). It is best to do this at home or at your hotel before boarding the plane, then put on the ihram. The Shafi'i school encourages praying 2 rak'at sunnah of ihram before the intention (if it is the time of an obligatory prayer, pray that instead). Then make your intention and begin the talbiyah.",
+      "source_en": "Sahih al-Bukhari 1539 ('A'ishah applied perfume to the Prophet ﷺ before he entered ihram), Sahih Muslim 1218",
+      "grade_en": "Sahih",
+      "note_en": ""
     },
     {
       "id": "guidance_wada_multazam",
@@ -731,7 +989,13 @@
       "meaning_th": "เฏาะวาฟวะดาอ์คือสิ่งสุดท้ายที่ทำก่อนออกจากมักกะฮ์ ไม่มีดุอาอ์เฉพาะ ใช้บทเดียวกับเฏาะวาฟอื่น (istilam, rabbana_atina และดุอาอ์รายรอบ) ส่วนการยืนแนบอกที่มุลตะซัม (ระหว่างหินดำกับประตูกะอ์บะฮ์) แล้วขอดุอาอ์ มีรายงานจากเศาะฮาบะฮ์บางท่าน ทำได้เมื่อคนไม่แน่น โดยไม่ต้องเบียด",
       "source": "อัลบุคอรีย์ 1755, มุสลิม 1328 (คำสั่งให้เฏาะวาฟวะดาอ์); อบูดาวูด 1899 (มุลตะซัม — สายรายงานอ่อน)",
       "grade_th": "เศาะฮีห์ / มุลตะซัมสายรายงานอ่อน",
-      "note_th": "ผู้หญิงที่มีประจำเดือนได้รับการยกเว้นจากเฏาะวาฟวะดาอ์ (อัลบุคอรีย์ 1755)"
+      "note_th": "ผู้หญิงที่มีประจำเดือนได้รับการยกเว้นจากเฏาะวาฟวะดาอ์ (อัลบุคอรีย์ 1755)",
+      "title_en": "Farewell tawaf and the Multazam",
+      "reading_en": "",
+      "meaning_en": "Tawaf al-wada' is the last thing you do before leaving Makkah. There is no specific du'a: use the same ones as in any other tawaf (istilam, Rabbana atina and the lap du'as). Standing with your chest pressed against the Multazam (between the Black Stone and the door of the Ka'bah) and making du'a is reported from some Companions; you may do it when it is not crowded, without pushing.",
+      "source_en": "Sahih al-Bukhari 1755, Sahih Muslim 1328 (the command to perform tawaf al-wada'); Sunan Abi Dawud 1899 (Multazam — weak chain)",
+      "grade_en": "Sahih / the Multazam report has a weak chain",
+      "note_en": "Women who are menstruating are excused from tawaf al-wada' (Sahih al-Bukhari 1755)."
     }
   ],
   "fixes_to_original_th": [

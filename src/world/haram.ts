@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Collider } from '../engine/player';
 import { makeLabel, textTexture } from '../engine/label';
 import { box, crowdMesh, cyl, mat, placeCrowd, tileTexture, type Scene3D } from './common';
+import { tr } from '../i18n';
 
 /**
  * Masjid al-Haram around the Ka'bah. Ka'bah centred at the origin, walls on the axes:
@@ -91,7 +92,7 @@ export function buildHaram(o: HaramOpts): Scene3D {
   dome.position.set(mq.x, 2.4, mq.z);
   group.add(dome);
   colliders.push({ kind: 'circle', x: mq.x, z: mq.z, r: 1.0 });
-  const mql = makeLabel('มะกอมอิบรอฮีม', { height: 0.5 });
+  const mql = makeLabel(tr('มะกอมอิบรอฮีม'), { height: 0.5 });
   mql.position.set(mq.x, 3.6, mq.z);
   group.add(mql);
 
@@ -161,7 +162,7 @@ export function buildHaram(o: HaramOpts): Scene3D {
   // Zamzam station.
   const zz = SPOTS.zamzam;
   for (let i = 0; i < 4; i++) cyl(group, 0.28, 0.3, 1.1, mat(0xf5f5f5, 0.3), zz.x + (i - 1.5) * 0.8, 0, zz.z + 2.4, 14);
-  const zzl = makeLabel('จุดน้ำซัมซัม', { height: 0.5 });
+  const zzl = makeLabel(tr('จุดน้ำซัมซัม'), { height: 0.5 });
   zzl.position.set(zz.x, 2.4, zz.z + 2.4);
   group.add(zzl);
 

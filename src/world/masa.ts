@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Collider } from '../engine/player';
 import { makeLabel } from '../engine/label';
 import { box, crowdMesh, floor, mat, placeCrowd, tileTexture, type Scene3D } from './common';
+import { tr } from '../i18n';
 
 /**
  * Mas'a (Safa–Marwah corridor), compressed to ~100 m (real ≈ 400 m).
@@ -43,7 +44,7 @@ export function buildMasa(crowdCount: number): Scene3D {
 
   // The two hills, preserved behind low glass.
   const rock = mat(0x8a7560, 0.95, { flatShading: true });
-  for (const [z, name] of [[MASA.safaZ + 7, 'เนินเศาะฟา'], [MASA.marwahZ - 7, 'เนินมัรวะฮ์']] as const) {
+  for (const [z, name] of [[MASA.safaZ + 7, tr('เนินเศาะฟา')], [MASA.marwahZ - 7, tr('เนินมัรวะฮ์')]] as const) {
     const hill = new THREE.Mesh(new THREE.DodecahedronGeometry(4.2, 1), rock);
     hill.scale.set(1.6, 0.5, 1);
     hill.position.set(0, 0.8, z);
@@ -72,7 +73,7 @@ export function buildMasa(crowdCount: number): Scene3D {
     gl.position.set(0, 8, z);
     group.add(gl);
   }
-  const gz = makeLabel('ไฟเขียว: ผู้ชายวิ่งเหยาะ ๆ', { height: 0.6, bg: 'rgba(20,90,55,0.85)' });
+  const gz = makeLabel(tr('ไฟเขียว: ผู้ชายวิ่งเหยาะ ๆ'), { height: 0.6, bg: 'rgba(20,90,55,0.85)' });
   gz.position.set(0, 7.5, MASA.green.from);
   group.add(gz);
 

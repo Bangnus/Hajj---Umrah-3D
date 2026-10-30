@@ -1,16 +1,21 @@
 import type { Settings } from '../journey/types';
 import { loadSettings } from '../journey/progress';
+import { getLang } from '../i18n';
 
 /**
- * Browser-only audio: Thai/Arabic narration through the Web Speech API and small sound
+ * Browser-only audio: Thai/English/Arabic narration through the Web Speech API and small sound
  * effects synthesised with WebAudio. No audio files. Everything degrades silently when the
  * browser lacks speechSynthesis, a matching voice or AudioContext.
  *
  * TTS is a temporary stand-in: recorded talbiyah/du'a by a qualified reciter and professional
- * Thai narration are planned.
+ * narration are planned.
  */
 
-type Lang = 'th' | 'ar';
+export type VoiceLang = 'th' | 'en' | 'ar';
+type Lang = VoiceLang;
+
+/** Language of narration and du'a meanings: follows the UI language. */
+export const narrationLang = (): 'th' | 'en' => getLang();
 export type Sfx = 'chime' | 'complete' | 'buzz' | 'click' | 'rise';
 
 let getSettings: () => Settings = loadSettings;
@@ -37,6 +42,7 @@ function pickVoices() {
   const score = (v: SpeechSynthesisVoice) => (/natural|online|premium|enhanced/i.test(v.name) ? 2 : 0) + (v.localService ? 1 : 0);
   const best = (pred: (l: string) => boolean) => list.filter((v) => pred(norm(v))).sort((a, b) => score(b) - score(a))[0];
   voices.th = best((l) => l.startsWith('th'));
+  voices.en = best((l) => l === 'en-us') ?? best((l) => l === 'en-gb') ?? best((l) => l.startsWith('en'));
   voices.ar = best((l) => l === 'ar-sa') ?? best((l) => l.startsWith('ar'));
   voiceListeners.forEach((f) => f());
 }
@@ -47,7 +53,7 @@ if (synth) {
   // Some browsers never fire voiceschanged: poll a few times.
   let tries = 0;
   const poll = window.setInterval(() => {
-    if (voices.th && voices.ar) { clearInterval(poll); return; }
+    if (voices[narrationLang()] && voices.ar) { clearInterval(poll); return; }
     pickVoices();
     if (++tries > 8) clearInterval(poll);
   }, 750);
@@ -59,7 +65,7 @@ export const voiceName = (lang: Lang) => voices[lang]?.name ?? '';
 /** Called whenever the voice list changes (they load asynchronously). */
 export function onVoices(fn: () => void) { voiceListeners.add(fn); }
 
-/** Split long text: Chrome cuts utterances off after ~15 s. Thai separates phrases with spaces. */
+/** Split long text: Chrome cuts utterances off after ~15 s. Thai separates phrases with spaces (as English separates words). */
 function chunks(text: string, max = 160): string[] {
   const out: string[] = [];
   // (No regex lookbehind: older Safari fails to parse it.)
@@ -112,10 +118,10 @@ export function speak(text: string, lang: Lang, onEnd?: () => void): boolean {
   return true;
 }
 
-/** Thai narration (stage intros, mission messages); obeys the narration setting. */
+/** Narration in the UI language (stage intros, mission messages); obeys the narration setting. */
 export function narrate(text: string): boolean {
   if (!getSettings().narration) return false;
-  return speak(text, 'th');
+  return speak(text, narrationLang());
 }
 
 // ---------------------------------------------------------------- sound effects

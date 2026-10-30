@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Collider } from '../engine/player';
 import { makeLabel, textTexture } from '../engine/label';
 import { box, boxCollider, cyl, floor, mat, tileTexture, type Scene3D } from './common';
+import { tr } from '../i18n';
 
 /** Thai house interior (12 x 10 m) with a door to the street and a waiting car. */
 export const HOME = {
@@ -61,10 +62,10 @@ export function buildHome(): Scene3D {
 export const AIRPORT = {
   start: { x: 0, z: 14 },
   steps: [
-    { x: -8, z: 6, label: 'เคาน์เตอร์เช็กอิน' },
-    { x: 8, z: 0, label: 'ตรวจคนเข้าเมือง' },
-    { x: 0, z: -6, label: 'จุดตรวจความปลอดภัย' },
-    { x: 0, z: -15, label: 'ประตูขึ้นเครื่อง 14' },
+    { x: -8, z: 6, label: tr('เคาน์เตอร์เช็กอิน') },
+    { x: 8, z: 0, label: tr('ตรวจคนเข้าเมือง') },
+    { x: 0, z: -6, label: tr('จุดตรวจความปลอดภัย') },
+    { x: 0, z: -15, label: tr('ประตูขึ้นเครื่อง 14') },
   ],
 };
 
@@ -103,7 +104,7 @@ export function buildAirport(): Scene3D {
     box(group, 1.4, 0.2, 0.6, 0x8a96a3, x, 2.3, -6);
   }
   // Gate sign.
-  const sign = new THREE.Mesh(new THREE.PlaneGeometry(4, 1.4), new THREE.MeshBasicMaterial({ map: textTexture(['ประตู 14  ✈  เจดดาห์'], 768, 256, '#11302a', '#f2d06b', 76) }));
+  const sign = new THREE.Mesh(new THREE.PlaneGeometry(4, 1.4), new THREE.MeshBasicMaterial({ map: textTexture([tr('ประตู 14  ✈  เจดดาห์')], 768, 256, '#11302a', '#f2d06b', 76) }));
   sign.position.set(0, 4.5, -18.5);
   group.add(sign);
   for (let i = 0; i < 6; i++) {
@@ -143,10 +144,10 @@ export function buildCabin(): Scene3D {
     }
   }
   box(group, 5.4, 2.4, 0.2, mat(0xd8dde2, 0.6), 0, 0, -17.6);
-  const sign = new THREE.Mesh(new THREE.PlaneGeometry(1.6, 0.5), new THREE.MeshBasicMaterial({ map: textTexture(['ห้องเปลี่ยนชุด'], 512, 160, '#11302a', '#ffffff', 64) }));
+  const sign = new THREE.Mesh(new THREE.PlaneGeometry(1.6, 0.5), new THREE.MeshBasicMaterial({ map: textTexture([tr('ห้องเปลี่ยนชุด')], 512, 160, '#11302a', '#ffffff', 64) }));
   sign.position.set(0, 2.2, -17.45);
   group.add(sign);
-  const lb = makeLabel('แอร์ไลน์ → เจดดาห์', { height: 0.4 });
+  const lb = makeLabel(tr('แอร์ไลน์ → เจดดาห์'), { height: 0.4 });
   lb.position.set(0, 2.4, 14.5);
   group.add(lb);
   colliders.push({ kind: 'rect-in', minX: -0.75, maxX: 0.75, minZ: -17.4, maxZ: 14.5 });
@@ -169,7 +170,7 @@ export function buildPlaza(): Scene3D {
   for (let i = 0; i < 4; i++) {
     const x = -9 + i * 6;
     box(group, 4, 3, 3, mat(0xe7dfcc, 0.6), x, 0, -10);
-    const s = new THREE.Mesh(new THREE.PlaneGeometry(3, 0.7), new THREE.MeshBasicMaterial({ map: textTexture(['ร้านตัดผม ✂'], 512, 128, '#11302a', '#f2d06b', 56) }));
+    const s = new THREE.Mesh(new THREE.PlaneGeometry(3, 0.7), new THREE.MeshBasicMaterial({ map: textTexture([tr('ร้านตัดผม ✂')], 512, 128, '#11302a', '#f2d06b', 56) }));
     s.position.set(x, 3.4, -8.45);
     group.add(s);
     colliders.push(boxCollider(x, -10, 4, 3));

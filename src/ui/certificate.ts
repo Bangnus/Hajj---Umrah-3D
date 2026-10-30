@@ -1,11 +1,13 @@
 /**
  * Learning certificate shown at the end of a journey: a canvas drawing (no images) with an
- * Islamic geometric border, the pilgrim's editable name, completed stages and Thai/Hijri dates.
+ * Islamic geometric border, the pilgrim's editable name, completed stages and Gregorian/Hijri dates
+ * (Thai Buddhist-era dates in Thai, English dates in English).
  * It is for learning only, never proof of a real Umrah/Hajj.
  */
+import { getLang, speechLang, tr } from '../i18n';
 
 export interface CertOptions {
-  /** Thai ritual name: "อุมเราะฮ์" or "ฮัจญ์". */
+  /** Thai ritual name (an internal key, translated for display): "อุมเราะฮ์" or "ฮัจญ์". */
   ritual: string;
   name: string;
   stages: { title: string }[];
@@ -30,8 +32,18 @@ const AR = 'Amiri, "Noto Naskh Arabic", serif';
 
 const HIJRI_MONTHS = ['มุฮัรร็อม', 'ศ็อฟัร', 'ร็อบีอุลเอาวัล', 'ร็อบีอุษษานี', 'ญุมาดัลอูลา', 'ญุมาดัลอาคิเราะฮ์',
   'รอญับ', 'ชะอ์บาน', 'รอมฎอน', 'เชาวาล', 'ซุลเกาะอ์ดะฮ์', 'ซุลหิจญะฮ์'];
+const HIJRI_MONTHS_EN = ['Muharram', 'Safar', "Rabi' al-Awwal", "Rabi' al-Thani", 'Jumada al-Ula', 'Jumada al-Akhirah',
+  'Rajab', "Sha'ban", 'Ramadan', 'Shawwal', "Dhul-Qa'dah", 'Dhul-Hijjah'];
 
-export function thaiDate(d: Date): string {
+/** Gregorian date line: Buddhist era in Thai, "30 October 2026" in English. */
+export function localDate(d: Date): string {
+  if (getLang() === 'en') {
+    try {
+      return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+    } catch {
+      return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    }
+  }
   try {
     return `วันที่ ${new Intl.DateTimeFormat('th-TH-u-ca-buddhist', { day: 'numeric', month: 'long', year: 'numeric' }).format(d).replace(/(\d{4})$/, 'พ.ศ. $1')}`;
   } catch {
@@ -39,7 +51,7 @@ export function thaiDate(d: Date): string {
   }
 }
 
-/** Hijri date in Thai, or '' when the browser has no Islamic calendar. */
+/** Hijri date in the UI language, or '' when the browser has no Islamic calendar. */
 export function hijriDate(d: Date): string {
   for (const cal of ['islamic-umalqura', 'islamic', 'islamic-civil']) {
     try {
@@ -48,11 +60,11 @@ export function hijriDate(d: Date): string {
       const parts = Object.fromEntries(f.formatToParts(d).map((p) => [p.type, p.value]));
       const day = Number(parts.day), month = Number(parts.month), year = Number(String(parts.year).replace(/\D/g, ''));
       if (!day || !month || !year || month > 12) continue;
-      return `${day} ${HIJRI_MONTHS[month - 1]} ฮ.ศ. ${year}`;
+      return getLang() === 'en' ? `${day} ${HIJRI_MONTHS_EN[month - 1]} ${year} AH` : `${day} ${HIJRI_MONTHS[month - 1]} ฮ.ศ. ${year}`;
     } catch { /* try next */ }
   }
   try {
-    const f = new Intl.DateTimeFormat('th-TH-u-ca-islamic', { day: 'numeric', month: 'long', year: 'numeric' });
+    const f = new Intl.DateTimeFormat(`${speechLang()}-u-ca-islamic`, { day: 'numeric', month: 'long', year: 'numeric' });
     if (f.resolvedOptions().calendar.startsWith('islamic')) return f.format(d);
   } catch { /* none */ }
   return '';
@@ -309,6 +321,7 @@ export function drawCertificate(canvas: HTMLCanvasElement, o: CertOptions) {
   const g = canvas.getContext('2d');
   if (!g) return;
   const date = o.date ?? new Date();
+  const ritual = ritualName(o.ritual);
 
   // Paper.
   const bg = g.createRadialGradient(W / 2, H / 2, 200, W / 2, H / 2, W * 0.7);
@@ -329,7 +342,7 @@ export function drawCertificate(canvas: HTMLCanvasElement, o: CertOptions) {
   g.fillText('بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ', W / 2, 190);
   g.direction = 'ltr';
 
-  const title = `ประกาศนียบัตรการฝึกพิธี${o.ritual}`;
+  const title = tr('ประกาศนียบัตรการฝึกพิธี{ritual}', { ritual });
   g.fillStyle = C.green;
   fitFont(g, title, 700, 60, 40, maxW);
   g.fillText(title, W / 2, 272);
@@ -337,9 +350,9 @@ export function drawCertificate(canvas: HTMLCanvasElement, o: CertOptions) {
 
   g.fillStyle = C.muted;
   g.font = `400 28px ${TH}`;
-  g.fillText('ขอมอบประกาศนียบัตรนี้ให้แก่', W / 2, 364);
+  g.fillText(tr('ขอมอบประกาศนียบัตรนี้ให้แก่'), W / 2, 364);
 
-  const name = o.name.trim() || 'ผู้แสวงบุญ';
+  const name = o.name.trim() || tr('ผู้แสวงบุญ');
   g.fillStyle = C.green;
   fitFont(g, name, 700, 76, 36, 1000);
   g.fillText(name, W / 2, 448);
@@ -352,7 +365,7 @@ export function drawCertificate(canvas: HTMLCanvasElement, o: CertOptions) {
 
   g.fillStyle = C.ink;
   g.font = `400 27px ${TH}`;
-  const intro = `ซึ่งได้ฝึกพิธี${o.ritual}ด้วยโปรแกรมจำลอง 3 มิติ ครบทุกขั้นตอน ดังต่อไปนี้`;
+  const intro = tr('ซึ่งได้ฝึกพิธี{ritual}ด้วยโปรแกรมจำลอง 3 มิติ ครบทุกขั้นตอน ดังต่อไปนี้', { ritual });
   wrap(g, intro, maxW).forEach((l, k) => g.fillText(l, W / 2, 524 + k * 36));
 
   // Completed stages in a grid.
@@ -388,18 +401,18 @@ export function drawCertificate(canvas: HTMLCanvasElement, o: CertOptions) {
   g.direction = 'ltr';
   g.fillStyle = C.ink;
   g.font = `500 25px ${TH}`;
-  g.fillText('“ขออัลลอฮ์ทรงรับการงานของท่าน”', W / 2, duaY + 40);
+  g.fillText(tr('“ขออัลลอฮ์ทรงรับการงานของท่าน”'), W / 2, duaY + 40);
 
   // Dates (left), seal (centre), programme name (right).
   const hijri = hijriDate(date);
   g.textAlign = 'left';
   g.fillStyle = C.ink;
   g.font = `600 24px ${TH}`;
-  g.fillText(thaiDate(date), 190, dateY);
+  g.fillText(localDate(date), 190, dateY);
   if (hijri) {
     g.fillStyle = C.muted;
     g.font = `400 22px ${TH}`;
-    g.fillText(`ตรงกับ ${hijri}`, 190, dateY + 34);
+    g.fillText(tr('ตรงกับ {hijri}', { hijri }), 190, dateY + 34);
   }
   g.strokeStyle = C.gold;
   g.lineWidth = 1;
@@ -410,14 +423,14 @@ export function drawCertificate(canvas: HTMLCanvasElement, o: CertOptions) {
   g.textAlign = 'right';
   g.fillStyle = C.ink;
   g.font = `600 24px ${TH}`;
-  g.fillText('จำลองอุมเราะฮ์และฮัจญ์ 3 มิติ', W - 190, dateY);
+  g.fillText(tr('จำลองอุมเราะฮ์และฮัจญ์ 3 มิติ'), W - 190, dateY);
   g.fillStyle = C.muted;
   g.font = `400 22px ${TH}`;
-  g.fillText('โปรแกรมฝึกพิธีเพื่อการเรียนรู้', W - 190, dateY + 34);
+  g.fillText(tr('โปรแกรมฝึกพิธีเพื่อการเรียนรู้'), W - 190, dateY + 34);
   g.beginPath(); g.moveTo(W - 560, dateY - 36); g.lineTo(W - 190, dateY - 36); g.stroke();
 
   // Learning-only note.
-  const note = 'ใบประกาศนี้ใช้เพื่อการเรียนรู้เท่านั้น ไม่ใช่เอกสารรับรองการทำพิธีจริง';
+  const note = tr('ใบประกาศนี้ใช้เพื่อการเรียนรู้เท่านั้น ไม่ใช่เอกสารรับรองการทำพิธีจริง');
   g.textAlign = 'center';
   g.font = `600 21px ${TH}`;
   const nw = g.measureText(note).width + 44;
@@ -442,23 +455,27 @@ async function fontsReady() {
 
 function slug(ritual: string) { return ritual === 'ฮัจญ์' ? 'hajj' : 'umrah'; }
 
+/** Display name of the internal Thai ritual key. */
+export function ritualName(ritual: string): string { return ritual === 'ฮัจญ์' ? tr('ฮัจญ์') : tr('อุมเราะฮ์'); }
+
 /** Open the certificate modal on top of everything. Returns a function that closes it. */
 export function openCertificate(host: HTMLElement, o: CertOptions): () => void {
+  const ritual = ritualName(o.ritual);
   const el = document.createElement('div');
   el.className = 'overlay cert-overlay';
   el.innerHTML = `
-    <div class="modal cert" role="dialog" aria-modal="true" aria-label="ใบประกาศ">
+    <div class="modal cert" role="dialog" aria-modal="true" aria-label="${tr('ใบประกาศ')}">
       <div class="cert-head">
-        <h3>🎓 ใบประกาศการฝึกพิธี${o.ritual}</h3>
-        <button class="icon-btn small" data-act="x" aria-label="ปิด">×</button>
+        <h3>${tr('🎓 ใบประกาศการฝึกพิธี{ritual}', { ritual })}</h3>
+        <button class="icon-btn small" data-act="x" aria-label="${tr('ปิด')}">×</button>
       </div>
-      <div class="cert-frame"><canvas aria-label="ภาพใบประกาศ"></canvas><div class="cert-loading">กำลังเตรียมใบประกาศ…</div></div>
-      <label class="field"><span>ชื่อบนใบประกาศ</span><input maxlength="40" /></label>
-      <p class="cert-note">ใบประกาศนี้ใช้เพื่อการเรียนรู้เท่านั้น ไม่ใช่เอกสารรับรองการทำพิธีจริง</p>
+      <div class="cert-frame"><canvas aria-label="${tr('ภาพใบประกาศ')}"></canvas><div class="cert-loading">${tr('กำลังเตรียมใบประกาศ…')}</div></div>
+      <label class="field"><span>${tr('ชื่อบนใบประกาศ')}</span><input maxlength="40" /></label>
+      <p class="cert-note">${tr('ใบประกาศนี้ใช้เพื่อการเรียนรู้เท่านั้น ไม่ใช่เอกสารรับรองการทำพิธีจริง')}</p>
       <div class="row">
-        <button class="btn ghost" data-act="close">ปิด</button>
-        <button class="btn ghost" data-act="share" hidden>แชร์</button>
-        <button class="btn primary" data-act="png">⬇ ดาวน์โหลด PNG</button>
+        <button class="btn ghost" data-act="close">${tr('ปิด')}</button>
+        <button class="btn ghost" data-act="share" hidden>${tr('แชร์')}</button>
+        <button class="btn primary" data-act="png">${tr('⬇ ดาวน์โหลด PNG')}</button>
       </div>
     </div>`;
   host.appendChild(el);
@@ -507,7 +524,11 @@ export function openCertificate(host: HTMLElement, o: CertOptions): () => void {
       if (!blob) return;
       const file = new File([blob], fileName(), { type: 'image/png' });
       try {
-        await navigator.share({ files: [file], title: `ใบประกาศการฝึกพิธี${o.ritual}`, text: `ฝึกพิธี${o.ritual}ครบทุกขั้นตอนแล้ว อัลฮัมดุลิลลาฮ์ (ใช้เพื่อการเรียนรู้)` });
+        await navigator.share({
+          files: [file],
+          title: tr('ใบประกาศการฝึกพิธี{ritual}', { ritual }),
+          text: tr('ฝึกพิธี{ritual}ครบทุกขั้นตอนแล้ว อัลฮัมดุลิลลาฮ์ (ใช้เพื่อการเรียนรู้)', { ritual }),
+        });
       } catch { /* cancelled or unsupported */ }
     }
   });
