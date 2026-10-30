@@ -68,6 +68,7 @@ export class Journey {
     this.player.frozen = false;
     this.player.setPose('stand');
     this.player.setLook({ outfit: def.outfit, hair: 'normal', idtiba: false });
+    this.engine.setTimeOfDay(null);
 
     const ctx: StageCtx = {
       root, rings,
@@ -95,6 +96,7 @@ export class Journey {
       action: (label, cb) => { const a = this.hud.action(label, cb); cur.actions.push(a); return a; },
       guide: (t) => { this.guideTarget = t; },
       after: (s, fn) => { cur.timers.push(window.setTimeout(() => { if (this.cur === cur) fn(); }, s * 1000)); },
+      timeOfDay: (t) => { if (this.cur === cur) this.engine.setTimeOfDay(t); },
     };
 
     this.hud.setStage(i, def, this.profile);
