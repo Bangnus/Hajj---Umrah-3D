@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Collider } from '../engine/player';
 import { mat, type Scene3D } from './common';
 import { ground, label, lampPosts, mountainRing, pavilion, signBoard, speckTexture, tentField, walkers, type TentSpot } from './hajjCommon';
+import { tr } from '../i18n';
 
 /**
  * Mina: a valley of white fire-proof tents. A main road runs north (-z) from the start;
@@ -58,19 +59,19 @@ export function buildMina(o: { quality: 'low' | 'high' }): Scene3D {
   tentField(group, extra, 7, false);
 
   // The player's group tent.
-  colliders.push(...pavilion(group, { x: MINA.tent.x, z: MINA.tent.z, w: 14, d: 14, open: 'east', title: ['เต็นท์คณะประเทศไทย 58'] }));
-  label(group, '⛺ เต็นท์ของคุณ', MINA.tent.x, 8.2, MINA.tent.z, 1.1, 'rgba(160,110,10,0.88)');
+  colliders.push(...pavilion(group, { x: MINA.tent.x, z: MINA.tent.z, w: 14, d: 14, open: 'east', title: [tr('เต็นท์คณะประเทศไทย 58')] }));
+  label(group, tr('⛺ เต็นท์ของคุณ'), MINA.tent.x, 8.2, MINA.tent.z, 1.1, 'rgba(160,110,10,0.88)');
 
   // Signs.
-  signBoard(group, ['มีนา  منى'], { x: 0, z: 30, w: 14, h: 2.6, y: 6, bg: '#1f5d46', color: '#ffffff', size: 200 });
+  signBoard(group, [tr('มีนา  منى')], { x: 0, z: 30, w: 14, h: 2.6, y: 6, bg: '#1f5d46', color: '#ffffff', size: 200 });
   for (const s of [-1, 1]) {
     const post = new THREE.Mesh(new THREE.BoxGeometry(0.4, 8.8, 0.4), mat(0x6b7076, 0.6));
     post.position.set(s * 7.2, 4.4, 30);
     group.add(post);
   }
-  signBoard(group, ['คณะประเทศไทย ←', 'ถนนหมายเลข 5 · เต็นท์ 58'], { x: -10.5, z: -26, w: 6, h: 2.2, y: 1.6, bg: '#11302a', color: '#f2d06b', size: 90 });
-  signBoard(group, ['ถนน 4'], { x: 9.6, z: 22, w: 2.6, h: 1, y: 2.4, size: 150 });
-  signBoard(group, ['ถนน 5'], { x: -9.6, z: -22, w: 2.6, h: 1, y: 2.4, size: 150 });
+  signBoard(group, [tr('คณะประเทศไทย ←'), tr('ถนนหมายเลข 5 · เต็นท์ 58')], { x: -10.5, z: -26, w: 6, h: 2.2, y: 1.6, bg: '#11302a', color: '#f2d06b', size: 90 });
+  signBoard(group, [tr('ถนน 4')], { x: 9.6, z: 22, w: 2.6, h: 1, y: 2.4, size: 150 });
+  signBoard(group, [tr('ถนน 5')], { x: -9.6, z: -22, w: 2.6, h: 1, y: 2.4, size: 150 });
 
   // Street lights along the road.
   const lamps: TentSpot[] = [];

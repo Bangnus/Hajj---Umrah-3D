@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Collider } from '../engine/player';
 import { textTexture } from '../engine/label';
 import { box, boxCollider, floor, mat, tileTexture, type Scene3D } from './common';
+import { tr } from '../i18n';
 
 /**
  * Hotel room in Makkah (16 x 12 m) where a tamattu' pilgrim puts on ihram on day 8.
@@ -44,7 +45,7 @@ export function buildHotel(): Scene3D {
     colliders.push(boxCollider(x, -0.5, 2, 3.4));
   }
   box(group, 1.6, 2.4, 0.1, mat(0xd9d2c2, 0.6), -5.4, 0, -5.9, false);
-  const bath = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.4), new THREE.MeshBasicMaterial({ map: textTexture(['ห้องน้ำ'], 256, 72, '#11302a', '#ffffff', 44) }));
+  const bath = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.4), new THREE.MeshBasicMaterial({ map: textTexture([tr('ห้องน้ำ')], 256, 72, '#11302a', '#ffffff', 44) }));
   bath.position.set(-5.4, 2.6, -5.84);
   group.add(bath);
   box(group, 2.2, 2.4, 0.8, mat(0x8b6a4a, 0.6), 5.2, 0, -5.5);

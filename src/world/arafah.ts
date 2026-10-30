@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Collider } from '../engine/player';
 import { box, cyl, mat, type Scene3D } from './common';
 import { ground, label, mountainRing, pavilion, rng, scatter, signBoard, speckTexture, standers, tentField, treeField, walkers, type TentSpot } from './hajjCommon';
+import { tr } from '../i18n';
 
 /**
  * Arafah: an open plain. The player arrives from the south (+z) and enters the
@@ -46,9 +47,9 @@ export function buildArafah(o: { quality: 'low' | 'high' }): Scene3D {
   // Painted line on the ground.
   ground(group, 600, 0.6, new THREE.MeshBasicMaterial({ color: 0xe0b23a }), 0, boundaryZ, 0.03);
   for (const s of [-1, 1]) {
-    signBoard(group, ['เขตอะรอฟะฮ์ เริ่มที่นี่', 'بداية عرفة'], {
+    signBoard(group, [tr('เขตอะรอฟะฮ์ เริ่มที่นี่'), 'بداية عرفة'], {
       x: s * 14, z: boundaryZ + 0.5, w: 9, h: 3.2, y: 2.4, bg: '#f2c230', color: '#1d2a22', size: 110,
-      back: ['สิ้นสุดเขตอะรอฟะฮ์', 'نهاية عرفة'],
+      back: [tr('สิ้นสุดเขตอะรอฟะฮ์'), 'نهاية عرفة'],
     });
     colliders.push({ kind: 'box', minX: s * 14 - 4.6, maxX: s * 14 + 4.6, minZ: boundaryZ + 0.3, maxZ: boundaryZ + 0.7 });
   }
@@ -70,7 +71,7 @@ export function buildArafah(o: { quality: 'low' | 'high' }): Scene3D {
     dome.position.set(nm.x, 16.2, nm.z + dz);
     group.add(dome);
   }
-  label(group, 'มัสยิดนะมิเราะฮ์', nm.x + 26, 22, nm.z, 2.2);
+  label(group, tr('มัสยิดนะมิเราะฮ์'), nm.x + 26, 22, nm.z, 2.2);
 
   // Jabal Rahmah with its white pillar.
   const jr = ARAFAH.rahmah;
@@ -79,7 +80,7 @@ export function buildArafah(o: { quality: 'low' | 'high' }): Scene3D {
   hill.receiveShadow = true;
   group.add(hill);
   cyl(group, 1.2, 1.5, 9, mat(0xffffff, 0.4), jr.x, 33, jr.z, 12);
-  label(group, 'ภูเขาเราะห์มะฮ์', jr.x, 48, jr.z, 3);
+  label(group, tr('ภูเขาเราะห์มะฮ์'), jr.x, 48, jr.z, 3);
   // Pilgrims dotted on the hill.
   const r = rng(21);
   const onHill: { x: number; z: number }[] = [];
@@ -107,8 +108,8 @@ export function buildArafah(o: { quality: 'low' | 'high' }): Scene3D {
   const nearCamp = campSpots.filter((s) => Math.abs(s.x) < 64);
   colliders.push(...tentField(group, nearCamp, 7, true));
   tentField(group, campSpots.filter((s) => Math.abs(s.x) >= 64), 7, false);
-  colliders.push(...pavilion(group, { x: ARAFAH.camp.x, z: ARAFAH.camp.z, w: 12, d: 12, open: 'west', title: ['คณะประเทศไทย (อะรอฟะฮ์)'] }));
-  label(group, '⛺ ที่พักคณะของคุณ', ARAFAH.camp.x, 8, ARAFAH.camp.z, 1.1, 'rgba(160,110,10,0.88)');
+  colliders.push(...pavilion(group, { x: ARAFAH.camp.x, z: ARAFAH.camp.z, w: 12, d: 12, open: 'west', title: [tr('คณะประเทศไทย (อะรอฟะฮ์)')] }));
+  label(group, tr('⛺ ที่พักคณะของคุณ'), ARAFAH.camp.x, 8, ARAFAH.camp.z, 1.1, 'rgba(160,110,10,0.88)');
 
   // Scattered trees (planted across the plain).
   const avoid = [
