@@ -33,6 +33,15 @@ export const prayerZamzam: StageDef = {
             pl.frozen = false;
             ctx.progress();
             ctx.dua('zamzam_dua');
+            // Optional sunnah: return to the Black Stone line for istilam before sa'i (not part of the mission).
+            const st = SPOTS.tawafStart;
+            ctx.after(3, () => ctx.toast('ถ้าสะดวก ซุนนะฮ์ให้กลับไปอิสติลามที่แนวหินดำอีกครั้งก่อนไปสะแอ (ไม่บังคับ)', 'info'));
+            ctx.rings.add(st.x, st.z, 1.6, () => {
+              pl.yaw = faceToward(pl.pos, { x: 0, z: 0 });
+              pl.raiseHand();
+              ctx.dua('istilam');
+              ctx.toast('อิสติลามแล้ว ตอนนี้ไปสะแอที่เนินเศาะฟาได้เลย', 'ok');
+            }, { label: 'อิสติลามก่อนไปสะแอ (ซุนนะฮ์)', color: RING.secondary });
           });
         }, { label: 'ดื่มน้ำซัมซัม', color: RING.water });
       });
