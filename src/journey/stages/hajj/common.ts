@@ -2,10 +2,11 @@ import * as THREE from 'three';
 import type { Pose } from '../../../engine/player';
 import { starField } from '../../../world/hajjCommon';
 import type { HajjType, Profile, StageCtx } from '../../types';
+import { tr } from '../../../i18n';
 
 /** Shared helpers for the Hajj stages. */
 
-export const TYPE_TH: Record<HajjType, string> = { tamattu: 'ตะมัตตุอ์', ifrad: 'อิฟรอด', qiran: 'กิรอน' };
+export const TYPE_TH: Record<HajjType, string> = { tamattu: tr('ตะมัตตุอ์'), ifrad: tr('อิฟรอด'), qiran: tr('กิรอน') };
 /** Tamattu' and qiran owe a hady (dam); ifrad does not. */
 export const needsDam = (p: Profile) => p.hajjType !== 'ifrad';
 export const crowdCount = (ctx: StageCtx, high: number, low: number) => (ctx.quality === 'high' ? high : low);
@@ -90,7 +91,7 @@ function poseSequence(rakaat: number): [Pose, number][] {
  */
 export function praySequence(ctx: StageCtx, list: Salah[], o: { qiblaYaw: number; heading?: string; onEach?: (i: number) => void; onDone: () => void; label?: (s: Salah) => string }) {
   let i = 0, busy = false;
-  const lbl = (s: Salah) => (o.label ? o.label(s) : `🕌 ละหมาด${s.name} ${s.rakaat} ร็อกอะฮ์`);
+  const lbl = (s: Salah) => (o.label ? o.label(s) : tr('🕌 ละหมาด{name} {n} ร็อกอะฮ์', { name: s.name, n: s.rakaat }));
   const showHint = () => ctx.hint(`${o.heading ? o.heading + ': ' : ''}${list.map((s, k) => `${k < i ? '✓ ' : ''}${s.name} ${s.rakaat}`).join(' · ')}`);
   showHint();
   const btn = ctx.action(lbl(list[0]), () => {

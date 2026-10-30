@@ -2,6 +2,7 @@ import { SPOTS, STONE_ANGLE, YAMANI_ANGLE, polar } from '../../../world/haram';
 import { TAU, wrap } from '../util';
 import type { StageCtx } from '../../types';
 import { onFrame } from './common';
+import { tr } from '../../../i18n';
 
 /**
  * Reusable tawaf lap tracker (7 counter-clockwise laps from the Black Stone line).
@@ -22,7 +23,7 @@ export function tawafLaps(ctx: StageCtx, o: { startLabel: string; startToast: st
     ctx.toast(o.startToast, 'ok');
     ctx.dua('istilam');
     ctx.after(4, () => ctx.dua('tawaf_lap_1'));
-    ctx.hint('เดินทวนเข็มนาฬิกา ให้กะอ์บะฮ์อยู่ทางซ้าย');
+    ctx.hint(tr('เดินทวนเข็มนาฬิกา ให้กะอ์บะฮ์อยู่ทางซ้าย'));
   }, { label: o.startLabel });
 
   onFrame(ctx, (dt) => {
@@ -36,7 +37,7 @@ export function tawafLaps(ctx: StageCtx, o: { startLabel: string; startToast: st
     acc += d;
     if (d / Math.max(dt, 1e-3) < -0.08) back += dt; else back = Math.max(0, back - dt);
     if (back > 1.5 && warnCd <= 0) {
-      ctx.toast('คุณกำลังเดินผิดทาง เฏาะวาฟต้องเดินทวนเข็มนาฬิกา ให้กะอ์บะฮ์อยู่ทางซ้ายมือ', 'warn');
+      ctx.toast(tr('คุณกำลังเดินผิดทาง เฏาะวาฟต้องเดินทวนเข็มนาฬิกา ให้กะอ์บะฮ์อยู่ทางซ้ายมือ'), 'warn');
       warnCd = 10;
     }
     if (a > YAMANI_ANGLE && a < STONE_ANGLE && acc - TAU * laps > Math.PI && yamaniLap !== laps) {
@@ -48,12 +49,12 @@ export function tawafLaps(ctx: StageCtx, o: { startLabel: string; startToast: st
       ctx.progress();
       ctx.player.raiseHand();
       if (laps < 7) {
-        ctx.toast(`ครบรอบที่ ${laps} — บิสมิลลาฮิ วัลลอฮุอักบัร`, 'ok');
+        ctx.toast(tr('ครบรอบที่ {n} — บิสมิลลาฮิ วัลลอฮุอักบัร', { n: laps }), 'ok');
         ctx.dua('istilam');
         const n = laps + 1;
         ctx.after(3.5, () => ctx.dua(`tawaf_lap_${n}`));
       } else {
-        ctx.toast('ครบ 7 รอบแล้ว อัลฮัมดุลิลลาฮ์', 'ok');
+        ctx.toast(tr('ครบ 7 รอบแล้ว อัลฮัมดุลิลลาฮ์'), 'ok');
         ctx.guide(null);
         o.onDone();
       }

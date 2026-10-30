@@ -3,6 +3,7 @@ import type { Collider } from '../engine/player';
 import { box, boxCollider, mat, tileTexture, type Scene3D } from './common';
 import { ground, label, mountainRing, rng, signBoard, speckTexture, standers, tentField, walkers, type TentSpot } from './hajjCommon';
 import { textTexture } from '../engine/label';
+import { tr } from '../i18n';
 
 export type JamrahKey = 'sughra' | 'wusta' | 'aqabah';
 
@@ -21,9 +22,9 @@ export interface Jamrah {
  */
 export const JAMARAT = {
   pillars: [
-    { key: 'sughra', x: 52, name: 'ญัมเราะฮ์ศุฆรอ', arabic: 'الجمرة الصغرى' },
-    { key: 'wusta', x: 0, name: 'ญัมเราะฮ์วุสฏอ', arabic: 'الجمرة الوسطى' },
-    { key: 'aqabah', x: -56, name: 'ญัมเราะฮ์อะกอบะฮ์', arabic: 'جمرة العقبة' },
+    { key: 'sughra', x: 52, name: tr('ญัมเราะฮ์ศุฆรอ'), arabic: 'الجمرة الصغرى' },
+    { key: 'wusta', x: 0, name: tr('ญัมเราะฮ์วุสฏอ'), arabic: 'الجمرة الوسطى' },
+    { key: 'aqabah', x: -56, name: tr('ญัมเราะฮ์อะกอบะฮ์'), arabic: 'جمرة العقبة' },
   ] as Jamrah[],
   basin: { rx: 11, rz: 4.2 },
   /** z of the throw zones (south side of the basins). */
@@ -130,14 +131,14 @@ export function buildJamarat(o: { quality: 'low' | 'high' }): Scene3D {
   }
 
   // Entrance and exit signs.
-  signBoard(group, ['สะพานญะมะรอต · ชั้นล่าง', 'منشأة الجمرات'], { x: 90, z: 0, yaw: Math.PI / 2, w: 12, h: 3, y: 7, bg: '#1f5d46', size: 110, posts: false });
-  signBoard(group, ['ทางออก → มักกะฮ์', 'إلى مكة'], { x: -108, z: 0, yaw: Math.PI / 2, w: 10, h: 2.6, y: 7, bg: '#11302a', color: '#f2d06b', size: 110, posts: false });
+  signBoard(group, [tr('สะพานญะมะรอต · ชั้นล่าง'), 'منشأة الجمرات'], { x: 90, z: 0, yaw: Math.PI / 2, w: 12, h: 3, y: 7, bg: '#1f5d46', size: 110, posts: false });
+  signBoard(group, [tr('ทางออก → มักกะฮ์'), 'إلى مكة'], { x: -108, z: 0, yaw: Math.PI / 2, w: 10, h: 2.6, y: 7, bg: '#11302a', color: '#f2d06b', size: 110, posts: false });
 
   // Barber kiosks near the west exit.
   for (let i = 0; i < 3; i++) {
     const x = JAMARAT.barber.x - 7 + i * 7;
     box(group, 5, 3, 3, mat(0xe7dfcc, 0.6), x, 0, -16.5);
-    const sg = new THREE.Mesh(new THREE.PlaneGeometry(4, 0.8), new THREE.MeshBasicMaterial({ map: textTexture(['ร้านตัดผม ✂'], 512, 128, '#11302a', '#f2d06b', 56) }));
+    const sg = new THREE.Mesh(new THREE.PlaneGeometry(4, 0.8), new THREE.MeshBasicMaterial({ map: textTexture([tr('ร้านตัดผม ✂')], 512, 128, '#11302a', '#f2d06b', 56) }));
     sg.position.set(x, 3.5, -14.95);
     group.add(sg);
     colliders.push(boxCollider(x, -16.5, 5, 3));

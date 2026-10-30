@@ -3,6 +3,7 @@ import { RING } from '../../../engine/rings';
 import { JAMARAT, type Jamrah } from '../../../world/jamarat';
 import type { StageCtx } from '../../types';
 import { onFrame } from './common';
+import { tr } from '../../../i18n';
 
 interface Flight { mesh: THREE.Mesh; t: number; p0: THREE.Vector3; p1: THREE.Vector3; p2: THREE.Vector3 }
 
@@ -60,15 +61,15 @@ export interface ThrowOpts {
 export function throwStation(ctx: StageCtx, fx: ReturnType<typeof pebbleFx>, j: Jamrah, o: ThrowOpts) {
   const zone = { x: j.x, z: JAMARAT.zoneZ };
   const ring = ctx.rings.add(zone.x, zone.z, 2.2, () => {
-    ctx.hint(`ยืนในวงแหวน หันหน้าเข้าหา${j.name} แล้วกดปุ่มขว้างทีละก้อน`);
+    ctx.hint(tr('ยืนในวงแหวน หันหน้าเข้าหา{name} แล้วกดปุ่มขว้างทีละก้อน', { name: j.name }));
     return false;
-  }, { label: `จุดขว้าง ${j.name}`, persistent: true, color: RING.secondary });
+  }, { label: tr('จุดขว้าง {name}', { name: j.name }), persistent: true, color: RING.secondary });
   ctx.guide(zone);
   let n = 0, cooling = false, inZone = false, finished = false;
-  const label = () => `🪨 ขว้าง${j.name} ก้อนที่ ${n + 1} / 7`;
+  const label = () => tr('🪨 ขว้าง{name} ก้อนที่ {n} / 7', { name: j.name, n: n + 1 });
   const btn = ctx.action(label(), () => {
     if (finished || cooling) return;
-    if (!inZone) { ctx.toast(`เข้าไปยืนในวงแหวนจุดขว้าง${j.name}ก่อน`, 'warn'); return; }
+    if (!inZone) { ctx.toast(tr('เข้าไปยืนในวงแหวนจุดขว้าง{name}ก่อน', { name: j.name }), 'warn'); return; }
     const pl = ctx.player;
     pl.yaw = Math.PI; // face the wall (north)
     pl.frozen = true;
@@ -78,7 +79,7 @@ export function throwStation(ctx: StageCtx, fx: ReturnType<typeof pebbleFx>, j: 
     ctx.after(0.3, () => fx.throwAt(pl.pos, j));
     ctx.after(0.45, () => { pl.setPose('stand'); pl.frozen = false; });
     n++;
-    ctx.toast(`อัลลอฮุอักบัร — ก้อนที่ ${n}/7${o.extra ? ' ' + o.extra(n) : ''}`, 'ok');
+    ctx.toast(tr('อัลลอฮุอักบัร — ก้อนที่ {n}/7{extra}', { n, extra: o.extra ? ' ' + o.extra(n) : '' }), 'ok');
     o.onThrow?.(n);
     if (n >= 7) {
       finished = true;

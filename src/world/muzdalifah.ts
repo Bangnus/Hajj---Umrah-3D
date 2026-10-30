@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { Collider } from '../engine/player';
 import { box, boxCollider, cyl, mat, type Scene3D } from './common';
 import { ground, label, lampPosts, mountainRing, rng, scatter, signBoard, speckTexture, walkers, type TentSpot } from './hajjCommon';
+import { tr } from '../i18n';
 
 /**
  * Muzdalifah at night: open gravel ground under tall flood lights, pilgrims resting on
@@ -59,9 +60,9 @@ export function buildMuzdalifah(o: { quality: 'low' | 'high' }): Scene3D {
     group.add(w);
   }
   colliders.push(boxCollider(mq.x, mq.z, 46, 28, 0.2));
-  label(group, 'มัสยิดอัลมัชอะริลฮะรอม', mq.x, 16, mq.z + 14, 1.6);
+  label(group, tr('มัสยิดอัลมัชอะริลฮะรอม'), mq.x, 16, mq.z + 14, 1.6);
 
-  signBoard(group, ['มุซดะลิฟะฮ์', 'مزدلفة'], { x: 12, z: 32, w: 8, h: 3, y: 2.4, bg: '#f2c230', color: '#1d2a22', size: 120, back: ['สิ้นสุดเขตมุซดะลิฟะฮ์', 'نهاية مزدلفة'] });
+  signBoard(group, [tr('มุซดะลิฟะฮ์'), 'مزدلفة'], { x: 12, z: 32, w: 8, h: 3, y: 2.4, bg: '#f2c230', color: '#1d2a22', size: 120, back: [tr('สิ้นสุดเขตมุซดะลิฟะฮ์'), 'نهاية مزدلفة'] });
   colliders.push(boxCollider(12, 32, 8.4, 0.5));
 
   // Buses parked to the east.
