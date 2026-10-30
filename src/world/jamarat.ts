@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { Collider } from '../engine/player';
+import { makeLOD, mergeParts } from '../engine/lod';
 import { box, boxCollider, mat, tileTexture, type Scene3D } from './common';
 import { ground, label, mountainRing, rng, signBoard, speckTexture, standers, tentField, walkers, type TentSpot } from './hajjCommon';
 import { textTexture } from '../engine/label';
@@ -48,9 +49,9 @@ export function buildJamarat(o: { quality: 'low' | 'high' }): Scene3D {
   const X0 = -118, X1 = 124, HW = 22;
 
   ground(group, 1000, 1000, mat(0xffffff, 0.95, { map: speckTexture('#cbbb9f', ['#b8a789', '#d9cbb0'], 2000, 256, 100) }));
-  const tile = tileTexture('#dcdad4', 'rgba(150,145,135,0.35)', 8);
+  const tile = tileTexture('#dfddd6', 'rgba(150,145,135,0.34)', 8);
   tile.repeat.set(30, 6);
-  ground(group, X1 - X0, HW * 2, mat(0xffffff, 0.5, { map: tile }), (X0 + X1) / 2, 0, 0.01);
+  ground(group, X1 - X0, HW * 2, mat(0xffffff, 0.45, { map: tile }), (X0 + X1) / 2, 0, 0.01);
 
   // Flow arrows painted on the floor (one-way, towards the west).
   const shape = new THREE.Shape();
@@ -97,19 +98,29 @@ export function buildJamarat(o: { quality: 'low' | 'high' }): Scene3D {
     group.add(l);
   }
 
-  // The three jamarat: wall + oval basin with a parapet (repeated on each floor).
-  const wallMat = mat(0xb9ad99, 0.8);
-  const parapetMat = mat(0xeeeae2, 0.45, { side: THREE.DoubleSide });
+  // The three jamarat: dressed ashlar stone wall with rounded ends + oval basin with marble coping.
+  const stoneTex = tileTexture('#c4b7a2', 'rgba(95,84,70,0.34)', 8, 256);
+  stoneTex.repeat.set(6, 14);
+  const wallMat = mat(0xffffff, 0.78, { map: stoneTex });
+  const parapetMat = mat(0xf0ece3, 0.42, { side: THREE.DoubleSide });
   const basinFloor = mat(0xffffff, 0.95, { map: speckTexture('#77706a', ['#5a544e', '#958c84', '#3f3a36'], 1800, 128, 4) });
   for (const pl of JAMARAT.pillars) {
-    const wall = box(group, rx * 1.6, 44, 1.4, wallMat, pl.x, 0, 0);
+    const wall = box(group, rx * 1.52, 44, 1.4, wallMat, pl.x, 0, 0);
     wall.receiveShadow = true;
+    // Rounded bullnose end columns on the elongated Jamrah pillar
+    for (const endS of [-1, 1]) {
+      const endCyl = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 44, 14), wallMat);
+      endCyl.position.set(pl.x + endS * rx * 0.76, 22, 0);
+      endCyl.castShadow = endCyl.receiveShadow = true;
+      group.add(endCyl);
+    }
     for (const y of [0, ...JAMARAT.levels.slice(0, 2).map((v) => v + 1.2)]) {
       const parapet = new THREE.Mesh(new THREE.CylinderGeometry(1, 1, 1.3, 48, 1, true), parapetMat);
       parapet.scale.set(rx, 1, rz);
       parapet.position.set(pl.x, y + 0.65, 0);
+      parapet.castShadow = true;
       group.add(parapet);
-      const rim = new THREE.Mesh(new THREE.TorusGeometry(1, 0.03, 6, 48), mat(0xd6d0c4, 0.4));
+      const rim = new THREE.Mesh(new THREE.TorusGeometry(1, 0.04, 8, 48), mat(0xd8d1c2, 0.36));
       rim.rotation.x = Math.PI / 2;
       rim.scale.set(rx, rz, 1);
       rim.position.set(pl.x, y + 1.3, 0);
@@ -134,12 +145,26 @@ export function buildJamarat(o: { quality: 'low' | 'high' }): Scene3D {
   signBoard(group, [tr('สะพานญะมะรอต · ชั้นล่าง'), 'منشأة الجمرات'], { x: 90, z: 0, yaw: Math.PI / 2, w: 12, h: 3, y: 7, bg: '#1f5d46', size: 110, posts: false });
   signBoard(group, [tr('ทางออก → มักกะฮ์'), 'إلى مكة'], { x: -108, z: 0, yaw: Math.PI / 2, w: 10, h: 2.6, y: 7, bg: '#11302a', color: '#f2d06b', size: 110, posts: false });
 
-  // Barber kiosks near the west exit.
+  // Barber kiosks near the west exit (detailed close -> clay far).
+  const kioskHi = mergeParts([
+    { geo: new THREE.BoxGeometry(5, 3, 3), y: 1.5, color: 0xe9e1ce, aoBottom: 0.85 },
+    { geo: new THREE.BoxGeometry(5.2, 0.22, 3.2), y: 3.06, color: 0xd5cbb5 },
+    { geo: new THREE.BoxGeometry(2.6, 1.5, 0.08), x: -0.6, y: 1.55, z: 1.49, color: 0x2c4352 },
+    { geo: new THREE.BoxGeometry(1.0, 2.2, 0.08), x: 1.55, y: 1.1, z: 1.49, color: 0x5c4632 },
+    { geo: new THREE.BoxGeometry(5.05, 0.18, 0.72), y: 2.52, z: 1.78, rx: 0.22, color: 0x1e5c45 },
+    { geo: new THREE.CylinderGeometry(0.08, 0.08, 0.65, 10), x: -2.25, y: 1.95, z: 1.62, color: 0xc93434 },
+  ]);
+  const kioskClay = mergeParts([{ geo: new THREE.BoxGeometry(5, 3.1, 3), y: 1.55, color: 0xe7dfcc, aoBottom: 0.84 }]);
+  const kioskStdMat = mat(0xffffff, 0.58, { vertexColors: true });
+  const kioskClayMat = mat(0xffffff, 0.92, { vertexColors: true });
   for (let i = 0; i < 3; i++) {
     const x = JAMARAT.barber.x - 7 + i * 7;
-    box(group, 5, 3, 3, mat(0xe7dfcc, 0.6), x, 0, -16.5);
+    const k0 = new THREE.Mesh(kioskHi, kioskStdMat);
+    k0.castShadow = k0.receiveShadow = true;
+    const k2 = new THREE.Mesh(kioskClay, kioskClayMat);
+    group.add(makeLOD(x, 0, -16.5, [[k0, 0], [k2, 48]]));
     const sg = new THREE.Mesh(new THREE.PlaneGeometry(4, 0.8), new THREE.MeshBasicMaterial({ map: textTexture([tr('ร้านตัดผม ✂')], 512, 128, '#11302a', '#f2d06b', 56) }));
-    sg.position.set(x, 3.5, -14.95);
+    sg.position.set(x, 3.55, -14.95);
     group.add(sg);
     colliders.push(boxCollider(x, -16.5, 5, 3));
   }

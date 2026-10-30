@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { Collider } from '../engine/player';
+import { mergeParts } from '../engine/lod';
 import { box, cyl, mat, type Scene3D } from './common';
 import { ground, label, mountainRing, pavilion, rng, scatter, signBoard, speckTexture, standers, tentField, treeField, walkers, type TentSpot } from './hajjCommon';
 import { tr } from '../i18n';
@@ -32,18 +33,19 @@ export function buildArafah(o: { quality: 'low' | 'high' }): Scene3D {
   ground(group, 1200, 600, mat(0xb9a07a, 0.95, { transparent: true, opacity: 0.45 }), 0, boundaryZ + 300, 0.01);
   ground(group, 16, 400, mat(0x5e6064, 0.9), 0, -80, 0.02);
 
-  // Boundary: tall posts along the line, broken by the road.
+  // Boundary: tall yellow boundary pillars along the line, broken by the road.
   const posts: TentSpot[] = [];
   for (let x = -300; x <= 300; x += 12) if (Math.abs(x) > 10) posts.push({ x, z: boundaryZ });
-  const pm = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.35, 0.45, 7, 8), mat(0xd9a531, 0.6), posts.length);
-  const cap = new THREE.InstancedMesh(new THREE.SphereGeometry(0.55, 10, 8), mat(0xffffff, 0.4), posts.length);
+  const postGeo = mergeParts([
+    { geo: new THREE.BoxGeometry(1.1, 0.6, 1.1), y: 0.3, color: 0xcbbca0 },
+    { geo: new THREE.CylinderGeometry(0.34, 0.44, 6.6, 8), y: 3.6, color: 0xe2ae34, aoBottom: 0.86 },
+    { geo: new THREE.SphereGeometry(0.54, 10, 8), y: 7.2, color: 0xf7f5ef },
+  ]);
+  const pm = new THREE.InstancedMesh(postGeo, mat(0xffffff, 0.55, { vertexColors: true }), posts.length);
   const m4 = new THREE.Matrix4();
-  posts.forEach((p, i) => {
-    pm.setMatrixAt(i, m4.makeTranslation(p.x, 3.5, p.z));
-    cap.setMatrixAt(i, m4.makeTranslation(p.x, 7.2, p.z));
-  });
+  posts.forEach((p, i) => pm.setMatrixAt(i, m4.makeTranslation(p.x, 0, p.z)));
   pm.castShadow = true;
-  group.add(pm, cap);
+  group.add(pm);
   // Painted line on the ground.
   ground(group, 600, 0.6, new THREE.MeshBasicMaterial({ color: 0xe0b23a }), 0, boundaryZ, 0.03);
   for (const s of [-1, 1]) {
@@ -73,33 +75,33 @@ export function buildArafah(o: { quality: 'low' | 'high' }): Scene3D {
   }
   label(group, tr('มัสยิดนะมิเราะฮ์'), nm.x + 26, 22, nm.z, 2.2);
 
-  // Jabal Rahmah with its white pillar.
+  // Jabal Rahmah: sculpted rocky granite boulders + stepped summit platform + iconic white masonry pillar.
   const jr = ARAFAH.rahmah;
-  const hill = new THREE.Mesh(new THREE.ConeGeometry(48, 34, 14, 3), mat(0x8b6d52, 0.95, { flatShading: true }));
-  hill.position.set(jr.x, 17, jr.z);
+  const hillGeo = mergeParts([
+    { geo: new THREE.ConeGeometry(48, 34, 16, 3), y: 17, color: 0x8b6d52, aoBottom: 0.76 },
+    { geo: new THREE.DodecahedronGeometry(22, 1), x: -16, y: 11, z: 12, sx: 1.2, sy: 0.75, sz: 1.1, color: 0x82654b, aoBottom: 0.75 },
+    { geo: new THREE.DodecahedronGeometry(20, 1), x: 18, y: 10, z: 8, sx: 1.15, sy: 0.7, sz: 1.1, color: 0x937458, aoBottom: 0.75 },
+    // White summit platform & obelisk pillar
+    { geo: new THREE.CylinderGeometry(4.5, 5.2, 1.2, 12), y: 33.2, color: 0xdad2c4 },
+    { geo: new THREE.BoxGeometry(2.2, 9.2, 2.2), y: 38.2, color: 0xf8f6f0 },
+    { geo: new THREE.ConeGeometry(1.6, 1.4, 4), y: 43.5, ry: Math.PI / 4, color: 0xffffff },
+  ]);
+  const hill = new THREE.Mesh(hillGeo, mat(0xffffff, 0.92, { flatShading: true, vertexColors: true }));
+  hill.position.set(jr.x, 0, jr.z);
   hill.receiveShadow = true;
   group.add(hill);
-  cyl(group, 1.2, 1.5, 9, mat(0xffffff, 0.4), jr.x, 33, jr.z, 12);
   label(group, tr('ภูเขาเราะห์มะฮ์'), jr.x, 48, jr.z, 3);
-  // Pilgrims dotted on the hill.
+
+  // Pilgrims dotted on the hill (frustum-culled + 3-tier clay LOD with exact elevation y).
   const r = rng(21);
-  const onHill: { x: number; z: number }[] = [];
+  const onHill: { x: number; y: number; z: number; yaw: number }[] = [];
   for (let i = 0; i < (high ? 160 : 60); i++) {
     const a = r() * Math.PI * 2, d = 8 + r() * 36;
-    onHill.push({ x: jr.x + Math.cos(a) * d, z: jr.z + Math.sin(a) * d });
+    const px = jr.x + Math.cos(a) * d, pz = jr.z + Math.sin(a) * d;
+    const py = 34 * (1 - d / 48);
+    onHill.push({ x: px, y: py, z: pz, yaw: -Math.PI / 2 + (r() - 0.5) * 0.8 });
   }
-  const hillCrowd = standers(group, onHill);
-  const tmp = new THREE.Matrix4(), pp = new THREE.Vector3();
-  for (let i = 0; i < onHill.length; i++) {
-    const p = onHill[i];
-    const y = 34 * (1 - Math.hypot(p.x - jr.x, p.z - jr.z) / 48);
-    for (const im of [hillCrowd.body, hillCrowd.head]) {
-      im.getMatrixAt(i, tmp);
-      pp.setFromMatrixPosition(tmp);
-      tmp.setPosition(pp.x, pp.y + y, pp.z);
-      im.setMatrixAt(i, tmp);
-    }
-  }
+  standers(group, onHill);
 
   // Camps: tent fields on both sides of the road inside Arafah, plus the player's open tent.
   const campSpots: TentSpot[] = [];

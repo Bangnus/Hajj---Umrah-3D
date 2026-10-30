@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { lodStats, updateLodSystem } from './lod';
 
 export type Quality = 'low' | 'high';
 
@@ -16,6 +17,7 @@ export class Engine {
   readonly hemi: THREE.HemisphereLight;
   readonly quality: Quality;
   readonly isTouch: boolean;
+  readonly lodStats = lodStats;
   private readonly tickers = new Set<(dt: number) => void>();
   private readonly clock = new THREE.Clock();
   /** Sun position relative to the player (changed by setTimeOfDay). */
@@ -131,6 +133,7 @@ export class Engine {
       if (document.hidden) { this.clock.getDelta(); return; }
       const dt = Math.min(this.clock.getDelta(), 0.05);
       this.tickers.forEach((fn) => fn(dt));
+      updateLodSystem(this.camera, dt);
       this.renderer.render(this.scene, this.camera);
     });
   }

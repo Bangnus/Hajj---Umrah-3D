@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { Collider } from '../engine/player';
+import { createPropFieldLOD, mergeParts } from '../engine/lod';
 import { box, boxCollider, cyl, floor, mat, tileTexture, type Scene3D } from './common';
 import {
   GOLD, PALETTE_TRAVEL, archTexture, bus, carpetTexture, dome, ground, label, latticeTexture, minaret, palm, patch, people,
@@ -77,8 +78,8 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
 
   // Green Dome above the Prophet's chamber.
   const hj = NABAWI.hujrah;
-  const greenM = mat(0x2f8f55, 0.45, { metalness: 0.15 });
-  cyl(group, 4.6, 4.6, 3.2, mat(0x2a7d4a, 0.55), hj.x, H.h + 1, hj.z, 24);
+  const greenM = mat(0x2f8f55, 0.42, { metalness: 0.18 });
+  cyl(group, 4.6, 4.6, 3.2, mat(0x2a7d4a, 0.52), hj.x, H.h + 1, hj.z, 24);
   dome(group, hj.x, H.h + 4.2, hj.z, 4.6, greenM, 1.35);
   const crescent = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.09, 6, 18, Math.PI * 1.35), GOLD());
   crescent.position.set(hj.x, H.h + 4.2 + 4.6 * 1.35 + 2.4, hj.z);
@@ -173,7 +174,7 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
     group.add(l);
   }
 
-  // Umbrella canopies over the plaza (instanced).
+  // Iconic Nabawi convertible plaza umbrellas (frustum-culled + 3-tier LOD).
   const umb: [number, number][] = [];
   for (const x of [-45, -27, -9, 9, 27, 45, 63]) {
     for (const z of [-62, -44, -26, -8, 10, 28, 40]) {
@@ -186,17 +187,33 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
     }
   }
   const mastH = 11;
-  const masts = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.32, 0.45, mastH, 10), mat(0xeeeae2, 0.4, { metalness: 0.2 }), umb.length);
-  const canGeo = new THREE.ConeGeometry(8.5 * Math.SQRT2, 2.2, 4, 1, true);
-  canGeo.rotateY(Math.PI / 4);
-  const canopy = new THREE.InstancedMesh(canGeo, mat(0xf4f0e6, 0.7, { side: THREE.DoubleSide }), umb.length);
-  umb.forEach(([x, z], i) => {
-    masts.setMatrixAt(i, m4.makeTranslation(x, mastH / 2, z));
-    canopy.setMatrixAt(i, m4.makeTranslation(x, mastH + 0.2, z));
-    colliders.push({ kind: 'circle', x, z, r: 0.5 });
-  });
-  masts.castShadow = canopy.castShadow = true;
-  group.add(masts, canopy);
+  const umbGeo0 = mergeParts([
+    // Marble plinth + fluted column + golden filigree ring bands + AC lamp housing
+    { geo: new THREE.CylinderGeometry(0.56, 0.64, 0.85, 12), y: 0.425, color: 0xded8ca, aoBottom: 0.84 },
+    { geo: new THREE.CylinderGeometry(0.32, 0.44, mastH - 0.8, 12), y: 0.8 + (mastH - 0.8) / 2, color: 0xf2eee5 },
+    { geo: new THREE.CylinderGeometry(0.46, 0.46, 0.24, 12), y: 6.8, color: 0xd6b25a },
+    { geo: new THREE.CylinderGeometry(0.68, 0.42, 0.9, 12), y: 9.2, color: 0xd8b65e },
+    // Inverted funnel PTFE membrane canopy + blue ornamental border + golden finial
+    { geo: new THREE.ConeGeometry(8.5 * Math.SQRT2, 2.2, 4, 1, true), y: mastH + 0.2, ry: Math.PI / 4, color: 0xf6f3ea },
+    { geo: new THREE.BoxGeometry(17.1, 0.16, 17.1), y: mastH + 1.25, color: 0x2c628c },
+    { geo: new THREE.BoxGeometry(16.6, 0.19, 16.6), y: mastH + 1.25, color: 0xf7f4ec },
+    { geo: new THREE.CylinderGeometry(0.08, 0.14, 1.4, 8), y: mastH + 1.8, color: 0xd6b25a },
+  ]);
+  const umbGeo2 = mergeParts([
+    { geo: new THREE.CylinderGeometry(0.34, 0.46, mastH, 6), y: mastH / 2, color: 0xeeeae2 },
+    { geo: new THREE.ConeGeometry(8.5 * Math.SQRT2, 2.2, 4, 1, true), y: mastH + 0.2, ry: Math.PI / 4, color: 0xf4f0e6 },
+  ]);
+  umb.forEach(([x, z]) => colliders.push({ kind: 'circle', x, z, r: 0.5 }));
+  createPropFieldLOD(
+    group,
+    umb.map(([x, z]) => ({ x, z })),
+    [
+      { maxDist: 56, layers: [{ geo: umbGeo0, mat: mat(0xffffff, 0.52, { side: THREE.DoubleSide, vertexColors: true }), castShadow: true, receiveShadow: true }] },
+      { maxDist: 260, layers: [{ geo: umbGeo2, mat: mat(0xffffff, 0.9, { side: THREE.DoubleSide, vertexColors: true }), castShadow: false, receiveShadow: false }] },
+    ],
+    9.5,
+    8.5,
+  );
 
   // Al-Baqi cemetery: low wall, gate facing the mosque, a fenced path; graves are off-limits.
   const B = NABAWI.baqi;
@@ -237,15 +254,24 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
   for (const s of [-1, 1]) box(group, 0.12, 2.8, 0.12, mat(0x8a96a3, 0.5), bs.x + 1 + s * 2.3, 0, bs.z - 3.8);
   label(group, tr('ป้ายรถบัสซิยาเราะฮ์'), bs.x + 1, 3.8, bs.z - 3, 0.6);
 
-  // Palms and a skyline of hotels around the plaza.
+  // Palms and a skyline of hotels around the plaza (merged into 1 draw call).
   for (const [x, z] of [[-55, -66], [-55, 20], [70, -66], [-55, -30], [36, -66], [-20, 42], [20, 42]] as const) colliders.push(palm(group, x, z, 8));
   const hotel = [0xd9cdb6, 0xcfc2a8, 0xe3d8c4, 0xbfb29a];
-  for (let i = 0; i < (low ? 14 : 26); i++) {
-    const a = (i / (low ? 14 : 26)) * Math.PI * 2;
-    const r = rand(130, 170);
-    const x = 7 + Math.cos(a) * r, z = -13 + Math.sin(a) * r;
-    box(group, rand(18, 30), rand(25, 65), rand(18, 30), mat(hotel[i % hotel.length], 0.8), x, 0, z, false);
-  }
+  const hotelCount = low ? 14 : 26;
+  const skyline = new THREE.Mesh(
+    mergeParts(Array.from({ length: hotelCount }, (_, i) => {
+      const a = (i / hotelCount) * Math.PI * 2;
+      const r = rand(130, 170);
+      const hw = rand(18, 30), hh = rand(25, 65), hd = rand(18, 30);
+      return {
+        geo: new THREE.BoxGeometry(hw, hh, hd),
+        x: 7 + Math.cos(a) * r, y: hh / 2, z: -13 + Math.sin(a) * r,
+        color: hotel[i % hotel.length], aoBottom: 0.80,
+      };
+    })),
+    mat(0xffffff, 0.82, { vertexColors: true }),
+  );
+  group.add(skyline);
 
   colliders.push({ kind: 'rect-in', ...NABAWI.keep });
 
@@ -345,19 +371,25 @@ export function buildUhud(crowd: number): Scene3D {
     box(group, 0.2, 0.4, 0.1, mat(0x8f8574, 0.9), x, 0, z, false);
   }
   label(group, tr('สุสานชุฮะดาอ์อุฮุด'), 0, 4.6, ez1, 0.9);
-  // Mount Uhud (reddish, flat-shaded) and the archers' hill.
-  const rock = mat(0x9a5b3c, 0.95, { flatShading: true });
-  for (const [x, z, sx, sy, sz] of [[-120, -190, 110, 70, 50], [-20, -210, 120, 95, 60], [90, -195, 100, 75, 55], [190, -220, 90, 60, 50], [-220, -230, 90, 55, 45]] as const) {
-    const m = new THREE.Mesh(new THREE.DodecahedronGeometry(1, 1), rock);
-    m.scale.set(sx, sy, sz);
-    m.position.set(x, sy * 0.15, z);
-    group.add(m);
-  }
+  // Mount Uhud (sculpted reddish granite massif) and Jabal ar-Rumah (the archers' hill).
+  const uhudMassif = new THREE.Mesh(
+    mergeParts(([[-120, -190, 110, 70, 50], [-20, -210, 120, 95, 60], [90, -195, 100, 75, 55], [190, -220, 90, 60, 50], [-220, -230, 90, 55, 45]] as const).map(([x, z, sx, sy, sz], i) => ({
+      geo: new THREE.IcosahedronGeometry(1, 2),
+      x, y: sy * 0.16, z, sx, sy, sz, ry: i * 1.1,
+      color: i % 2 === 0 ? 0x9c5c3d : 0x8f5236, aoBottom: 0.72,
+    }))),
+    mat(0xffffff, 0.95, { flatShading: true, vertexColors: true }),
+  );
+  group.add(uhudMassif);
   label(group, tr('ภูเขาอุฮุด'), -20, 120, -200, 9);
-  const hill = new THREE.Mesh(new THREE.DodecahedronGeometry(1, 1), mat(0xa47a52, 0.95, { flatShading: true }));
-  hill.scale.set(12, 6, 9);
-  hill.position.set(30, 0.5, -8);
-  hill.castShadow = true;
+  const hillGeo = mergeParts([
+    { geo: new THREE.DodecahedronGeometry(1, 2), y: 0.5, sx: 11.5, sy: 5.8, sz: 8.8, color: 0xa47a52, aoBottom: 0.74 },
+    { geo: new THREE.DodecahedronGeometry(1, 1), x: -4.5, y: 0.4, z: 2.5, sx: 5.5, sy: 3.6, sz: 4.8, color: 0x966d47, aoBottom: 0.74 },
+    { geo: new THREE.DodecahedronGeometry(1, 1), x: 4.8, y: 0.4, z: -2.0, sx: 5.0, sy: 3.4, sz: 4.5, color: 0xad8259, aoBottom: 0.74 },
+  ]);
+  const hill = new THREE.Mesh(hillGeo, mat(0xffffff, 0.94, { flatShading: true, vertexColors: true }));
+  hill.position.set(30, 0, -8);
+  hill.castShadow = hill.receiveShadow = true;
   group.add(hill);
   colliders.push({ kind: 'circle', x: 30, z: -8, r: 10.5 });
   label(group, tr('เนินรุมาฮ์ (เนินนักยิงธนู)'), 30, 9, -8, 0.8);

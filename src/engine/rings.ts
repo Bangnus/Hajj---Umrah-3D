@@ -122,11 +122,12 @@ export function disposeTree(o: THREE.Object3D) {
   o.traverse((n) => {
     if ((n as THREE.InstancedMesh).isInstancedMesh) (n as THREE.InstancedMesh).dispose();
     const m = n as THREE.Mesh;
-    if (m.geometry) m.geometry.dispose();
+    if (m.geometry && !m.geometry.userData?.keep) m.geometry.dispose();
     const mat = m.material as THREE.Material | THREE.Material[] | undefined;
     const mats = Array.isArray(mat) ? mat : mat ? [mat] : [];
     for (const x of mats) {
-      for (const v of Object.values(x)) if (v instanceof THREE.Texture && v !== fade) v.dispose();
+      if (x.userData?.keep) continue;
+      for (const v of Object.values(x)) if (v instanceof THREE.Texture && v !== fade && !v.userData?.keep) v.dispose();
       x.dispose();
     }
   });
