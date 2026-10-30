@@ -64,6 +64,8 @@ export interface StageCtx {
   guide(target: { x: number; z: number } | null): void;
   /** Timer that is cleared when the stage changes. */
   after(seconds: number, fn: () => void): void;
+  /** Scene lighting: 0 sunrise, 0.5 noon, 1 sunset, 1.25+ night, negative = before dawn; null = default day. Reset on every stage. */
+  timeOfDay(t: number | null): void;
 }
 
 export interface StageBuild {
