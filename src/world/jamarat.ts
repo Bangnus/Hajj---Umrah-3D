@@ -31,7 +31,7 @@ export const JAMARAT = {
   levels: [11, 22, 33],
   eastStart: { x: 104, z: 9 },
   aqabahStart: { x: -16, z: 9 },
-  barber: { x: -92, z: -11 },
+  barber: { x: -92, z: -9.5 },
   exitWest: { x: -103, z: 9 },
   minaReturn: { x: -84, z: 13 },
   bounds: { minX: -110, maxX: 114, minZ: -19, maxZ: 19 },
@@ -63,7 +63,7 @@ export function buildJamarat(o: { quality: 'low' | 'high' }): Scene3D {
   group.add(arrowMesh);
 
   // Upper floors: slabs with openings above each basin.
-  const slabMat = mat(0xd4cfc4, 0.7);
+  const slabMat = mat(0xd4cfc4, 0.7, { emissive: 0x3c3a35 });
   const holes = JAMARAT.pillars.map((pl) => [pl.x - rx - 1, pl.x + rx + 1] as const).sort((a, b) => a[0] - b[0]);
   for (const y of JAMARAT.levels) {
     let x = X0;

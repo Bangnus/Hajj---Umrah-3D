@@ -62,19 +62,17 @@ export function hajjArafah(_p: Profile): StageDef {
         pl.frozen = true;
         pl.setPose('sit');
         ctx.dua('arafah_best_dua');
-        let left = WUQUF_SEC;
-        const bar = ctx.action(`🤲 กำลังวุกูฟ… อีก ${left} วินาทีดวงอาทิตย์จะตก`, () => undefined);
+        const t0 = sky.t, t1 = 1.03;
+        const label = () => `🤲 กำลังวุกูฟ… อีก ${Math.max(1, Math.ceil(((t1 - sky.t) / (t1 - t0)) * WUQUF_SEC))} วินาทีดวงอาทิตย์จะตก`;
+        const bar = ctx.action(label(), () => undefined);
         bar.setEnabled(false);
-        const tickDown = () => {
-          left--;
-          if (left > 0) { bar.setLabel(`🤲 กำลังวุกูฟ… อีก ${left} วินาทีดวงอาทิตย์จะตก`); ctx.after(1, tickDown); }
-        };
-        ctx.after(1, tickDown);
+        let shown = '';
+        onFrame(ctx, () => { if (sunset) return; const l = label(); if (l !== shown) { shown = l; bar.setLabel(l); } });
         ctx.after(7, () => ctx.toast('ขอดุอาอ์ให้ตัวเอง พ่อแม่ ครอบครัว และมุสลิมทุกคน จะใช้ภาษาไทยก็ได้', 'info'));
         ctx.after(13, () => ctx.dua('sayyid_istighfar'));
         ctx.after(21, () => ctx.toast('ไม่มีวันใดที่อัลลอฮ์ทรงปลดปล่อยบ่าวจากไฟนรกมากไปกว่าวันอะรอฟะฮ์ (มุสลิม 1348)', 'info'));
         ctx.after(28, () => ctx.toast('กล่าวตัลบิยะฮ์ ซิกร์ และขออภัยโทษต่อไปจนดวงอาทิตย์ลับขอบฟ้า', 'info'));
-        sky.to(1.03, WUQUF_SEC, () => {
+        sky.to(t1, WUQUF_SEC, () => {
           sunset = true;
           bar.remove();
           pl.setPose('stand');
