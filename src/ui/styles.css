@@ -1,3 +1,6 @@
+@import './responsive.css';
+
+@layer base {
 :root {
   --bg: #eef3f0;
   --glass: rgba(252, 251, 247, 0.96);
@@ -149,89 +152,4 @@ blockquote p[lang="ar"] { font-family: var(--font-ar); font-size: 25px; color: #
 .switch input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); flex: none; }
 .switch b { color: var(--text); }
 .switch small { display: block; color: var(--muted); font-size: 13.5px; line-height: 1.55; margin-top: 2px; }
-
-/* Start screen */
-.creator { position: fixed; inset: 0; display: grid; place-items: center; padding: 16px; background: radial-gradient(1100px 600px at 70% 15%, rgba(12, 124, 89, .14), transparent), radial-gradient(900px 500px at 15% 85%, rgba(217, 155, 38, .14), transparent), linear-gradient(160deg, #e7f0ec, #f1f5f0 50%, #f7f3e8); z-index: 5; overflow: auto; }
-.creator-card { width: min(480px, 100%); display: grid; gap: 16px; padding: 28px; background: #ffffff; border: 1px solid var(--line); box-shadow: 0 16px 48px rgba(12, 34, 28, .12); border-radius: 24px; }
-.bismillah { font-family: var(--font-ar); font-size: 28px; color: var(--gold-ink); text-align: center; }
-.creator h1 { font-size: 28px; text-align: center; color: var(--text); }
-.creator .lead { color: var(--text-2); text-align: center; line-height: 1.7; font-size: 15px; }
-.field { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: var(--text-2); }
-.field input { font: inherit; font-weight: 500; font-size: 16px; color: var(--text); background: #f6f9f7; border: 1.5px solid #c5d6cf; border-radius: 12px; padding: 11px 14px; outline: none; }
-.field input:focus { background: #ffffff; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(12, 124, 89, .16); }
-.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.seg button { padding: 12px; border-radius: 12px; border: 1.5px solid #cbd9d3; background: #f4f7f5; color: var(--text-2); font-size: 16px; font-weight: 600; transition: background .15s, border-color .15s; }
-.seg button:hover:not(:disabled):not(.on) { background: #eaf1ee; }
-.seg button.on { background: var(--accent-soft); border-color: var(--accent); color: #064e38; box-shadow: inset 0 0 0 1px var(--accent); }
-.seg button:disabled { opacity: .45; cursor: not-allowed; }
-.lang-seg { justify-self: end; width: 180px; gap: 4px; }
-.lang-seg button { padding: 6px 8px; font-size: 13px; border-radius: 10px; }
-.seg.three { grid-template-columns: 1fr 1fr 1fr; }
-.seg.three button { font-size: 15px; padding: 11px 6px; }
-.field-note { color: var(--muted); font-size: 13px; font-weight: 400; line-height: 1.6; }
-.resume { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; border: 1.5px solid #e2be62; background: #fdf6e2; }
-.resume div { flex: 1; display: grid; gap: 2px; }
-.resume small { color: var(--text-2); font-size: 13px; }
-.disclaimer { font-size: 12.5px; color: var(--muted); text-align: center; line-height: 1.6; }
-
-/* Du'a read-aloud button */
-.speak-btn { flex: none; border: 1px solid #d4a12a; background: #fef5dc; color: #6e4500; font-size: 12.5px; font-weight: 700; padding: 4px 10px; border-radius: 99px; white-space: nowrap; transition: background .15s; }
-.speak-btn:hover { background: #fdeab8; }
-.speak-btn.on { background: #eab338; color: #221600; animation: pulse-gold 1.4s ease-in-out infinite; }
-@keyframes pulse-gold { 0%, 100% { box-shadow: 0 0 0 0 rgba(217, 155, 38, .55); } 50% { box-shadow: 0 0 0 6px rgba(217, 155, 38, 0); } }
-
-/* Settings: audio */
-.modal.settings .seg button { font-size: 15px; padding: 9px; }
-.voice-box { display: grid; gap: 8px; padding: 12px; border-radius: 14px; background: var(--glass-2); border: 1px solid var(--line); }
-.voice-box ul { list-style: none; display: grid; gap: 3px; font-size: 13.5px; color: var(--muted); }
-.voice-box li.ok { color: #096a4b; font-weight: 600; }
-.voice-box p { font-size: 13px; line-height: 1.65; color: var(--text-2); }
-.voice-box .btn.small { justify-self: start; padding: 6px 12px; }
-
-/* Certificate */
-.btn.accent.cert-btn { margin-top: 0; padding: 12px; }
-.cert-overlay { z-index: 6; background: rgba(10, 28, 23, .58); }
-.modal.cert { width: min(960px, 100%); gap: 12px; padding: 18px; }
-.cert-head { display: flex; align-items: center; gap: 10px; }
-.cert-head h3 { flex: 1; font-size: 18px; }
-.cert-frame { position: relative; border-radius: 10px; overflow: hidden; background: #fbf6e8; border: 1px solid #dfd3b5; aspect-ratio: 1600 / 1130; box-shadow: 0 6px 24px rgba(12, 34, 28, .16); }
-.cert-frame canvas { display: block; width: 100%; height: 100%; }
-.cert-loading { position: absolute; inset: 0; display: grid; place-items: center; color: #5c6d67; font-size: 14px; }
-.modal .cert-note { font-size: 13px; color: #9a3412; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 6px 10px; line-height: 1.55; }
-.modal.cert .row { flex-wrap: wrap; }
-
-.only-mobile { display: none; }
-
-/* Tablet: narrower panels */
-@media (max-width: 1180px) {
-  .dua-card { left: 12px; width: min(440px, calc(100% - 416px)); }
-  .sidebar { display: none; }
-  .sidebar.open { display: block; z-index: 3; }
-  .only-mobile { display: grid; }
-  .sheet-handle { display: none; }
-}
-
-/* Phone: bottom sheet */
-@media (max-width: 760px) {
-  .topbar { top: 8px; left: 8px; right: 8px; height: 50px; }
-  .brand small { display: none; }
-  .sidebar { top: 66px; left: 8px; right: 8px; width: auto; }
-  .panel { top: auto; bottom: 0; left: 0; right: 0; width: auto; max-height: 56vh; border-radius: 20px 20px 0 0; padding: 10px 16px calc(16px + env(safe-area-inset-bottom)); gap: 8px; }
-  .sheet-handle { display: block; align-self: center; width: 46px; height: 5px; border-radius: 99px; border: 0; background: rgba(15, 45, 36, .24); margin-bottom: 2px; }
-  .panel.collapsed .desc, .panel.collapsed .arabic-title, .panel.collapsed .tip, .panel.collapsed #missionText, .panel.collapsed .step-pill { display: none; }
-  .panel.collapsed .mission { padding: 10px; gap: 6px; }
-  .dua-head { cursor: pointer; }
-  .panel h2 { font-size: 18px; }
-  .dua-card { left: 8px; right: 8px; width: auto; min-width: 0; top: 66px; bottom: auto; max-height: 34vh; }
-  .dua-body .ar { font-size: 22px; }
-  .toasts { top: auto; bottom: calc(var(--sheet-h, 56vh) + 8px); }
-  .controls-hint { display: none; }
-  .touch .joystick { bottom: calc(var(--sheet-h, 56vh) + 16px); width: 104px; height: 104px; }
-  .touch .jog-btn { bottom: calc(var(--sheet-h, 56vh) + 40px); }
-  .touch .toasts { bottom: calc(var(--sheet-h, 56vh) + 128px); }
-  .speak-btn { padding: 4px 8px; font-size: 12px; }
-  .modal.cert { padding: 12px; gap: 10px; border-radius: 16px; }
-  .modal.cert .row .btn { flex: 1 1 40%; }
-  .modal.cert .row [data-act="png"] { flex-basis: 100%; order: -1; }
-  .cert-overlay { padding: 8px; }
 }

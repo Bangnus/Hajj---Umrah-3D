@@ -1,20 +1,14 @@
-import { RING } from '../../../engine/rings';
-import { NABAWI, QUBA, UHUD, buildNabawi, buildQuba, buildUhud } from '../../../world/madinah';
+import { NABAWI, buildNabawi, buildQuba, buildUhud } from '../../../world/madinah';
 import { Zone, relocate } from '../../../world/props';
-import type { ActionHandle, StageDef } from '../../types';
-import { place, pray, travel, twoRakaat } from './stageKit';
+import type { StageDef } from '../../types';
+import { pray, twoRakaat } from './stageKit';
+import { QUBA_AT, UHUD_AT, setupOptionalTrips, type ZiyarahArea } from './ziyarahTrips';
 import { tr } from '../../../i18n';
 
-/** The optional trips are built far away so they are never visible from the mosque. */
-const QUBA_AT = { x: -2000, z: 0 };
-const UHUD_AT = { x: 2000, z: 0 };
 /** Waypoint in the west of the hall, in front of the corridor opening near Bab as-Salam. */
 const CORRIDOR_WAY = { x: -24, z: 13 };
-
 const TAHIYYAH = twoRakaat(tr('ละหมาดซุนนะฮ์ตะฮียะตุลมัสยิด (ละหมาดเคารพมัสยิด)'), true);
-const QUBA_PRAYER = twoRakaat(tr('ละหมาดซุนนะฮ์ตะฮียะตุลมัสยิดที่มัสยิดกุบาอ์'), true);
 
-type Area = 'nabawi' | 'quba' | 'uhud';
 type Step = 'door' | 'raudhah' | 'corridor' | 'salam' | 'pause' | 'exit' | 'baqi' | 'done';
 
 export const madinah: StageDef = {
@@ -43,11 +37,10 @@ export const madinah: StageDef = {
     ctx.player.colliders.push(zone.collider);
     zone.set(nab.shape);
 
-    let area: Area = 'nabawi';
+    let area: ZiyarahArea = 'nabawi';
     let step: Step = 'door';
     let goal: { x: number; z: number } | null = N.door;
     let subGoal: { x: number; z: number } | null = null;
-    // The guide arrow follows this object; tick() moves it (onto the player = hidden).
     const target = { x: N.door.x, z: N.door.z };
     ctx.guide(target);
 
@@ -97,14 +90,14 @@ export const madinah: StageDef = {
       ctx.rings.add(N.salamStart.x, N.salamStart.z, 1.4, () => {
         step = 'salam';
         goal = N.salam;
-        ctx.input.yaw = -Math.PI / 2; // camera behind a player heading east
+        ctx.input.yaw = -Math.PI / 2;
         ctx.toast(tr('มารยาท: เดินอย่างสงบ ไม่ส่งเสียงดัง ไม่แตะหรือลูบผนังและลูกกรง ไม่เบียดผู้อื่น และเดินต่อไปตามแถว'), 'info');
         ctx.hint(tr('เดินตามทางเดินไปทางทิศตะวันออก จนถึงหน้าห้องของท่านนบี ﷺ'));
         ctx.rings.add(N.salam.x, N.salam.z, 1.5, () => {
           ctx.progress();
           step = 'pause';
           goal = null;
-          ctx.player.yaw = Math.PI; // face the chamber (north) to give salam
+          ctx.player.yaw = Math.PI;
           ctx.dua('salam_prophet');
           ctx.toast(tr('ให้สลามแด่ท่านนบี ﷺ ด้วยเสียงเบา ๆ แล้วขยับไปทางขวาเล็กน้อยเพื่อให้สลามแด่อบูบักร์และอุมัร'), 'ok');
           ctx.hint(tr('ยืนสงบสักครู่'));
@@ -127,7 +120,6 @@ export const madinah: StageDef = {
       }, { label: tr('บาบุลบะกีอ์ — ก้าวเท้าซ้ายออก') });
     };
 
-    // (d) Al-Baqi (men at the gate path, women in front of the gate).
     const baqi = () => {
       step = 'baqi';
       const spot = male ? N.baqi.gate : N.baqi.outside;
@@ -147,76 +139,11 @@ export const madinah: StageDef = {
       }, { label: tr('สุสานอัลบะเกียะอ์') });
     };
 
-    // Optional bus trips: Quba and Uhud (not counted).
-    let tripBtns: ActionHandle[] = [];
-    let qubaRing = false, qubaArrived = false, qubaPrayed = false, uhudRing = false, uhudDone = false;
-    const clearTrip = () => { tripBtns.forEach((b) => b.remove()); tripBtns = []; };
-    const nabawiButtons = () => {
-      clearTrip();
-      tripBtns.push(ctx.action(tr('🚌 ไปมัสยิดกุบาอ์ (ไม่บังคับ)'), () => goTo('quba')));
-      tripBtns.push(ctx.action(tr('🚌 ไปอุฮุด (ไม่บังคับ)'), () => goTo('uhud')));
-    };
-    const goTo = (where: Area) => {
-      if (ctx.player.frozen) return;
-      clearTrip();
-      const caption = where === 'quba' ? tr('🚌 นั่งรถบัสไปมัสยิดกุบาอ์ (ประมาณ 3–4 กม. ทางใต้ของมัสยิดนะบะวี)')
-        : where === 'uhud' ? tr('🚌 นั่งรถบัสไปภูเขาอุฮุด (ประมาณ 5 กม. ทางเหนือของมัสยิดนะบะวี)')
-          : tr('🚌 นั่งรถบัสกลับมัสยิดนะบะวี');
-      travel(ctx, caption, () => {
-        area = where;
-        if (where === 'nabawi') {
-          place(ctx, N.busStop, 0, zone, nab.shape);
-          nabawiButtons();
-          return;
-        }
-        if (where === 'quba') {
-          place(ctx, { x: QUBA_AT.x + QUBA.start.x, z: QUBA_AT.z + QUBA.start.z }, 0, zone, quba.shape);
-          visitQuba();
-        } else {
-          place(ctx, { x: UHUD_AT.x + UHUD.start.x, z: UHUD_AT.z + UHUD.start.z }, Math.PI, zone, uhud.shape);
-          visitUhud();
-        }
-        tripBtns.push(ctx.action(tr('🚌 กลับมัสยิดนะบะวี'), () => goTo('nabawi')));
-      });
-    };
-    const offerQubaPrayer = () => {
-      const b = ctx.action(tr('🕌 ละหมาด 2 ร็อกอะฮ์ที่มัสยิดกุบาอ์'), () => {
-        if (area !== 'quba' || ctx.player.frozen) return;
-        b.remove();
-        pray(ctx, QUBA_PRAYER, 0, () => {
-          qubaPrayed = true;
-          ctx.toast(tr('ละหมาดที่มัสยิดกุบาอ์แล้ว ขออัลลอฮ์ทรงตอบรับ กด "กลับมัสยิดนะบะวี" เมื่อพร้อม'), 'ok');
-        });
-      });
-      tripBtns.push(b);
-    };
-    const visitQuba = () => {
-      const d = { x: QUBA_AT.x + QUBA.door.x, z: QUBA_AT.z + QUBA.door.z };
-      subGoal = qubaArrived ? null : d;
-      if (qubaArrived) { if (!qubaPrayed) offerQubaPrayer(); return; }
-      if (qubaRing) return;
-      qubaRing = true;
-      ctx.rings.add(d.x, d.z, 1.6, () => {
-        qubaArrived = true;
-        subGoal = null;
-        ctx.dua('quba_hadith');
-        ctx.toast(tr('มัสยิดกุบาอ์เป็นมัสยิดหลังแรกที่ท่านนบี ﷺ สร้างเมื่ออพยพมาถึงมะดีนะฮ์ ซุนนะฮ์ให้อาบน้ำละหมาดจากที่พักแล้วมาละหมาดที่นี่'), 'info');
-        if (area === 'quba') offerQubaPrayer();
-      }, { label: tr('มัสยิดกุบาอ์'), color: RING.secondary });
-    };
-    const visitUhud = () => {
-      const f = { x: UHUD_AT.x + UHUD.fence.x, z: UHUD_AT.z + UHUD.fence.z };
-      subGoal = uhudDone ? null : f;
-      if (uhudRing) return;
-      uhudRing = true;
-      ctx.rings.add(f.x, f.z, 1.4, () => {
-        uhudDone = true;
-        subGoal = null;
-        ctx.dua('graves_visit');
-        ctx.toast(tr('ที่นี่คือสุสานของเหล่าชะฮีดในสงครามอุฮุด (ปี ฮ.ศ. 3) รวมถึงท่านฮัมซะฮ์ ลุงของท่านนบี ﷺ ให้สลามและขอดุอาอ์ให้พวกท่าน เนินเล็กด้านข้างคือเนินที่ท่านนบี ﷺ ให้นักยิงธนูประจำการ'), 'info');
-      }, { label: tr('สุสานชุฮะดาอ์อุฮุด'), color: RING.secondary });
-    };
-    nabawiButtons();
+    setupOptionalTrips({
+      ctx, zone,
+      nabShape: nab.shape, qubaShape: quba.shape, uhudShape: uhud.shape,
+      getArea: () => area, setArea: (a) => { area = a; }, setSubGoal: (g) => { subGoal = g; },
+    });
 
     return {
       mission: {

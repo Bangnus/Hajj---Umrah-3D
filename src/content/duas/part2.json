@@ -1,0 +1,141 @@
+[
+  {
+    "id": "ihram_condition",
+    "type": "dua",
+    "stages": [
+      "miqat",
+      "hajjIhram"
+    ],
+    "trigger_th": "ตัวเลือกเสริม: แสดงเป็นเคล็ดลับสำหรับผู้สูงอายุหรือผู้ป่วย",
+    "title_th": "การตั้งเงื่อนไขขณะครองอิห์รอม (สำหรับผู้กลัวเจ็บป่วย)",
+    "arabic": "اللَّهُمَّ مَحِلِّي حَيْثُ حَبَسْتَنِي",
+    "reading_th": "อัลลอฮุมมะ มะฮิลลี ฮัยษุ ฮะบัสตะนี",
+    "meaning_th": "โอ้อัลลอฮ์ ที่ที่ข้าพเจ้าจะออกจากอิห์รอม คือที่ที่พระองค์ทรงกักข้าพเจ้าไว้",
+    "source": "อัลบุคอรีย์ 5089, มุสลิม 1207",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ท่านนบี ﷺ สอนให้ฎุบาอะฮ์ บินติซุบัยร์ ซึ่งป่วยอยู่ กล่าวบทนี้ ถ้าเกิดเหตุจนทำพิธีต่อไม่ได้ จะออกจากอิห์รอมได้โดยไม่ต้องเสียดัม",
+    "title_en": "Making a condition when entering ihram (for those who fear illness)",
+    "reading_en": "Allahumma mahilli haythu habastani",
+    "meaning_en": "O Allah, my place of leaving ihram is wherever You hold me back.",
+    "source_en": "Sahih al-Bukhari 5089, Sahih Muslim 1207",
+    "grade_en": "Sahih",
+    "note_en": "The Prophet ﷺ taught this to Duba'ah bint az-Zubayr, who was ill. If something then prevents you from completing the rites, you may leave ihram without paying a dam."
+  },
+  {
+    "id": "niyyah_hajj_tamattu_umrah",
+    "type": "dua",
+    "stages": [
+      "miqat"
+    ],
+    "trigger_th": "ฮัจญ์แบบตะมัตตุอ์: ครองอิห์รอมเพื่ออุมเราะฮ์ที่มีกอต (ก่อนวันที่ 8)",
+    "title_th": "เนียตอุมเราะฮ์ของฮัจญ์ตะมัตตุอ์",
+    "arabic": "لَبَّيْكَ اللَّهُمَّ عُمْرَةً مُتَمَتِّعًا بِهَا إِلَى الْحَجِّ",
+    "reading_th": "ลับบัยกัลลอฮุมมะ อุมเราะตัน มุตะมัตติอัน บิฮา อิลัลฮัจญ์",
+    "meaning_th": "โอ้อัลลอฮ์ ข้าพเจ้ามาตอบรับคำเรียกร้องของพระองค์ เพื่อทำอุมเราะฮ์ แล้วพักจากอิห์รอมจนถึงฮัจญ์",
+    "source": "ถ้อยคำที่นักวิชาการใช้ อิงจากหะดีษเรื่องตะมัตตุอ์ (อัลบุคอรีย์ 1568, มุสลิม 1216)",
+    "grade_th": "ถ้อยคำเรียบเรียงโดยนักวิชาการ (ความหมายมีหลักฐาน)",
+    "note_th": "สำคัญ: ต้นฉบับใช้บทนี้ในขั้น hajjIhram (วันที่ 8 ที่โรงแรม) ซึ่งไม่ถูกต้อง เพราะวันที่ 8 ผู้ทำตะมัตตุอ์ต้องเนียตฮัจญ์ด้วยบท niyyah_hajj",
+    "title_en": "Intention for the Umrah of Hajj tamattu'",
+    "reading_en": "Labbayka Allahumma 'umratan mutamatti'an biha ilal-hajj",
+    "meaning_en": "Here I am, O Allah, answering Your call, to perform Umrah, then enjoying release from ihram until Hajj.",
+    "source_en": "Wording used by scholars, based on the hadiths about tamattu' (Sahih al-Bukhari 1568, Sahih Muslim 1216)",
+    "grade_en": "Wording compiled by scholars (its meaning is supported by evidence)",
+    "note_en": "Use this at the miqat for the Umrah part only. On the 8th of Dhul-Hijjah a tamattu' pilgrim makes a new intention for Hajj (Labbayka Allahumma hajjan).",
+    "replaces": "talbiyah_tamattu"
+  },
+  {
+    "id": "niyyah_hajj",
+    "type": "dua",
+    "stages": [
+      "hajjIhram"
+    ],
+    "trigger_th": "ตะมัตตุอ์: วันที่ 8 ที่โรงแรมในมักกะฮ์ / อิฟรอด: ที่มีกอต",
+    "title_th": "เนียตฮัจญ์ (ตะมัตตุอ์วันที่ 8 และอิฟรอด)",
+    "arabic": "لَبَّيْكَ اللَّهُمَّ حَجًّا",
+    "reading_th": "ลับบัยกัลลอฮุมมะ ฮัจญัน",
+    "meaning_th": "โอ้อัลลอฮ์ ข้าพเจ้ามาตอบรับคำเรียกร้องของพระองค์ เพื่อทำฮัจญ์",
+    "source": "ถ้อยคำตามแบบหะดีษอนัส (มุสลิม 1232)",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Intention for Hajj (tamattu' on the 8th, and ifrad)",
+    "reading_en": "Labbayka Allahumma hajjan",
+    "meaning_en": "Here I am, O Allah, answering Your call, to perform Hajj.",
+    "source_en": "Wording as in the hadith of Anas (Sahih Muslim 1232)",
+    "grade_en": "Sahih",
+    "note_en": "",
+    "replaces": "talbiyah_ifrad"
+  },
+  {
+    "id": "niyyah_hajj_qiran",
+    "type": "dua",
+    "stages": [
+      "hajjIhram"
+    ],
+    "trigger_th": "ฮัจญ์แบบกิรอน: ที่มีกอต",
+    "title_th": "เนียตฮัจญ์กิรอน",
+    "arabic": "لَبَّيْكَ اللَّهُمَّ عُمْرَةً وَحَجًّا",
+    "reading_th": "ลับบัยกัลลอฮุมมะ อุมเราะตัน วะฮัจญัน",
+    "meaning_th": "โอ้อัลลอฮ์ ข้าพเจ้ามาตอบรับคำเรียกร้องของพระองค์ เพื่อทำอุมเราะฮ์และฮัจญ์ควบคู่กัน",
+    "source": "มุสลิม 1232 (ท่านอนัสได้ยินท่านนบี ﷺ กล่าว)",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Intention for Hajj qiran",
+    "reading_en": "Labbayka Allahumma 'umratan wa hajjan",
+    "meaning_en": "Here I am, O Allah, answering Your call, to perform Umrah and Hajj together.",
+    "source_en": "Sahih Muslim 1232 (Anas heard the Prophet ﷺ say it)",
+    "grade_en": "Sahih",
+    "note_en": "",
+    "replaces": "talbiyah_qiran"
+  },
+  {
+    "id": "talbiyah",
+    "type": "dhikr",
+    "stages": [
+      "miqat",
+      "hajjIhram",
+      "hajjTarwiyah",
+      "hajjArafah",
+      "hajjMuzdalifah"
+    ],
+    "trigger_th": "หลังเนียต แสดงวนเป็นระยะระหว่างเดินทาง (อุมเราะฮ์: จนเริ่มเฏาะวาฟ / ฮัจญ์: จนขว้างญัมเราะฮ์อะกอบะฮ์ก้อนแรก)",
+    "title_th": "ตัลบิยะฮ์",
+    "arabic": "لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ",
+    "reading_th": "ลับบัยกัลลอฮุมมะ ลับบัยก์ ลับบัยกะ ลา ชะรีกะ ละกะ ลับบัยก์ อินนัลฮัมดะ วันนิอ์มะตะ ละกะ วัลมุลก์ ลา ชะรีกะ ลัก",
+    "meaning_th": "ข้าพระองค์มาแล้ว โอ้อัลลอฮ์ ข้าพระองค์มาแล้ว ข้าพระองค์มาแล้ว ไม่มีภาคีใดสำหรับพระองค์ ข้าพระองค์มาแล้ว แท้จริงการสรรเสริญ ความโปรดปราน และอำนาจการปกครองเป็นของพระองค์ ไม่มีภาคีใดสำหรับพระองค์",
+    "source": "อัลบุคอรีย์ 1549, มุสลิม 1184",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ผู้ชายกล่าวเสียงดัง ผู้หญิงกล่าวเบา ๆ กล่าวซ้ำบ่อย ๆ ตลอดทางจนเริ่มเฏาะวาฟ",
+    "title_en": "Talbiyah",
+    "reading_en": "Labbayka Allahumma labbayk, labbayka la sharika laka labbayk, innal-hamda wan-ni'mata laka wal-mulk, la sharika lak",
+    "meaning_en": "Here I am, O Allah, here I am. Here I am, You have no partner, here I am. Truly all praise, all blessings and all sovereignty belong to You. You have no partner.",
+    "source_en": "Sahih al-Bukhari 1549, Sahih Muslim 1184",
+    "grade_en": "Sahih",
+    "note_en": "Men say it aloud and women say it quietly. Repeat it often along the way until you begin tawaf.",
+    "replaces": "talbiyah_umrah_overlay"
+  },
+  {
+    "id": "masjid_enter",
+    "type": "dua",
+    "stages": [
+      "tawaf",
+      "madinah",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "เมื่อเดินผ่านประตูมัสยิดอัลฮะรอมหรือมัสยิดนะบะวี (ก้าวเท้าขวาเข้า)",
+    "title_th": "ดุอาอ์เข้ามัสยิด",
+    "arabic": "بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ، اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+    "reading_th": "บิสมิลลาฮ์ วัศเศาะลาตุ วัสสะลามุ อะลา ร่อซูลิลลาฮ์ อัลลอฮุมมัฟตะห์ ลี อับวาบะ เราะห์มะติก",
+    "meaning_th": "ด้วยพระนามของอัลลอฮ์ ขอความโปรดปรานและความสันติจงมีแด่ร่อซูลของอัลลอฮ์ โอ้อัลลอฮ์ โปรดเปิดประตูแห่งความเมตตาของพระองค์ให้แก่ข้าพเจ้า",
+    "source": "มุสลิม 713, อิบนุมาญะฮ์ 771",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Du'a for entering the mosque",
+    "reading_en": "Bismillah, was-salatu was-salamu 'ala rasulillah, Allahummaftah li abwaba rahmatik",
+    "meaning_en": "In the name of Allah, and blessings and peace be upon the Messenger of Allah. O Allah, open for me the gates of Your mercy.",
+    "source_en": "Sahih Muslim 713, Sunan Ibn Majah 771",
+    "grade_en": "Sahih",
+    "note_en": "",
+    "replaces": "masjid_entry"
+  }
+]

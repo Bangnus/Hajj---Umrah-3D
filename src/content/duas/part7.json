@@ -1,0 +1,108 @@
+[
+  {
+    "id": "quba_hadith",
+    "type": "hadith_info",
+    "stages": [
+      "madinah"
+    ],
+    "trigger_th": "เมื่อถึงมัสยิดกุบาอ์",
+    "title_th": "ความประเสริฐของการละหมาดที่มัสยิดกุบาอ์",
+    "arabic": "مَنْ تَطَهَّرَ فِي بَيْتِهِ، ثُمَّ أَتَى مَسْجِدَ قُبَاءٍ، فَصَلَّى فِيهِ صَلَاةً، كَانَ لَهُ كَأَجْرِ عُمْرَةٍ",
+    "reading_th": "มัน ตะเฏาะฮ์ฮะเราะ ฟี บัยติฮี ษุมมะ อะตา มัสญิดะ กุบาอิน ฟะเศาะลลา ฟีฮิ เศาะลาตัน กานะ ละฮู กะอัจญ์ริ อุมเราะฮ์",
+    "meaning_th": "ผู้ใดอาบน้ำละหมาดที่บ้านของเขา แล้วมายังมัสยิดกุบาอ์ และละหมาดในนั้น เขาจะได้รับผลบุญเท่ากับการทำอุมเราะฮ์",
+    "source": "อิบนุมาญะฮ์ 1412, อันนะสาอีย์ 699",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "เป็นหลักฐานยืนยันข้อความ \"ผลบุญเท่าอุมเราะฮ์\" ที่ฉบับอินโดนีเซียเขียนไว้",
+    "title_en": "The virtue of praying at Masjid Quba",
+    "reading_en": "Man tatahhara fi baytihi thumma ata masjida Quba'in fa salla fihi salatan kana lahu ka-ajri 'umrah",
+    "meaning_en": "Whoever purifies himself in his house, then comes to Masjid Quba and prays in it, will have a reward like that of an Umrah.",
+    "source_en": "Sunan Ibn Majah 1412, Sunan an-Nasa'i 699",
+    "grade_en": "Sahih",
+    "note_en": "This hadith is the evidence for the reward \"like an Umrah\" for praying at Quba."
+  },
+  {
+    "id": "graves_visit",
+    "type": "dua",
+    "stages": [
+      "madinah"
+    ],
+    "trigger_th": "เมื่อเยี่ยมสุสานอัลบะเกียะอ์ หรือสุสานชุฮะดาอ์อุฮุด",
+    "title_th": "ดุอาอ์เยี่ยมสุสาน",
+    "arabic": "السَّلَامُ عَلَيْكُمْ أَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِينَ وَالْمُسْلِمِينَ، وَإِنَّا إِنْ شَاءَ اللَّهُ بِكُمْ لَلَاحِقُونَ، أَسْأَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ",
+    "reading_th": "อัสสะลามุ อะลัยกุม อะฮ์ลัดดิยาร มินัลมุอ์มินีนะ วัลมุสลิมีน วะอินนา อินชาอัลลอฮุ บิกุม ละลาฮิกูน อัสอะลุลลอฮะ ละนา วะละกุมุล อาฟิยะฮ์",
+    "meaning_th": "ขอความสันติจงมีแด่ท่านทั้งหลาย ผู้พำนักในที่แห่งนี้ จากบรรดาผู้ศรัทธาและมุสลิม และแท้จริงเราจะตามพวกท่านไปหากอัลลอฮ์ทรงประสงค์ ข้าพเจ้าขอให้อัลลอฮ์ประทานความปลอดภัยแก่เราและแก่พวกท่าน",
+    "source": "มุสลิม 975",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Du'a when visiting graves",
+    "reading_en": "As-salamu 'alaykum ahlad-diyari minal-mu'minina wal-muslimin, wa inna in sha' Allahu bikum lalahiqun, as'alullaha lana wa lakumul-'afiyah",
+    "meaning_en": "Peace be upon you, O inhabitants of these dwellings, from among the believers and the Muslims. Indeed, if Allah wills, we shall join you. I ask Allah for well-being for us and for you.",
+    "source_en": "Sahih Muslim 975",
+    "grade_en": "Sahih",
+    "note_en": ""
+  },
+  {
+    "id": "arafah_best_dua",
+    "type": "dhikr",
+    "stages": [
+      "hajjArafah"
+    ],
+    "trigger_th": "เมื่อถึงทุ่งอะรอฟะฮ์ (หลังละหมาดซุฮ์ริและอัศริรวมกัน จนถึงดวงอาทิตย์ตก)",
+    "title_th": "ดุอาอ์ที่ดีที่สุดในวันอะรอฟะฮ์",
+    "arabic": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+    "reading_th": "ลาอิลาฮะ อิลลัลลอฮุ วะห์ดะฮู ลาชะรีกะ ละฮ์ ละฮุลมุลกุ วะละฮุลฮัมดุ วะฮุวะ อะลา กุลลิ ชัยอิน เกาะดีร",
+    "meaning_th": "ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ พระองค์เดียว ไม่มีภาคีใดสำหรับพระองค์ อำนาจการปกครองและการสรรเสริญเป็นของพระองค์ และพระองค์ทรงมีอานุภาพเหนือทุกสิ่ง",
+    "source": "อัตติรมิซีย์ 3585: «ดุอาอ์ที่ดีที่สุดคือดุอาอ์ในวันอะรอฟะฮ์ และถ้อยคำที่ดีที่สุดที่ฉันและบรรดานบีก่อนหน้าฉันกล่าวคือ …»",
+    "grade_th": "หะสัน (อัลอัลบานีย์)",
+    "note_th": "ยืนหรือนั่งหันหน้าไปทางกิบลัต ยกมือ ขอดุอาอ์ให้มาก ไม่จำเป็นต้องขึ้นภูเขาเราะห์มะฮ์",
+    "title_en": "The best du'a on the Day of Arafah",
+    "reading_en": "La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu, wa huwa 'ala kulli shay'in qadir",
+    "meaning_en": "There is no god but Allah alone; He has no partner. His is the dominion and His is the praise, and He has power over all things.",
+    "source_en": "Jami' at-Tirmidhi 3585: «The best du'a is the du'a on the Day of Arafah, and the best words that I and the prophets before me have said are …»",
+    "grade_en": "Hasan (al-Albani)",
+    "note_en": "Stand or sit facing the qiblah, raise your hands and make plenty of du'a. There is no need to climb Jabal ar-Rahmah (the Mount of Mercy)."
+  },
+  {
+    "id": "sayyid_istighfar",
+    "type": "dua",
+    "stages": [
+      "hajjArafah",
+      "hajjMuzdalifah"
+    ],
+    "trigger_th": "การ์ดดุอาอ์แนะนำที่อะรอฟะฮ์ (ตัวเลือก)",
+    "title_th": "สัยยิดุลอิสติฆฟาร (บทขออภัยโทษที่ประเสริฐที่สุด)",
+    "arabic": "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي، فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+    "reading_th": "อัลลอฮุมมะ อันตะ ร็อบบี ลาอิลาฮะ อิลลา อันตะ เคาะลักตะนี วะอะนา อับดุกะ วะอะนา อะลา อะฮ์ดิกะ วะวะอ์ดิกะ มัสตะเฏาะอ์ตุ อะอูซุ บิกะ มิน ชัรริ มา เศาะนะอ์ตุ อะบูอุ ละกะ บินิอ์มะติกะ อะลัยยะ วะอะบูอุ บิซัมบี ฟัฆฟิรลี ฟะอินนะฮู ลา ยัฆฟิรุซซุนูบะ อิลลา อันตะ",
+    "meaning_th": "โอ้อัลลอฮ์ พระองค์คือพระเจ้าของข้าพเจ้า ไม่มีพระเจ้าอื่นใดนอกจากพระองค์ พระองค์ทรงสร้างข้าพเจ้า และข้าพเจ้าคือบ่าวของพระองค์ ข้าพเจ้าจะยึดมั่นในพันธสัญญาและคำมั่นต่อพระองค์เท่าที่ข้าพเจ้าสามารถ ข้าพเจ้าขอความคุ้มครองต่อพระองค์จากความชั่วที่ข้าพเจ้าได้กระทำ ข้าพเจ้ายอมรับในความโปรดปรานที่พระองค์ทรงประทานแก่ข้าพเจ้า และยอมรับในบาปของข้าพเจ้า ดังนั้นโปรดอภัยแก่ข้าพเจ้า เพราะไม่มีผู้ใดอภัยบาปได้นอกจากพระองค์",
+    "source": "อัลบุคอรีย์ 6306",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Sayyid al-Istighfar (the best prayer for forgiveness)",
+    "reading_en": "Allahumma anta rabbi la ilaha illa ant, khalaqtani wa ana 'abduk, wa ana 'ala 'ahdika wa wa'dika mastata't, a'udhu bika min sharri ma sana't, abu'u laka bi ni'matika 'alayya, wa abu'u bi dhanbi, faghfir li, fa innahu la yaghfirudh-dhunuba illa ant",
+    "meaning_en": "O Allah, You are my Lord; there is no god but You. You created me and I am Your servant. I keep Your covenant and Your promise as best I can. I seek refuge in You from the evil of what I have done. I acknowledge Your blessings upon me, and I acknowledge my sin, so forgive me, for none forgives sins but You.",
+    "source_en": "Sahih al-Bukhari 6306",
+    "grade_en": "Sahih",
+    "note_en": ""
+  },
+  {
+    "id": "muzdalifah_mashar",
+    "type": "quran",
+    "stages": [
+      "hajjMuzdalifah"
+    ],
+    "trigger_th": "หลังละหมาดศุบฮิที่มุซดะลิฟะฮ์ จนฟ้าสว่าง",
+    "title_th": "ซิกร์ที่อัลมัชอะริลฮะรอม",
+    "arabic": "فَإِذَا أَفَضْتُمْ مِنْ عَرَفَاتٍ فَاذْكُرُوا اللَّهَ عِنْدَ الْمَشْعَرِ الْحَرَامِ",
+    "reading_th": "ฟะอิซา อะฟัฎตุม มิน อะเราะฟาติน ฟัซกุรุลลอฮะ อินดัล มัชอะริล ฮะรอม",
+    "meaning_th": "ครั้นเมื่อพวกเจ้าออกจากอะรอฟาตแล้ว ก็จงกล่าวรำลึกถึงอัลลอฮ์ ณ อัลมัชอะริลฮะรอม",
+    "source": "อัลบะเกาะเราะฮ์ 2:198; การปฏิบัติของท่านนบี ﷺ ในหะดีษญาบิร (มุสลิม 1218)",
+    "grade_th": "อัลกุรอาน / เศาะฮีห์",
+    "note_th": "ท่านนบี ﷺ หันหน้าไปทางกิบลัต ขอดุอาอ์ กล่าวตักบีร ตะฮ์ลีล (ลาอิลาฮะอิลลัลลอฮ์) และให้เอกภาพแด่อัลลอฮ์ จนฟ้าสว่าง ใช้บท arafah_best_dua ได้",
+    "title_en": "Dhikr at al-Mash'ar al-Haram",
+    "reading_en": "Fa idha afadtum min 'arafatin fadhkurullaha 'indal-mash'aril-haram",
+    "meaning_en": "And when you depart from Arafat, remember Allah at al-Mash'ar al-Haram.",
+    "source_en": "Al-Baqarah 2:198; the practice of the Prophet ﷺ in the hadith of Jabir (Sahih Muslim 1218)",
+    "grade_en": "Qur'an / Sahih",
+    "note_en": "The Prophet ﷺ faced the qiblah, made du'a, said the takbir and tahlil (La ilaha illallah) and declared Allah's oneness until the sky became bright. You may use the best du'a of Arafah (La ilaha illallahu wahdah...)."
+  }
+]

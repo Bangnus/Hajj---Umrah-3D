@@ -1,0 +1,140 @@
+[
+  {
+    "id": "tawaf_lap_2",
+    "type": "quran",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "การ์ดดุอาอ์แนะนำ รอบที่ 2 (ไม่บังคับ)",
+    "title_th": "ดุอาอ์แนะนำรอบที่ 2 — ขออภัยโทษ",
+    "arabic": "رَبَّنَا ظَلَمْنَا أَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ",
+    "reading_th": "ร็อบบะนา ซ็อลัมนา อันฟุสะนา วะอิน ลัม ตัฆฟิร ละนา วะตัรฮัมนา ละนะกูนันนะ มินัลคอสิรีน",
+    "meaning_th": "โอ้พระเจ้าของเรา เราได้อธรรมต่อตัวเราเอง และหากพระองค์ไม่ทรงอภัยและไม่ทรงเมตตาเรา แน่นอนเราจะเป็นผู้ขาดทุน",
+    "source": "อัลอะอ์รอฟ 7:23 (ดุอาอ์ของนบีอาดัมและพระนางเฮาวาอ์)",
+    "grade_th": "อัลกุรอาน",
+    "note_th": "",
+    "title_en": "Suggested du'a for lap 2 — seeking forgiveness",
+    "reading_en": "Rabbana zalamna anfusana wa in lam taghfir lana wa tarhamna lanakunanna minal-khasirin",
+    "meaning_en": "Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy on us, we will surely be among the losers.",
+    "source_en": "Al-A'raf 7:23 (the du'a of the Prophet Adam and Hawwa')",
+    "grade_en": "Qur'an",
+    "note_en": ""
+  },
+  {
+    "id": "tawaf_lap_3",
+    "type": "quran",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "การ์ดดุอาอ์แนะนำ รอบที่ 3 (ไม่บังคับ)",
+    "title_th": "ดุอาอ์แนะนำรอบที่ 3 — ขอความมั่นคงในศรัทธา",
+    "arabic": "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً إِنَّكَ أَنْتَ الْوَهَّابُ",
+    "reading_th": "ร็อบบะนา ลา ตุซิฆ กุลูบะนา บะอ์ดะ อิซ ฮะดัยตะนา วะฮับ ละนา มิน ละดุนกะ เราะห์มะฮ์ อินนะกะ อันตัล วะฮ์ฮาบ",
+    "meaning_th": "โอ้พระเจ้าของเรา โปรดอย่าให้หัวใจของเราเบี่ยงเบน หลังจากที่พระองค์ทรงชี้ทางแก่เราแล้ว และโปรดประทานความเมตตาจากพระองค์แก่เรา แท้จริงพระองค์คือผู้ทรงประทานอย่างมากมาย",
+    "source": "อาลิอิมรอน 3:8",
+    "grade_th": "อัลกุรอาน",
+    "note_th": "",
+    "title_en": "Suggested du'a for lap 3 — steadfast faith",
+    "reading_en": "Rabbana la tuzigh qulubana ba'da idh hadaytana wa hab lana min ladunka rahmah, innaka antal-wahhab",
+    "meaning_en": "Our Lord, do not let our hearts deviate after You have guided us, and grant us mercy from Yourself. Indeed, You are the Bestower.",
+    "source_en": "Al 'Imran 3:8",
+    "grade_en": "Qur'an",
+    "note_en": ""
+  },
+  {
+    "id": "tawaf_lap_4",
+    "type": "quran",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "การ์ดดุอาอ์แนะนำ รอบที่ 4 (ไม่บังคับ)",
+    "title_th": "ดุอาอ์แนะนำรอบที่ 4 — การละหมาดของตนเองและลูกหลาน",
+    "arabic": "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ",
+    "reading_th": "ร็อบบิจญ์อัลนี มุกีมัศเศาะลาติ วะมิน ซุรรียะตี ร็อบบะนา วะตะก็อบบัล ดุอาอ์",
+    "meaning_th": "โอ้พระเจ้าของข้าพเจ้า โปรดทำให้ข้าพเจ้าและลูกหลานของข้าพเจ้าเป็นผู้ดำรงการละหมาด โอ้พระเจ้าของเรา โปรดรับดุอาอ์ของข้าพเจ้าด้วยเถิด",
+    "source": "อิบรอฮีม 14:40 (ดุอาอ์ของนบีอิบรอฮีม)",
+    "grade_th": "อัลกุรอาน",
+    "note_th": "",
+    "title_en": "Suggested du'a for lap 4 — prayer for yourself and your children",
+    "reading_en": "Rabbij'alni muqimas-salati wa min dhurriyyati, rabbana wa taqabbal du'a'",
+    "meaning_en": "My Lord, make me one who establishes prayer, and (also) among my descendants. Our Lord, and accept my supplication.",
+    "source_en": "Ibrahim 14:40 (the du'a of the Prophet Ibrahim)",
+    "grade_en": "Qur'an",
+    "note_en": ""
+  },
+  {
+    "id": "tawaf_lap_5",
+    "type": "quran",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "การ์ดดุอาอ์แนะนำ รอบที่ 5 (ไม่บังคับ)",
+    "title_th": "ดุอาอ์แนะนำรอบที่ 5 — เพื่อบิดามารดา",
+    "arabic": "رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ",
+    "reading_th": "ร็อบบะนัฆฟิร ลี วะลิวาลิดัยยะ วะลิลมุอ์มินีนะ เยามะ ยะกูมุล ฮิสาบ",
+    "meaning_th": "โอ้พระเจ้าของเรา โปรดอภัยแก่ข้าพเจ้า แก่บิดามารดาของข้าพเจ้า และแก่บรรดาผู้ศรัทธา ในวันที่การชำระบัญชีจะเกิดขึ้น",
+    "source": "อิบรอฮีม 14:41",
+    "grade_th": "อัลกุรอาน",
+    "note_th": "",
+    "title_en": "Suggested du'a for lap 5 — for your parents",
+    "reading_en": "Rabbanaghfir li wa li walidayya wa lil-mu'minina yawma yaqumul-hisab",
+    "meaning_en": "Our Lord, forgive me, my parents and the believers on the Day the reckoning is established.",
+    "source_en": "Ibrahim 14:41",
+    "grade_en": "Qur'an",
+    "note_en": ""
+  },
+  {
+    "id": "tawaf_lap_6",
+    "type": "quran",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "การ์ดดุอาอ์แนะนำ รอบที่ 6 (ไม่บังคับ)",
+    "title_th": "ดุอาอ์แนะนำรอบที่ 6 — เพื่อครอบครัว",
+    "arabic": "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا",
+    "reading_th": "ร็อบบะนา ฮับ ละนา มิน อัซวาญินา วะซุรรียาตินา กุรรอตะ อะอ์ยุน วัจญ์อัลนา ลิลมุตตะกีนะ อิมามา",
+    "meaning_th": "โอ้พระเจ้าของเรา โปรดประทานคู่ครองและลูกหลานที่เป็นความชื่นใจแก่เรา และโปรดทำให้เราเป็นแบบอย่างแก่บรรดาผู้ยำเกรง",
+    "source": "อัลฟุรกอน 25:74",
+    "grade_th": "อัลกุรอาน",
+    "note_th": "",
+    "title_en": "Suggested du'a for lap 6 — for your family",
+    "reading_en": "Rabbana hab lana min azwajina wa dhurriyyatina qurrata a'yunin waj'alna lil-muttaqina imama",
+    "meaning_en": "Our Lord, grant us from our spouses and offspring comfort to our eyes, and make us a leader for the righteous.",
+    "source_en": "Al-Furqan 25:74",
+    "grade_en": "Qur'an",
+    "note_en": ""
+  },
+  {
+    "id": "tawaf_lap_7",
+    "type": "dhikr",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "การ์ดดุอาอ์แนะนำ รอบที่ 7 (ไม่บังคับ)",
+    "title_th": "ซิกร์แนะนำรอบที่ 7 — ถ้อยคำที่อัลลอฮ์ทรงรักที่สุด",
+    "arabic": "سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ",
+    "reading_th": "ซุบฮานัลลอฮ์ วัลฮัมดุลิลลาฮ์ วะลาอิลาฮะ อิลลัลลอฮ์ วัลลอฮุอักบัร",
+    "meaning_th": "มหาบริสุทธิ์แด่อัลลอฮ์ การสรรเสริญทั้งมวลเป็นของอัลลอฮ์ ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ และอัลลอฮ์ทรงยิ่งใหญ่",
+    "source": "มุสลิม 2137",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Suggested dhikr for lap 7 — the words most beloved to Allah",
+    "reading_en": "Subhanallah, walhamdulillah, wa la ilaha illallah, wallahu akbar",
+    "meaning_en": "Glory be to Allah, all praise is for Allah, there is no god but Allah, and Allah is the Greatest.",
+    "source_en": "Sahih Muslim 2137",
+    "grade_en": "Sahih",
+    "note_en": ""
+  }
+]

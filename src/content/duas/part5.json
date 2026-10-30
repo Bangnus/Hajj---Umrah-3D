@@ -1,0 +1,112 @@
+[
+  {
+    "id": "maqam_ibrahim",
+    "type": "quran",
+    "stages": [
+      "prayerZamzam",
+      "hajjIfadhah"
+    ],
+    "trigger_th": "เมื่อเดินไปยังมะกอมอิบรอฮีมหลังครบ 7 รอบ (ก่อนละหมาด 2 ร็อกอะฮ์)",
+    "title_th": "เมื่อไปถึงมะกอมอิบรอฮีม",
+    "arabic": "وَاتَّخِذُوا مِنْ مَقَامِ إِبْرَاهِيمَ مُصَلًّى",
+    "reading_th": "วัตตะคิซู มิน มะกอมิ อิบรอฮีมะ มุศ็อลลา",
+    "meaning_th": "และพวกเจ้าจงยึดเอาที่ยืนของอิบรอฮีมเป็นที่ละหมาด",
+    "source": "อัลบะเกาะเราะฮ์ 2:125; ท่านนบี ﷺ อ่านอายะฮ์นี้ในหะดีษญาบิร (มุสลิม 1218)",
+    "grade_th": "อัลกุรอาน / เศาะฮีห์",
+    "note_th": "จากนั้นละหมาด 2 ร็อกอะฮ์ ร็อกอะฮ์แรกอ่านอัลกาฟิรูน ร็อกอะฮ์ที่สองอ่านอัลอิคลาศ (มุสลิม 1218) ถ้าคนแน่น ละหมาดที่ใดก็ได้ในมัสยิด",
+    "title_en": "On reaching Maqam Ibrahim",
+    "reading_en": "Wattakhidhu min maqami Ibrahima musalla",
+    "meaning_en": "And take the standing place of Ibrahim as a place of prayer.",
+    "source_en": "Al-Baqarah 2:125; the Prophet ﷺ recited this verse in the hadith of Jabir (Sahih Muslim 1218)",
+    "grade_en": "Qur'an / Sahih",
+    "note_en": "Then pray 2 rak'at: recite al-Kafirun in the first and al-Ikhlas in the second (Sahih Muslim 1218). If it is crowded, you may pray anywhere in the mosque.",
+    "replaces": "prayer_surahs"
+  },
+  {
+    "id": "zamzam_hadith",
+    "type": "hadith_info",
+    "stages": [
+      "prayerZamzam"
+    ],
+    "trigger_th": "เมื่อเข้าวงแหวนสีฟ้าที่จุดน้ำซัมซัม",
+    "title_th": "ความประเสริฐของน้ำซัมซัม",
+    "arabic": "مَاءُ زَمْزَمَ لِمَا شُرِبَ لَهُ",
+    "reading_th": "มาอุ ซัมซะมะ ลิมา ชุริบะ ละฮ์",
+    "meaning_th": "น้ำซัมซัมนั้นเป็นไปตามเจตนาที่มันถูกดื่ม",
+    "source": "อิบนุมาญะฮ์ 3062, อะห์มัด",
+    "grade_th": "เศาะฮีห์ (อัลอัลบานีย์)",
+    "note_th": "ดื่มโดยกล่าวบิสมิลลาฮ์ หันหน้าไปทางกิบลัต ดื่มสามอึก แล้วกล่าวอัลฮัมดุลิลลาฮ์ ขอดุอาอ์ตามที่ต้องการขณะดื่ม",
+    "title_en": "The virtue of Zamzam water",
+    "reading_en": "Ma'u zamzama lima shuriba lah",
+    "meaning_en": "The water of Zamzam is for whatever it is drunk for.",
+    "source_en": "Sunan Ibn Majah 3062, Musnad Ahmad",
+    "grade_en": "Sahih (al-Albani)",
+    "note_en": "Say Bismillah, face the qiblah, drink in three sips, then say Alhamdulillah. Make any du'a you wish while drinking.",
+    "replaces": "zamzam"
+  },
+  {
+    "id": "zamzam_dua",
+    "type": "dua",
+    "stages": [
+      "prayerZamzam"
+    ],
+    "trigger_th": "ขณะดื่มน้ำซัมซัม (ตัวเลือก)",
+    "title_th": "ดุอาอ์เมื่อดื่มน้ำซัมซัม",
+    "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا وَاسِعًا، وَشِفَاءً مِنْ كُلِّ دَاءٍ",
+    "reading_th": "อัลลอฮุมมะ อินนี อัสอะลุกะ อิลมัน นาฟิอา วะริซกัน วาสิอา วะชิฟาอัน มิน กุลลิ ดาอ์",
+    "meaning_th": "โอ้อัลลอฮ์ ข้าพเจ้าขอความรู้ที่เป็นประโยชน์ ปัจจัยยังชีพที่กว้างขวาง และการหายจากทุกโรคภัย",
+    "source": "อัดดาเราะกุฏนีย์, อัลฮากิม (รายงานจากท่านอิบนุอับบาส)",
+    "grade_th": "สายรายงานมีข้อวิจารณ์",
+    "note_th": "เป็นคำพูดของเศาะฮาบะฮ์ ไม่ใช่ของท่านนบี ﷺ แสดงเป็นตัวอย่างดุอาอ์ ไม่ใช่บทบังคับ",
+    "title_en": "Du'a when drinking Zamzam",
+    "reading_en": "Allahumma inni as'aluka 'ilman nafi'a, wa rizqan wasi'a, wa shifa'an min kulli da'",
+    "meaning_en": "O Allah, I ask You for beneficial knowledge, abundant provision, and healing from every illness.",
+    "source_en": "Al-Daraqutni, al-Hakim (reported from Ibn 'Abbas)",
+    "grade_en": "Its chain has been criticised",
+    "note_en": "These are the words of a Companion, not of the Prophet ﷺ. It is shown as an example du'a, not a required one."
+  },
+  {
+    "id": "safa_approach",
+    "type": "quran",
+    "stages": [
+      "sai",
+      "hajjSai"
+    ],
+    "trigger_th": "ครั้งแรกเท่านั้น เมื่อเข้าใกล้เนินเศาะฟาก่อนเริ่มสะแอ",
+    "title_th": "เมื่อเข้าใกล้เศาะฟาครั้งแรก",
+    "arabic": "إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ، أَبْدَأُ بِمَا بَدَأَ اللَّهُ بِهِ",
+    "reading_th": "อินนัศเศาะฟา วัลมัรวะตะ มิน ชะอาอิริลลาฮ์ อับดะอุ บิมา บะดะอัลลอฮุ บิฮ์",
+    "meaning_th": "แท้จริงเศาะฟาและมัรวะฮ์เป็นส่วนหนึ่งของเครื่องหมายแห่งอัลลอฮ์ ข้าพเจ้าขอเริ่มด้วยสิ่งที่อัลลอฮ์ทรงเริ่มไว้",
+    "source": "อัลบะเกาะเราะฮ์ 2:158; มุสลิม 1218",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "กล่าวครั้งเดียวตอนเริ่ม ไม่ต้องกล่าวซ้ำที่มัรวะฮ์หรือรอบถัดไป",
+    "title_en": "When first approaching Safa",
+    "reading_en": "Innas-safa wal-marwata min sha'a'irillah. Abda'u bima bada'allahu bih",
+    "meaning_en": "Indeed, Safa and Marwah are among the symbols of Allah. I begin with what Allah began with.",
+    "source_en": "Al-Baqarah 2:158; Sahih Muslim 1218",
+    "grade_en": "Sahih",
+    "note_en": "Say it once at the start only; do not repeat it at Marwah or on later laps."
+  },
+  {
+    "id": "safa_marwah_dhikr",
+    "type": "dhikr",
+    "stages": [
+      "sai",
+      "hajjSai"
+    ],
+    "trigger_th": "ทุกครั้งที่ขึ้นถึงเศาะฟาและมัรวะฮ์ (หันหน้าไปทางกะอ์บะฮ์ ยกมือ)",
+    "title_th": "ซิกร์บนเศาะฟาและมัรวะฮ์",
+    "arabic": "اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ، أَنْجَزَ وَعْدَهُ، وَنَصَرَ عَبْدَهُ، وَهَزَمَ الْأَحْزَابَ وَحْدَهُ",
+    "reading_th": "อัลลอฮุอักบัร อัลลอฮุอักบัร อัลลอฮุอักบัร ลาอิลาฮะ อิลลัลลอฮุ วะห์ดะฮู ลาชะรีกะ ละฮ์ ละฮุลมุลกุ วะละฮุลฮัมดุ วะฮุวะ อะลา กุลลิ ชัยอิน เกาะดีร ลาอิลาฮะ อิลลัลลอฮุ วะห์ดะฮ์ อันญะซะ วะอ์ดะฮ์ วะนะศ็อเราะ อับดะฮ์ วะฮะซะมัล อะห์ซาบะ วะห์ดะฮ์",
+    "meaning_th": "อัลลอฮ์ทรงยิ่งใหญ่ (3 ครั้ง) ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ พระองค์เดียว ไม่มีภาคีใดสำหรับพระองค์ อำนาจการปกครองและการสรรเสริญเป็นของพระองค์ และพระองค์ทรงมีอานุภาพเหนือทุกสิ่ง ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ พระองค์เดียว พระองค์ทรงทำให้สัญญาของพระองค์เป็นจริง ทรงช่วยเหลือบ่าวของพระองค์ และทรงทำให้กองทัพพันธมิตรพ่ายแพ้แต่เพียงพระองค์เดียว",
+    "source": "มุสลิม 1218 (หะดีษญาบิร)",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ท่านนบี ﷺ กล่าวบทนี้ 3 ครั้ง และขอดุอาอ์ระหว่างแต่ละครั้ง",
+    "title_en": "Dhikr on Safa and Marwah",
+    "reading_en": "Allahu akbar, Allahu akbar, Allahu akbar. La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu, wa huwa 'ala kulli shay'in qadir. La ilaha illallahu wahdah, anjaza wa'dah, wa nasara 'abdah, wa hazamal-ahzaba wahdah",
+    "meaning_en": "Allah is the Greatest (3 times). There is no god but Allah alone; He has no partner. His is the dominion and His is the praise, and He has power over all things. There is no god but Allah alone. He fulfilled His promise, helped His servant, and defeated the confederates alone.",
+    "source_en": "Sahih Muslim 1218 (hadith of Jabir)",
+    "grade_en": "Sahih",
+    "note_en": "The Prophet ﷺ said this 3 times, making du'a in between each time."
+  }
+]

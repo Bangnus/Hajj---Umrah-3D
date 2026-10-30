@@ -1,0 +1,131 @@
+[
+  {
+    "id": "leave_home",
+    "type": "dua",
+    "stages": [
+      "preparation"
+    ],
+    "trigger_th": "เมื่อเดินออกจากประตูบ้านไปขึ้นรถ",
+    "title_th": "ดุอาอ์ออกจากบ้าน",
+    "arabic": "بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+    "reading_th": "บิสมิลลาฮ์ ตะวักกัลตุ อะลัลลอฮ์ วะลา เหาละ วะลา กุววะตะ อิลลา บิลลาฮ์",
+    "meaning_th": "ด้วยพระนามของอัลลอฮ์ ข้าพเจ้ามอบหมายต่ออัลลอฮ์ และไม่มีพลังและความสามารถใด ๆ นอกจากด้วยอัลลอฮ์",
+    "source": "อบูดาวูด 5095, อัตติรมิซีย์ 3426",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Du'a when leaving home",
+    "reading_en": "Bismillah, tawakkaltu 'ala Allah, wa la hawla wa la quwwata illa billah",
+    "meaning_en": "In the name of Allah, I place my trust in Allah, and there is no might nor power except with Allah.",
+    "source_en": "Sunan Abi Dawud 5095, Jami' at-Tirmidhi 3426",
+    "grade_en": "Sahih",
+    "note_en": ""
+  },
+  {
+    "id": "farewell_traveler",
+    "type": "dua",
+    "stages": [
+      "preparation"
+    ],
+    "trigger_th": "เมื่อผู้แสวงบุญร่ำลาครอบครัวและเพื่อนบ้าน (ผู้เดินทางกล่าว)",
+    "title_th": "ผู้เดินทางร่ำลาผู้อยู่ข้างหลัง",
+    "arabic": "أَسْتَوْدِعُكُمُ اللَّهَ الَّذِي لَا تَضِيعُ وَدَائِعُهُ",
+    "reading_th": "อัสเตาดิอุกุมุลลอฮัลละซี ลา ตะฎีอุ วะดาอิอุฮ์",
+    "meaning_th": "ข้าพเจ้าขอฝากพวกท่านไว้กับอัลลอฮ์ ผู้ซึ่งสิ่งที่ถูกฝากไว้กับพระองค์จะไม่มีวันสูญหาย",
+    "source": "อิบนุมาญะฮ์ 2825, อะห์มัด",
+    "grade_th": "เศาะฮีห์ (อัลอัลบานีย์)",
+    "note_th": "",
+    "title_en": "The traveller's farewell to those staying behind",
+    "reading_en": "Astawdi'ukumullaha alladhi la tadi'u wada'i'uh",
+    "meaning_en": "I entrust you to Allah, whose trusts are never lost.",
+    "source_en": "Sunan Ibn Majah 2825, Musnad Ahmad",
+    "grade_en": "Sahih (al-Albani)",
+    "note_en": ""
+  },
+  {
+    "id": "farewell_resident",
+    "type": "dua",
+    "stages": [
+      "preparation"
+    ],
+    "trigger_th": "บทพูดของเพื่อนบ้าน/ครอบครัว (NPC) ที่มาส่ง",
+    "title_th": "ผู้อยู่ข้างหลังอวยพรผู้เดินทาง",
+    "arabic": "أَسْتَوْدِعُ اللَّهَ دِينَكَ، وَأَمَانَتَكَ، وَخَوَاتِيمَ عَمَلِكَ",
+    "reading_th": "อัสเตาดิอุลลอฮะ ดีนะกะ วะอะมานะตะกะ วะเคาะวาตีมะ อะมะลิก",
+    "meaning_th": "ข้าพเจ้าขอฝากศาสนาของท่าน ความรับผิดชอบของท่าน และบั้นปลายแห่งการงานของท่านไว้กับอัลลอฮ์",
+    "source": "อบูดาวูด 2600, อัตติรมิซีย์ 3443",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ใช้แทนคำอวยพรภาษาอินโดนีเซียของ NPC ในฉากเตรียมตัว",
+    "title_en": "Those staying behind bid the traveller farewell",
+    "reading_en": "Astawdi'ullaha dinaka, wa amanataka, wa khawatima 'amalik",
+    "meaning_en": "I entrust to Allah your religion, your trust, and the final outcome of your deeds.",
+    "source_en": "Sunan Abi Dawud 2600, Jami' at-Tirmidhi 3443",
+    "grade_en": "Sahih",
+    "note_en": "Family and friends say this to the person setting off on the journey.",
+    "replaces": "neighbor_duas"
+  },
+  {
+    "id": "safar",
+    "type": "dua",
+    "stages": [
+      "airport",
+      "returnHome"
+    ],
+    "trigger_th": "เมื่อขึ้นนั่งบนเครื่องบิน (หลัง Gate 14) หรือเมื่อรถเริ่มออกเดินทาง",
+    "title_th": "ดุอาอ์เดินทาง",
+    "arabic": "اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ، وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ، اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَى، وَمِنَ الْعَمَلِ مَا تَرْضَى، اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَذَا وَاطْوِ عَنَّا بُعْدَهُ، اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ، وَالْخَلِيفَةُ فِي الْأَهْلِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ، وَكَآبَةِ الْمَنْظَرِ، وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالْأَهْلِ",
+    "reading_th": "อัลลอฮุอักบัร อัลลอฮุอักบัร อัลลอฮุอักบัร ซุบฮานัลละซี สัคค็อรอ ละนา ฮาซา วะมา กุนนา ละฮู มุกรินีน วะอินนา อิลา ร็อบบินา ละมุนเกาะลิบูน อัลลอฮุมมะ อินนา นัสอะลุกะ ฟี สะฟะรินา ฮาซัล บิรเราะ วัตตักวา วะมินัล อะมะลิ มา ตัรฎอ อัลลอฮุมมะ เฮาวิน อะลัยนา สะฟะเราะนา ฮาซา วัฏวิ อันนา บุอ์ดะฮ์ อัลลอฮุมมะ อันตัศศอฮิบุ ฟิสสะฟัร วัลเคาะลีฟะตุ ฟิลอะฮ์ล อัลลอฮุมมะ อินนี อะอูซุ บิกะ มิน วะอ์ษาอิสสะฟัร วะกะอาบะติล มันซ็อร วะสูอิล มุนเกาะละบิ ฟิลมาลิ วัลอะฮ์ล",
+    "meaning_th": "อัลลอฮ์ทรงยิ่งใหญ่ อัลลอฮ์ทรงยิ่งใหญ่ อัลลอฮ์ทรงยิ่งใหญ่ มหาบริสุทธิ์แด่พระผู้ทรงทำให้พาหนะนี้อยู่ในบังคับของเรา ซึ่งเราไม่อาจควบคุมมันได้ด้วยตัวเอง และแท้จริงเราจะกลับไปยังพระเจ้าของเรา โอ้อัลลอฮ์ เราขอความดีงามและความยำเกรงในการเดินทางครั้งนี้ และขอการงานที่พระองค์ทรงพอพระทัย โอ้อัลลอฮ์ โปรดทำให้การเดินทางนี้ง่ายดายสำหรับเรา และโปรดย่นระยะทางอันไกลให้แก่เรา โอ้อัลลอฮ์ พระองค์คือผู้ร่วมทางในการเดินทาง และผู้ดูแลครอบครัวที่อยู่เบื้องหลัง โอ้อัลลอฮ์ ข้าพเจ้าขอความคุ้มครองต่อพระองค์จากความยากลำบากของการเดินทาง จากภาพที่น่าเศร้าใจ และจากการกลับมาพบสิ่งเลวร้ายในทรัพย์สินและครอบครัว",
+    "source": "มุสลิม 1342",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ตอนเดินทางกลับ ให้กล่าวบทเดิมแล้วต่อด้วยบท return_home",
+    "title_en": "Du'a for travelling",
+    "reading_en": "Allahu akbar, Allahu akbar, Allahu akbar. Subhanalladhi sakhkhara lana hadha wa ma kunna lahu muqrinin, wa inna ila rabbina lamunqalibun. Allahumma inna nas'aluka fi safarina hadhal-birra wat-taqwa, wa minal-'amali ma tarda. Allahumma hawwin 'alayna safarana hadha watwi 'anna bu'dah. Allahumma antas-sahibu fis-safar, wal-khalifatu fil-ahl. Allahumma inni a'udhu bika min wa'tha'is-safar, wa ka'abatil-manzar, wa su'il-munqalabi fil-mali wal-ahl",
+    "meaning_en": "Allah is the Greatest, Allah is the Greatest, Allah is the Greatest. Glory be to the One who has placed this (means of transport) at our service, for we could not have done so ourselves, and surely to our Lord we shall return. O Allah, on this journey of ours we ask You for righteousness and piety, and for deeds that please You. O Allah, make this journey easy for us and shorten its distance for us. O Allah, You are the Companion on the journey and the One who looks after the family left behind. O Allah, I seek refuge in You from the hardships of travel, from distressing sights, and from returning to find harm in my wealth and family.",
+    "source_en": "Sahih Muslim 1342",
+    "grade_en": "Sahih",
+    "note_en": "On the way back, say the same du'a and then add the du'a for returning (Ayibuna, ta'ibuna...)."
+  },
+  {
+    "id": "return_home",
+    "type": "dua",
+    "stages": [
+      "returnHome"
+    ],
+    "trigger_th": "เมื่อเครื่องลงจอดที่ไทย / เห็นบ้าน",
+    "title_th": "ดุอาอ์เดินทางกลับ",
+    "arabic": "آيِبُونَ، تَائِبُونَ، عَابِدُونَ، لِرَبِّنَا حَامِدُونَ",
+    "reading_th": "อายิบูน ตาอิบูน อาบิดูน ลิร็อบบินา ฮามิดูน",
+    "meaning_th": "เรากลับมาแล้ว ในฐานะผู้สำนึกผิด ผู้เคารพภักดี และผู้สรรเสริญพระเจ้าของเรา",
+    "source": "มุสลิม 1342, อัลบุคอรีย์ 1797",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Du'a when returning from a journey",
+    "reading_en": "Ayibuna, ta'ibuna, 'abiduna, li rabbina hamidun",
+    "meaning_en": "We return, repenting, worshipping, and praising our Lord.",
+    "source_en": "Sahih Muslim 1342, Sahih al-Bukhari 1797",
+    "grade_en": "Sahih",
+    "note_en": ""
+  },
+  {
+    "id": "niyyah_umrah",
+    "type": "dua",
+    "stages": [
+      "miqat"
+    ],
+    "trigger_th": "ปุ่ม \"ยืนยันการเนียต\" ที่มีกอต (หลังครองผ้าอิห์รอม)",
+    "title_th": "การเนียตอุมเราะฮ์",
+    "arabic": "لَبَّيْكَ اللَّهُمَّ عُمْرَةً",
+    "reading_th": "ลับบัยกัลลอฮุมมะ อุมเราะตัน",
+    "meaning_th": "โอ้อัลลอฮ์ ข้าพเจ้ามาตอบรับคำเรียกร้องของพระองค์ เพื่อทำอุมเราะฮ์",
+    "source": "ถ้อยคำตามแบบหะดีษอนัส (มุสลิม 1232)",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "การเนียตคือความตั้งใจในใจ ตำราสายชาฟิอีย์ในไทยนิยมสอนให้กล่าวว่า \"นะวัยตุล อุมเราะตะ วะอะห์รอมตุ บิฮา ลิลลาฮิตะอาลา\" (نَوَيْتُ الْعُمْرَةَ وَأَحْرَمْتُ بِهَا لِلَّهِ تَعَالَى — ข้าพเจ้าตั้งเจตนาทำอุมเราะฮ์และครองอิห์รอมเพื่ออัลลอฮ์) ใช้ได้ทั้งสองแบบ ข้อห้ามของอิห์รอมเริ่มมีผลนับจากนี้",
+    "title_en": "Intention (niyyah) for Umrah",
+    "reading_en": "Labbayka Allahumma 'umratan",
+    "meaning_en": "Here I am, O Allah, answering Your call, to perform Umrah.",
+    "source_en": "Wording as in the hadith of Anas (Sahih Muslim 1232)",
+    "grade_en": "Sahih",
+    "note_en": "The intention is made in the heart. Shafi'i books in Thailand often teach the wording \"Nawaytul-'umrata wa ahramtu biha lillahi ta'ala\" (نَوَيْتُ الْعُمْرَةَ وَأَحْرَمْتُ بِهَا لِلَّهِ تَعَالَى — I intend to perform Umrah and I enter ihram for it for the sake of Allah the Exalted). Either wording is fine. The prohibitions of ihram apply from this moment.",
+    "replaces": "niyyah_umrah"
+  }
+]

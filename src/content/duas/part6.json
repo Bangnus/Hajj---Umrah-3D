@@ -1,0 +1,109 @@
+[
+  {
+    "id": "sai_green_lights",
+    "type": "dua",
+    "stages": [
+      "sai",
+      "hajjSai"
+    ],
+    "trigger_th": "เมื่อเข้าโซนไฟเขียว (ผู้ชายวิ่งเหยาะ ผู้หญิงเดินปกติ)",
+    "title_th": "ระหว่างไฟเขียวสองจุด",
+    "arabic": "رَبِّ اغْفِرْ وَارْحَمْ، إِنَّكَ أَنْتَ الْأَعَزُّ الْأَكْرَمُ",
+    "reading_th": "ร็อบบิฆฟิร วัรฮัม อินนะกะ อันตัล อะอัซซุล อักร็อม",
+    "meaning_th": "โอ้พระเจ้าของข้าพเจ้า โปรดอภัยและโปรดเมตตา แท้จริงพระองค์คือผู้ทรงเดชานุภาพยิ่ง ผู้ทรงเกียรติยิ่ง",
+    "source": "อิบนุอบีชัยบะฮ์ ใน อัลมุศ็อนนัฟ (การปฏิบัติของท่านอิบนุมัสอูดและท่านอิบนุอุมัร)",
+    "grade_th": "เศาะฮีห์ (คำพูดของเศาะฮาบะฮ์)",
+    "note_th": "ผู้ชายวิ่งเหยาะ ๆ ระหว่างไฟเขียวสองจุด ผู้หญิงเดินตามปกติ",
+    "title_en": "Between the two green lights",
+    "reading_en": "Rabbighfir warham, innaka antal-a'azzul-akram",
+    "meaning_en": "My Lord, forgive and have mercy. Indeed, You are the Most Mighty, the Most Generous.",
+    "source_en": "Ibn Abi Shaybah, al-Musannaf (the practice of Ibn Mas'ud and Ibn 'Umar)",
+    "grade_en": "Sahih (words of the Companions)",
+    "note_en": "Men jog lightly between the two green lights; women walk normally."
+  },
+  {
+    "id": "tahallul_hadith",
+    "type": "hadith_info",
+    "stages": [
+      "tahalul",
+      "hajjAqabah"
+    ],
+    "trigger_th": "การ์ดความรู้ขณะโกนหรือตัดผม",
+    "title_th": "ท่านนบี ﷺ ขอดุอาอ์ให้ผู้โกนศีรษะ",
+    "arabic": "اللَّهُمَّ ارْحَمِ الْمُحَلِّقِينَ ... وَالْمُقَصِّرِينَ",
+    "reading_th": "อัลลอฮุมมัรฮะมิล มุฮัลลิกีน ... วัลมุก็อศศิรีน",
+    "meaning_th": "โอ้อัลลอฮ์ โปรดเมตตาผู้ที่โกนศีรษะ ... และผู้ที่ตัดผมให้สั้น",
+    "source": "อัลบุคอรีย์ 1727, มุสลิม 1301",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ท่านนบี ﷺ ขอให้ผู้โกน 3 ครั้ง และให้ผู้ตัดสั้น 1 ครั้ง ผู้ชายจึงควรโกน ผู้หญิงตัดปลายผมประมาณข้อนิ้ว ไม่มีดุอาอ์เฉพาะสำหรับตะฮัลลุล",
+    "title_en": "The Prophet ﷺ prays for those who shave their heads",
+    "reading_en": "Allahummarhamil-muhalliqin ... wal-muqassirin",
+    "meaning_en": "O Allah, have mercy on those who shave their heads ... and those who shorten their hair.",
+    "source_en": "Sahih al-Bukhari 1727, Sahih Muslim 1301",
+    "grade_en": "Sahih",
+    "note_en": "The Prophet ﷺ prayed three times for those who shaved and once for those who shortened, so it is better for men to shave. Women trim about a fingertip's length from the ends of their hair. There is no specific du'a for tahallul."
+  },
+  {
+    "id": "salam_prophet",
+    "type": "dhikr",
+    "stages": [
+      "madinah"
+    ],
+    "trigger_th": "เมื่อเดินผ่านหน้าหลุมฝังศพของท่านนบี ﷺ (ประตูบาบุสสลาม → บาบุลบะกีอ์)",
+    "title_th": "ให้สลามแด่ท่านนบี ﷺ อบูบักร์ และอุมัร",
+    "arabic": "السَّلَامُ عَلَيْكَ يَا رَسُولَ اللَّهِ، السَّلَامُ عَلَيْكَ يَا أَبَا بَكْرٍ، السَّلَامُ عَلَيْكَ يَا عُمَرُ",
+    "reading_th": "อัสสะลามุ อะลัยกะ ยา ร่อซูลัลลอฮ์ อัสสะลามุ อะลัยกะ ยา อะบาบักร์ อัสสะลามุ อะลัยกะ ยา อุมัร",
+    "meaning_th": "ขอความสันติจงมีแด่ท่าน โอ้ร่อซูลของอัลลอฮ์ ขอความสันติจงมีแด่ท่าน โอ้อบูบักร์ ขอความสันติจงมีแด่ท่าน โอ้อุมัร",
+    "source": "การปฏิบัติของท่านอิบนุอุมัร (มาลิก ใน อัลมุวัฏเฏาะอ์, อัลบัยฮะกีย์ 5/245)",
+    "grade_th": "เศาะฮีห์ (คำพูดของเศาะฮาบะฮ์)",
+    "note_th": "ให้สลามด้วยความสงบ ไม่ส่งเสียงดัง ไม่ลูบหรือแตะผนัง เมื่อจะขอดุอาอ์ให้หันหน้าไปทางกิบลัต",
+    "title_en": "Greeting the Prophet ﷺ, Abu Bakr and 'Umar",
+    "reading_en": "As-salamu 'alayka ya rasulallah, as-salamu 'alayka ya Aba Bakr, as-salamu 'alayka ya 'Umar",
+    "meaning_en": "Peace be upon you, O Messenger of Allah. Peace be upon you, O Abu Bakr. Peace be upon you, O 'Umar.",
+    "source_en": "The practice of Ibn 'Umar (Malik, al-Muwatta'; al-Bayhaqi 5/245)",
+    "grade_en": "Sahih (words of a Companion)",
+    "note_en": "Give salam calmly and quietly, without raising your voice and without touching or wiping the walls. When you make du'a, face the qiblah."
+  },
+  {
+    "id": "salawat_ibrahimiyyah",
+    "type": "dhikr",
+    "stages": [
+      "madinah"
+    ],
+    "trigger_th": "ในมัสยิดนะบะวี / อัรเราเฎาะฮ์",
+    "title_th": "เศาะละวาตอิบรอฮีมียะฮ์",
+    "arabic": "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ",
+    "reading_th": "อัลลอฮุมมะ ศ็อลลิ อะลา มุฮัมมัด วะอะลา อาลิ มุฮัมมัด กะมา ศ็อลลัยตะ อะลา อิบรอฮีม วะอะลา อาลิ อิบรอฮีม อินนะกะ ฮะมีดุน มะญีด อัลลอฮุมมะ บาริก อะลา มุฮัมมัด วะอะลา อาลิ มุฮัมมัด กะมา บาร็อกตะ อะลา อิบรอฮีม วะอะลา อาลิ อิบรอฮีม อินนะกะ ฮะมีดุน มะญีด",
+    "meaning_th": "โอ้อัลลอฮ์ โปรดประทานความโปรดปรานแด่มุฮัมมัดและวงศ์วานของมุฮัมมัด เช่นเดียวกับที่พระองค์ทรงประทานแด่อิบรอฮีมและวงศ์วานของอิบรอฮีม แท้จริงพระองค์ทรงเป็นผู้ควรแก่การสรรเสริญ ผู้ทรงเกียรติยิ่ง โอ้อัลลอฮ์ โปรดประทานความจำเริญแด่มุฮัมมัดและวงศ์วานของมุฮัมมัด เช่นเดียวกับที่พระองค์ทรงประทานความจำเริญแด่อิบรอฮีมและวงศ์วานของอิบรอฮีม แท้จริงพระองค์ทรงเป็นผู้ควรแก่การสรรเสริญ ผู้ทรงเกียรติยิ่ง",
+    "source": "อัลบุคอรีย์ 3370",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "As-Salat al-Ibrahimiyyah",
+    "reading_en": "Allahumma salli 'ala Muhammadin wa 'ala ali Muhammad, kama sallayta 'ala Ibrahima wa 'ala ali Ibrahim, innaka hamidun majid. Allahumma barik 'ala Muhammadin wa 'ala ali Muhammad, kama barakta 'ala Ibrahima wa 'ala ali Ibrahim, innaka hamidun majid",
+    "meaning_en": "O Allah, send blessings upon Muhammad and upon the family of Muhammad, as You sent blessings upon Ibrahim and upon the family of Ibrahim; indeed, You are Praiseworthy, Glorious. O Allah, bless Muhammad and the family of Muhammad, as You blessed Ibrahim and the family of Ibrahim; indeed, You are Praiseworthy, Glorious.",
+    "source_en": "Sahih al-Bukhari 3370",
+    "grade_en": "Sahih",
+    "note_en": ""
+  },
+  {
+    "id": "raudhah_hadith",
+    "type": "hadith_info",
+    "stages": [
+      "madinah"
+    ],
+    "trigger_th": "เมื่อเข้าพื้นที่อัรเราเฎาะฮ์ (พรมสีเขียว)",
+    "title_th": "ความประเสริฐของอัรเราเฎาะฮ์",
+    "arabic": "مَا بَيْنَ بَيْتِي وَمِنْبَرِي رَوْضَةٌ مِنْ رِيَاضِ الْجَنَّةِ",
+    "reading_th": "มา บัยนะ บัยตี วะมิมบะรี เราเฎาะตุน มิน ริยาฎิลญันนะฮ์",
+    "meaning_th": "พื้นที่ระหว่างบ้านของฉันกับมิมบัรของฉัน คือสวนหนึ่งจากบรรดาสวนแห่งสวรรค์",
+    "source": "อัลบุคอรีย์ 1196, มุสลิม 1391",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ละหมาดซุนนะฮ์และขอดุอาอ์ที่นี่ได้ ปัจจุบันต้องจองเวลาเข้าผ่านแอป Nusuk",
+    "title_en": "The virtue of the Raudhah",
+    "reading_en": "Ma bayna bayti wa minbari rawdatun min riyadil-jannah",
+    "meaning_en": "What is between my house and my pulpit is one of the gardens of Paradise.",
+    "source_en": "Sahih al-Bukhari 1196, Sahih Muslim 1391",
+    "grade_en": "Sahih",
+    "note_en": "You may pray voluntary prayers and make du'a here. Today a visiting time must be booked through the Nusuk app."
+  }
+]

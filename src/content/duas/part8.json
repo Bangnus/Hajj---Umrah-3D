@@ -1,0 +1,110 @@
+[
+  {
+    "id": "jamarat_takbir",
+    "type": "dhikr",
+    "stages": [
+      "hajjAqabah",
+      "hajjTasyriq"
+    ],
+    "trigger_th": "ทุกครั้งที่ขว้างหิน 1 ก้อน (7 ก้อนต่อญัมเราะฮ์)",
+    "title_th": "ตักบีรเมื่อขว้างหิน",
+    "arabic": "اللَّهُ أَكْبَرُ",
+    "reading_th": "อัลลอฮุอักบัร",
+    "meaning_th": "อัลลอฮ์ทรงยิ่งใหญ่",
+    "source": "อัลบุคอรีย์ 1751, 1753",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "วันที่ 10: หยุดตัลบิยะฮ์เมื่อขว้างก้อนแรกที่ญัมเราะฮ์อะกอบะฮ์ (อัลบุคอรีย์ 1685) วันตัชรีก: หลังขว้างญัมเราะฮ์ศุฆรอและวุสฏอ ให้เดินพ้นออกมา หันหน้าไปทางกิบลัต ยกมือ แล้วขอดุอาอ์ยาว ๆ แต่หลังญัมเราะฮ์อะกอบะฮ์ไม่ต้องหยุดขอดุอาอ์",
+    "title_en": "Takbir when throwing the pebbles",
+    "reading_en": "Allahu akbar",
+    "meaning_en": "Allah is the Greatest.",
+    "source_en": "Sahih al-Bukhari 1751, 1753",
+    "grade_en": "Sahih",
+    "note_en": "On the 10th: stop the talbiyah when you throw the first pebble at Jamrat al-Aqabah (Sahih al-Bukhari 1685). On the days of tashriq: after stoning the small and the middle jamrah, step aside, face the qiblah, raise your hands and make a long du'a. After Jamrat al-Aqabah, do not stop for du'a."
+  },
+  {
+    "id": "slaughter_dam",
+    "type": "dua",
+    "stages": [
+      "hajjAqabah"
+    ],
+    "trigger_th": "ขั้นเชือดฮัดย์/ดัม (ตะมัตตุอ์และกิรอน)",
+    "title_th": "ดุอาอ์เมื่อเชือดสัตว์",
+    "arabic": "بِسْمِ اللَّهِ وَاللَّهُ أَكْبَرُ، اللَّهُمَّ مِنْكَ وَلَكَ، اللَّهُمَّ تَقَبَّلْ مِنِّي",
+    "reading_th": "บิสมิลลาฮิ วัลลอฮุอักบัร อัลลอฮุมมะ มินกะ วะละก์ อัลลอฮุมมะ ตะก็อบบัล มินนี",
+    "meaning_th": "ด้วยพระนามของอัลลอฮ์ และอัลลอฮ์ทรงยิ่งใหญ่ โอ้อัลลอฮ์ (สัตว์นี้) มาจากพระองค์และเพื่อพระองค์ โอ้อัลลอฮ์ โปรดรับจากข้าพเจ้าด้วยเถิด",
+    "source": "มุสลิม 1966, 1967; อบูดาวูด 2795",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ถ้ามอบหมายให้ผู้อื่นเชือดแทน (เช่น ซื้อคูปองฮัดย์) ผู้เชือดเป็นผู้กล่าว",
+    "title_en": "Du'a when slaughtering an animal",
+    "reading_en": "Bismillahi wallahu akbar, Allahumma minka wa lak, Allahumma taqabbal minni",
+    "meaning_en": "In the name of Allah, and Allah is the Greatest. O Allah, (this animal) is from You and for You. O Allah, accept it from me.",
+    "source_en": "Sahih Muslim 1966, 1967; Sunan Abi Dawud 2795",
+    "grade_en": "Sahih",
+    "note_en": "If you appoint someone to slaughter on your behalf (for example by buying a hady voucher), the person slaughtering says it."
+  },
+  {
+    "id": "takbir_tashriq",
+    "type": "dhikr",
+    "stages": [
+      "hajjAqabah",
+      "hajjTasyriq"
+    ],
+    "trigger_th": "วันที่ 10–13 ซุลหิจญะฮ์ โดยเฉพาะหลังละหมาดฟัรฎู",
+    "title_th": "ตักบีรวันอีดและวันตัชรีก",
+    "arabic": "اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، لَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، وَلِلَّهِ الْحَمْدُ",
+    "reading_th": "อัลลอฮุอักบัร อัลลอฮุอักบัร ลาอิลาฮะ อิลลัลลอฮ์ วัลลอฮุอักบัร อัลลอฮุอักบัร วะลิลลาฮิลฮัมด์",
+    "meaning_th": "อัลลอฮ์ทรงยิ่งใหญ่ อัลลอฮ์ทรงยิ่งใหญ่ ไม่มีพระเจ้าอื่นใดนอกจากอัลลอฮ์ และอัลลอฮ์ทรงยิ่งใหญ่ อัลลอฮ์ทรงยิ่งใหญ่ และการสรรเสริญทั้งมวลเป็นของอัลลอฮ์",
+    "source": "อิบนุอบีชัยบะฮ์ ใน อัลมุศ็อนนัฟ (รายงานจากท่านอิบนุมัสอูด)",
+    "grade_th": "เศาะฮีห์ (คำพูดของเศาะฮาบะฮ์)",
+    "note_th": "มีถ้อยคำตักบีรหลายแบบที่รายงานจากเศาะฮาบะฮ์ แบบนี้เป็นที่นิยม",
+    "title_en": "Takbir of Eid and the days of tashriq",
+    "reading_en": "Allahu akbar, Allahu akbar, la ilaha illallah, wallahu akbar, Allahu akbar, wa lillahil-hamd",
+    "meaning_en": "Allah is the Greatest, Allah is the Greatest. There is no god but Allah. Allah is the Greatest, Allah is the Greatest, and all praise is for Allah.",
+    "source_en": "Ibn Abi Shaybah, al-Musannaf (reported from Ibn Mas'ud)",
+    "grade_en": "Sahih (words of a Companion)",
+    "note_en": "Several wordings of the takbir are reported from the Companions; this one is widely used."
+  },
+  {
+    "id": "guidance_ihram_wear",
+    "type": "guidance",
+    "stages": [
+      "miqat",
+      "hajjIhram"
+    ],
+    "trigger_th": "ขณะเปลี่ยนเป็นชุดอิห์รอม",
+    "title_th": "การครองผ้าอิห์รอม",
+    "arabic": "",
+    "reading_th": "",
+    "meaning_th": "ไม่มีดุอาอ์เฉพาะขณะสวมผ้าอิห์รอม ซุนนะฮ์คืออาบน้ำ (ฆุสล์) ตัดเล็บ และใส่น้ำหอมที่ร่างกาย (ไม่ใช่ที่ผ้า) สำหรับผู้ชาย ควรทำตั้งแต่ที่บ้านหรือที่พักก่อนขึ้นเครื่อง แล้วสวมผ้าอิห์รอม มัซฮับชาฟิอีย์ส่งเสริมให้ละหมาดซุนนะฮ์อิห์รอม 2 ร็อกอะฮ์ก่อนเนียต (ถ้าตรงกับเวลาละหมาดฟัรฎู ให้ละหมาดฟัรฎูแทน) จากนั้นจึงเนียตและเริ่มกล่าวตัลบิยะฮ์",
+    "source": "อัลบุคอรีย์ 1539 (ท่านหญิงอาอิชะฮ์ใส่น้ำหอมให้ท่านนบี ﷺ ก่อนครองอิห์รอม), มุสลิม 1218",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Putting on the ihram",
+    "reading_en": "",
+    "meaning_en": "There is no specific du'a for putting on the ihram garments. The Sunnah is to take a bath (ghusl), trim your nails, and for men to apply perfume to the body (not to the cloth). It is best to do this at home or at your hotel before boarding the plane, then put on the ihram. The Shafi'i school encourages praying 2 rak'at sunnah of ihram before the intention (if it is the time of an obligatory prayer, pray that instead). Then make your intention and begin the talbiyah.",
+    "source_en": "Sahih al-Bukhari 1539 ('A'ishah applied perfume to the Prophet ﷺ before he entered ihram), Sahih Muslim 1218",
+    "grade_en": "Sahih",
+    "note_en": ""
+  },
+  {
+    "id": "guidance_wada_multazam",
+    "type": "guidance",
+    "stages": [
+      "hajjWada"
+    ],
+    "trigger_th": "เฏาะวาฟวะดาอ์ / บริเวณมุลตะซัม",
+    "title_th": "เฏาะวาฟอำลาและมุลตะซัม",
+    "arabic": "",
+    "reading_th": "",
+    "meaning_th": "เฏาะวาฟวะดาอ์คือสิ่งสุดท้ายที่ทำก่อนออกจากมักกะฮ์ ไม่มีดุอาอ์เฉพาะ ใช้บทเดียวกับเฏาะวาฟอื่น (istilam, rabbana_atina และดุอาอ์รายรอบ) ส่วนการยืนแนบอกที่มุลตะซัม (ระหว่างหินดำกับประตูกะอ์บะฮ์) แล้วขอดุอาอ์ มีรายงานจากเศาะฮาบะฮ์บางท่าน ทำได้เมื่อคนไม่แน่น โดยไม่ต้องเบียด",
+    "source": "อัลบุคอรีย์ 1755, มุสลิม 1328 (คำสั่งให้เฏาะวาฟวะดาอ์); อบูดาวูด 1899 (มุลตะซัม — สายรายงานอ่อน)",
+    "grade_th": "เศาะฮีห์ / มุลตะซัมสายรายงานอ่อน",
+    "note_th": "ผู้หญิงที่มีประจำเดือนได้รับการยกเว้นจากเฏาะวาฟวะดาอ์ (อัลบุคอรีย์ 1755)",
+    "title_en": "Farewell tawaf and the Multazam",
+    "reading_en": "",
+    "meaning_en": "Tawaf al-wada' is the last thing you do before leaving Makkah. There is no specific du'a: use the same ones as in any other tawaf (istilam, Rabbana atina and the lap du'as). Standing with your chest pressed against the Multazam (between the Black Stone and the door of the Ka'bah) and making du'a is reported from some Companions; you may do it when it is not crowded, without pushing.",
+    "source_en": "Sahih al-Bukhari 1755, Sahih Muslim 1328 (the command to perform tawaf al-wada'); Sunan Abi Dawud 1899 (Multazam — weak chain)",
+    "grade_en": "Sahih / the Multazam report has a weak chain",
+    "note_en": "Women who are menstruating are excused from tawaf al-wada' (Sahih al-Bukhari 1755)."
+  }
+]

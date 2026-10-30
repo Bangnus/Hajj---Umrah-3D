@@ -1,0 +1,139 @@
+[
+  {
+    "id": "masjid_enter_audhu",
+    "type": "dua",
+    "stages": [
+      "tawaf",
+      "madinah"
+    ],
+    "trigger_th": "กล่าวเพิ่มได้เมื่อเข้ามัสยิด (ตัวเลือก)",
+    "title_th": "ขอความคุ้มครองเมื่อเข้ามัสยิด",
+    "arabic": "أَعُوذُ بِاللَّهِ الْعَظِيمِ، وَبِوَجْهِهِ الْكَرِيمِ، وَسُلْطَانِهِ الْقَدِيمِ، مِنَ الشَّيْطَانِ الرَّجِيمِ",
+    "reading_th": "อะอูซุ บิลลาฮิล อะซีม วะบิวัจญ์ฮิฮิล กะรีม วะสุลฏอนิฮิล เกาะดีม มินัชชัยฏอนิรร่อญีม",
+    "meaning_th": "ข้าพเจ้าขอความคุ้มครองต่ออัลลอฮ์ผู้ทรงยิ่งใหญ่ ต่อพระพักตร์อันทรงเกียรติของพระองค์ และต่ออำนาจอันเป็นนิรันดร์ของพระองค์ ให้พ้นจากชัยฏอนผู้ถูกขับไล่",
+    "source": "อบูดาวูด 466",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Seeking protection when entering the mosque",
+    "reading_en": "A'udhu billahil-'azim, wa bi wajhihil-karim, wa sultanihil-qadim, minash-shaytanir-rajim",
+    "meaning_en": "I seek refuge in Allah the Almighty, in His noble Face, and in His eternal authority, from Satan the outcast.",
+    "source_en": "Sunan Abi Dawud 466",
+    "grade_en": "Sahih",
+    "note_en": ""
+  },
+  {
+    "id": "masjid_exit",
+    "type": "dua",
+    "stages": [
+      "tahalul",
+      "madinah",
+      "hajjWada"
+    ],
+    "trigger_th": "เมื่อออกจากมัสยิด (ก้าวเท้าซ้ายออก)",
+    "title_th": "ดุอาอ์ออกจากมัสยิด",
+    "arabic": "بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَى رَسُولِ اللَّهِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+    "reading_th": "บิสมิลลาฮ์ วัศเศาะลาตุ วัสสะลามุ อะลา ร่อซูลิลลาฮ์ อัลลอฮุมมะ อินนี อัสอะลุกะ มิน ฟัฎลิก",
+    "meaning_th": "ด้วยพระนามของอัลลอฮ์ ขอความโปรดปรานและความสันติจงมีแด่ร่อซูลของอัลลอฮ์ โอ้อัลลอฮ์ ข้าพเจ้าขอความกรุณาจากพระองค์",
+    "source": "มุสลิม 713, อิบนุมาญะฮ์ 773",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "",
+    "title_en": "Du'a for leaving the mosque",
+    "reading_en": "Bismillah, was-salatu was-salamu 'ala rasulillah, Allahumma inni as'aluka min fadlik",
+    "meaning_en": "In the name of Allah, and blessings and peace be upon the Messenger of Allah. O Allah, I ask You of Your bounty.",
+    "source_en": "Sahih Muslim 713, Sunan Ibn Majah 773",
+    "grade_en": "Sahih",
+    "note_en": ""
+  },
+  {
+    "id": "see_kaabah",
+    "type": "dua",
+    "stages": [
+      "tawaf"
+    ],
+    "trigger_th": "เมื่อกล้องเห็นกะอ์บะฮ์ครั้งแรก",
+    "title_th": "เมื่อเห็นกะอ์บะฮ์",
+    "arabic": "اللَّهُمَّ زِدْ هَذَا الْبَيْتَ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَمَهَابَةً",
+    "reading_th": "อัลลอฮุมมะ ซิด ฮาซัล บัยตะ ตัชรีฟัน วะตะอ์ซีมัน วะตักรีมัน วะมะฮาบะฮ์",
+    "meaning_th": "โอ้อัลลอฮ์ โปรดเพิ่มพูนเกียรติ ความยิ่งใหญ่ ความสูงส่ง และความน่าเกรงขามแก่บ้านหลังนี้",
+    "source": "อัชชาฟิอีย์ใน อัลอุมม์, อัลบัยฮะกีย์ (อัสสุนัน อัลกุบรอ 5/73)",
+    "grade_th": "สายรายงานอ่อน (มุรซัล)",
+    "note_th": "ไม่มีดุอาอ์เมื่อเห็นกะอ์บะฮ์ที่รายงานไว้อย่างถูกต้อง ให้แสดงบทนี้ในฐานะดุอาอ์ทั่วไปที่ตำราสายชาฟิอีย์นิยมใช้ และบอกผู้ใช้ว่าจะขอดุอาอ์ใดก็ได้",
+    "title_en": "On seeing the Ka'bah",
+    "reading_en": "Allahumma zid hadhal-bayta tashrifan wa ta'ziman wa takriman wa mahabah",
+    "meaning_en": "O Allah, increase this House in honour, greatness, nobility and awe.",
+    "source_en": "Al-Shafi'i in al-Umm; al-Bayhaqi, as-Sunan al-Kubra 5/73",
+    "grade_en": "Weak chain (mursal)",
+    "note_en": "No du'a on seeing the Ka'bah is authentically reported. This one is commonly used in Shafi'i books and is shown as a general du'a — you may ask Allah for anything you wish."
+  },
+  {
+    "id": "istilam",
+    "type": "dhikr",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "ทุกครั้งที่ผ่านแนวหินดำ (เริ่มรอบที่ 1 และเริ่มทุกรอบ) — หันหน้าไปทางหินดำ ยกมือขวาชี้",
+    "title_th": "อิสติลามที่หินดำ",
+    "arabic": "بِسْمِ اللَّهِ، وَاللَّهُ أَكْبَرُ",
+    "reading_th": "บิสมิลลาฮิ วัลลอฮุอักบัร",
+    "meaning_th": "ด้วยพระนามของอัลลอฮ์ และอัลลอฮ์ทรงยิ่งใหญ่",
+    "source": "อัลบุคอรีย์ 1613 (ท่านนบี ﷺ ชี้แล้วกล่าวตักบีร), อัลบัยฮะกีย์ 5/79 (ท่านอิบนุอุมัรกล่าว \"บิสมิลลาฮิ วัลลอฮุอักบัร\")",
+    "grade_th": "เศาะฮีห์",
+    "note_th": "ถ้าคนไม่แน่น ให้สัมผัสหรือจูบหินดำได้ ถ้าคนแน่นให้ชี้แล้วกล่าวตักบีรโดยไม่ต้องเบียดเข้าไป เมื่อเริ่มเฏาะวาฟให้หยุดกล่าวตัลบิยะฮ์ (อุมเราะฮ์)",
+    "title_en": "Istilam at the Black Stone",
+    "reading_en": "Bismillahi wallahu akbar",
+    "meaning_en": "In the name of Allah, and Allah is the Greatest.",
+    "source_en": "Sahih al-Bukhari 1613 (the Prophet ﷺ pointed and said the takbir); al-Bayhaqi 5/79 (Ibn 'Umar said \"Bismillahi wallahu akbar\")",
+    "grade_en": "Sahih",
+    "note_en": "If it is not crowded, you may touch or kiss the Black Stone. If it is crowded, point towards it and say the takbir without pushing in. Stop the talbiyah when you begin tawaf (for Umrah).",
+    "replaces": "istilam_takbir"
+  },
+  {
+    "id": "rabbana_atina",
+    "type": "quran",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "ทุกรอบ ระหว่างมุมยะมานีกับหินดำ",
+    "title_th": "ระหว่างมุมยะมานีกับหินดำ",
+    "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+    "reading_th": "ร็อบบะนา อาตินา ฟิดดุนยา ฮะสะนะฮ์ วะฟิลอาคิเราะติ ฮะสะนะฮ์ วะกินา อะซาบันนาร",
+    "meaning_th": "โอ้พระเจ้าของเรา โปรดประทานความดีงามแก่เราในโลกนี้ และความดีงามในโลกหน้า และโปรดปกป้องเราให้พ้นจากการลงโทษแห่งไฟนรก",
+    "source": "อัลบะเกาะเราะฮ์ 2:201; อบูดาวูด 1892",
+    "grade_th": "หะสัน",
+    "note_th": "ถ้าสัมผัสมุมยะมานีได้ให้สัมผัส (ไม่จูบ) ถ้าคนแน่นให้เดินผ่านไปโดยไม่ต้องชี้",
+    "title_en": "Between the Yamani corner and the Black Stone",
+    "reading_en": "Rabbana atina fid-dunya hasanah, wa fil-akhirati hasanah, wa qina 'adhaban-nar",
+    "meaning_en": "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.",
+    "source_en": "Al-Baqarah 2:201; Sunan Abi Dawud 1892",
+    "grade_en": "Hasan",
+    "note_en": "Touch the Yamani corner if you can (do not kiss it). If it is crowded, simply walk past without pointing.",
+    "replaces": "rabbana_atina"
+  },
+  {
+    "id": "tawaf_lap_1",
+    "type": "quran",
+    "stages": [
+      "tawaf",
+      "hajjIfadhah",
+      "hajjWada"
+    ],
+    "trigger_th": "การ์ดดุอาอ์แนะนำ รอบที่ 1 (ไม่บังคับ)",
+    "title_th": "ดุอาอ์แนะนำรอบที่ 1",
+    "arabic": "رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ",
+    "reading_th": "ร็อบบะนา ตะก็อบบัล มินนา อินนะกะ อันตัสสะมีอุล อะลีม",
+    "meaning_th": "โอ้พระเจ้าของเรา โปรดรับ (การงาน) จากเราด้วยเถิด แท้จริงพระองค์คือผู้ทรงได้ยิน ผู้ทรงรอบรู้",
+    "source": "อัลบะเกาะเราะฮ์ 2:127 (ดุอาอ์ของนบีอิบรอฮีมและนบีอิสมาอีลขณะสร้างกะอ์บะฮ์)",
+    "grade_th": "อัลกุรอาน",
+    "note_th": "ไม่มีดุอาอ์เฉพาะรายรอบในซุนนะฮ์ ขอดุอาอ์ใดก็ได้ อ่านอัลกุรอาน หรือกล่าวซิกร์ได้ทั้งหมด",
+    "title_en": "Suggested du'a for lap 1",
+    "reading_en": "Rabbana taqabbal minna innaka antas-sami'ul-'alim",
+    "meaning_en": "Our Lord, accept (this) from us. Indeed, You are the All-Hearing, the All-Knowing.",
+    "source_en": "Al-Baqarah 2:127 (the du'a of the Prophets Ibrahim and Isma'il while building the Ka'bah)",
+    "grade_en": "Qur'an",
+    "note_en": "The Sunnah does not set a specific du'a for each lap. You may make any du'a, recite the Qur'an or do dhikr."
+  }
+]

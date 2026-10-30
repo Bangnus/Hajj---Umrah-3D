@@ -8,7 +8,7 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules/three')) return 'three';
-          if (id.includes('/src/content/duas-th.json')) return 'duas';
+          if (id.includes('/src/content/duas/')) return 'duas';
         },
       },
     },
