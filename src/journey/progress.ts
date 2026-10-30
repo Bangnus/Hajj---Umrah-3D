@@ -29,11 +29,19 @@ export function loadProgress(): Saved | null {
   } catch { return null; }
 }
 
+export const DEFAULT_SETTINGS: Settings = { floorLine: true, narration: true, sfx: true, rate: 'normal' };
+
 export function loadSettings(): Settings {
   try {
-    const v = JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}');
-    return { floorLine: v.floorLine ?? true };
-  } catch { return { floorLine: true }; }
+    const v = JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}') ?? {};
+    const bool = (x: unknown, d: boolean) => (typeof x === 'boolean' ? x : d);
+    return {
+      floorLine: bool(v.floorLine, DEFAULT_SETTINGS.floorLine),
+      narration: bool(v.narration, DEFAULT_SETTINGS.narration),
+      sfx: bool(v.sfx, DEFAULT_SETTINGS.sfx),
+      rate: v.rate === 'slow' ? 'slow' : 'normal',
+    };
+  } catch { return { ...DEFAULT_SETTINGS }; }
 }
 
 export function saveSettings(s: Settings) {

@@ -153,6 +153,32 @@ blockquote p[lang="ar"] { font-family: var(--font-ar); font-size: 24px; color: #
 .resume small { color: var(--muted); font-size: 13px; }
 .disclaimer { font-size: 12.5px; color: var(--muted); text-align: center; line-height: 1.6; }
 
+/* Du'a read-aloud button */
+.speak-btn { flex: none; border: 1px solid rgba(226,196,108,.45); background: rgba(226,196,108,.12); color: var(--gold); font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 99px; white-space: nowrap; transition: background .15s; }
+.speak-btn:hover { background: rgba(226,196,108,.22); }
+.speak-btn.on { background: var(--gold); color: #2a1f00; animation: pulse-gold 1.4s ease-in-out infinite; }
+@keyframes pulse-gold { 0%, 100% { box-shadow: 0 0 0 0 rgba(226,196,108,.55); } 50% { box-shadow: 0 0 0 6px rgba(226,196,108,0); } }
+
+/* Settings: audio */
+.modal.settings .seg button { font-size: 15px; padding: 9px; }
+.voice-box { display: grid; gap: 8px; padding: 12px; border-radius: 14px; background: var(--glass-2); border: 1px solid var(--line); }
+.voice-box ul { list-style: none; display: grid; gap: 2px; font-size: 13px; color: var(--muted); }
+.voice-box li.ok { color: var(--accent); }
+.voice-box p { font-size: 12.5px; line-height: 1.6; }
+.voice-box .btn.small { justify-self: start; padding: 6px 12px; }
+
+/* Certificate */
+.btn.accent.cert-btn { margin-top: 0; padding: 12px; }
+.cert-overlay { z-index: 6; background: rgba(4, 14, 12, .6); }
+.modal.cert { width: min(960px, 100%); gap: 12px; padding: 18px; }
+.cert-head { display: flex; align-items: center; gap: 10px; }
+.cert-head h3 { flex: 1; font-size: 18px; }
+.cert-frame { position: relative; border-radius: 10px; overflow: hidden; background: #fbf6e8; aspect-ratio: 1600 / 1130; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+.cert-frame canvas { display: block; width: 100%; height: 100%; }
+.cert-loading { position: absolute; inset: 0; display: grid; place-items: center; color: #5c6d67; font-size: 14px; }
+.modal .cert-note { font-size: 12.5px; color: #ffcdb8; line-height: 1.55; }
+.modal.cert .row { flex-wrap: wrap; }
+
 .only-mobile { display: none; }
 
 /* Tablet: narrower panels */
@@ -181,4 +207,9 @@ blockquote p[lang="ar"] { font-family: var(--font-ar); font-size: 24px; color: #
   .controls-hint { display: none; }
   .touch .joystick { bottom: calc(var(--sheet-h, 56vh) + 16px); width: 104px; height: 104px; }
   .touch .jog-btn { bottom: calc(var(--sheet-h, 56vh) + 40px); }
+  .speak-btn { padding: 4px 8px; font-size: 12px; }
+  .modal.cert { padding: 12px; gap: 10px; border-radius: 16px; }
+  .modal.cert .row .btn { flex: 1 1 40%; }
+  .modal.cert .row [data-act="png"] { flex-basis: 100%; order: -1; }
+  .cert-overlay { padding: 8px; }
 }
