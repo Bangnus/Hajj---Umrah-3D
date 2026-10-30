@@ -2,6 +2,11 @@ import * as THREE from 'three';
 
 export type Quality = 'low' | 'high';
 
+const TMP_C1 = new THREE.Color();
+const TMP_C2 = new THREE.Color();
+const TMP_SKY = new THREE.Color();
+const MOON_OFFSET = new THREE.Vector3(-30, 90, 20);
+
 /** Renderer, scene, camera, lights and the frame loop. */
 export class Engine {
   readonly renderer: THREE.WebGLRenderer;
@@ -16,6 +21,7 @@ export class Engine {
   /** Sun position relative to the player (changed by setTimeOfDay). */
   private readonly sunOffset = new THREE.Vector3(40, 90, 30);
   private readonly skyTex = skyTexture();
+  private lastSkyKey = '';
 
   constructor(canvas: HTMLCanvasElement) {
     this.isTouch = matchMedia('(pointer: coarse)').matches;
@@ -83,7 +89,8 @@ export class Engine {
       this.hemi.intensity = 1.15;
       fog.color.setHex(0xd8e2ec);
       fog.near = 140; fog.far = 700;
-      paintSky(this.skyTex, SKY.day);
+      const key = SKY.day.join('|');
+      if (this.lastSkyKey !== key) { this.lastSkyKey = key; paintSky(this.skyTex, SKY.day); }
       return;
     }
     const clamp = (v: number) => Math.min(1, Math.max(0, v));
@@ -95,13 +102,13 @@ export class Engine {
     const dayW = 1 - Math.max(gold, night);
     // Sun travels from east (+x) through the sky to west (-x); at night a dim moon stands high.
     const az = Math.PI * day;
-    this.sunOffset.set(Math.cos(az) * 100, Math.max(8, elev * 100), 30)
-      .lerp(new THREE.Vector3(-30, 90, 20), night);
+    this.sunOffset.set(Math.cos(az) * 100, Math.max(8, elev * 100), 30).lerp(MOON_OFFSET, night);
     const mix3 = (out: THREE.Color, d: number, g: number, n: number) => {
-      const c = new THREE.Color(d).multiplyScalar(dayW);
-      c.add(new THREE.Color(g).multiplyScalar(gold));
-      c.add(new THREE.Color(n).multiplyScalar(night));
-      return out.copy(c);
+      TMP_C1.setHex(d).multiplyScalar(dayW);
+      TMP_C2.setHex(g).multiplyScalar(gold);
+      TMP_C1.add(TMP_C2);
+      TMP_C2.setHex(n).multiplyScalar(night);
+      return out.copy(TMP_C1.add(TMP_C2));
     };
     mix3(this.sun.color, 0xfff0d8, 0xff9a55, 0x8fa6d8);
     this.sun.intensity = 2.3 * dayW + 1.1 * gold + 0.35 * night;
@@ -110,12 +117,18 @@ export class Engine {
     this.hemi.intensity = 1.15 * dayW + 0.85 * gold + 0.5 * night;
     mix3(fog.color, 0xd8e2ec, 0xe8b48c, 0x0b1020);
     fog.near = 140 - 60 * night; fog.far = 700 - 200 * night;
-    const sky = [0, 1, 2].map((i) => '#' + mix3(new THREE.Color(), SKY.dayHex[i], SKY.goldHex[i], SKY.nightHex[i]).getHexString());
-    paintSky(this.skyTex, sky);
+    const sky = [
+      '#' + mix3(TMP_SKY, SKY.dayHex[0], SKY.goldHex[0], SKY.nightHex[0]).getHexString(),
+      '#' + mix3(TMP_SKY, SKY.dayHex[1], SKY.goldHex[1], SKY.nightHex[1]).getHexString(),
+      '#' + mix3(TMP_SKY, SKY.dayHex[2], SKY.goldHex[2], SKY.nightHex[2]).getHexString(),
+    ];
+    const key = sky.join('|');
+    if (this.lastSkyKey !== key) { this.lastSkyKey = key; paintSky(this.skyTex, sky); }
   }
 
   start() {
     this.renderer.setAnimationLoop(() => {
+      if (document.hidden) { this.clock.getDelta(); return; }
       const dt = Math.min(this.clock.getDelta(), 0.05);
       this.tickers.forEach((fn) => fn(dt));
       this.renderer.render(this.scene, this.camera);

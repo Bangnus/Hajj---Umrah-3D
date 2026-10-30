@@ -20,9 +20,12 @@ export function makeLabel(text: string, o: LabelOpts = {}): THREE.Sprite {
   c.width = w; c.height = h;
   g.font = font;
   if (o.bg !== 'none') {
-    g.fillStyle = o.bg ?? 'rgba(13, 38, 34, 0.82)';
-    roundRect(g, 0, 0, w, h, 18);
+    g.fillStyle = o.bg ?? 'rgba(15, 42, 35, 0.9)';
+    roundRect(g, 2, 2, w - 4, h - 4, 18);
     g.fill();
+    g.lineWidth = 2.5;
+    g.strokeStyle = 'rgba(255, 255, 255, 0.38)';
+    g.stroke();
   }
   g.fillStyle = o.color ?? '#ffffff';
   g.textBaseline = 'middle';

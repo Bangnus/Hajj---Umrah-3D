@@ -1,10 +1,8 @@
-import { localDua, type Dua } from '../content/duas';
+import { localDua, type Dua } from '../content/duaTypes';
 import type { Beat } from '../journey/prayer';
 import type { ActionHandle, Mission, Profile, Settings, StageDef } from '../journey/types';
 import type { Saved } from '../journey/progress';
-import type { Gender } from '../engine/player';
 import * as audio from '../engine/audio';
-import { openCertificate, ritualName } from './certificate';
 import { getLang, setLang, tr, type Lang } from '../i18n';
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
@@ -12,6 +10,7 @@ const $ = <T extends HTMLElement = HTMLElement>(root: ParentNode, sel: string) =
 /** The default name is saved in whichever language was active: show it in the current one. */
 const isDefaultName = (n: string) => !n.trim() || n === 'ผู้แสวงบุญ' || n === 'Pilgrim';
 const displayName = (n: string) => (isDefaultName(n) ? tr('ผู้แสวงบุญ') : n);
+const ritualName = (ritual: string) => (ritual === 'ฮัจญ์' ? tr('ฮัจญ์') : tr('อุมเราะฮ์'));
 
 interface Nav { next(): void; back(): void; skip(): void; jump(i: number): void }
 
@@ -125,15 +124,13 @@ export class Hud {
   /** Start screen. Resolves with the profile and the stage to start from. */
   showCreator(
     saved: Saved | null,
-    stagesFor: (p: Profile) => StageDef[],
-    available: { hajj: boolean; madinah: boolean },
+    savedStageTitle?: string,
+    onModeChange?: (mode: Profile['mode']) => void,
   ): Promise<{ profile: Profile; stage: number }> {
     return new Promise((resolve) => {
       const p: Profile = saved
         ? { ...saved.profile }
         : { name: '', gender: 'male', mode: 'umrah', route: 'miqat-first', hajjType: 'tamattu' };
-      if (p.mode === 'hajj' && !available.hajj) p.mode = 'umrah';
-      const savedStage = saved ? stagesFor(saved.profile)[saved.stageIndex] : undefined;
       const el = document.createElement('div');
       el.className = 'creator';
       el.innerHTML = `
@@ -145,9 +142,9 @@ export class Hud {
           <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
           <h1>${tr('จำลองอุมเราะฮ์และฮัจญ์ 3 มิติ')}</h1>
           <p class="lead">${tr('ฝึกพิธีทีละขั้นตอน พร้อมดุอาอ์ คำอ่าน และความหมายภาษาไทย')}</p>
-          ${saved && savedStage ? `
+          ${saved && savedStageTitle ? `
             <div class="resume">
-              <div><b>${tr('เดินทางต่อ')}</b><small>${esc(displayName(saved.profile.name))} · ${saved.profile.mode === 'hajj' ? tr('ฮัจญ์') : tr('อุมเราะฮ์')} · ${esc(tr('ขั้นที่ {n} {title}', { n: saved.stageIndex + 1, title: savedStage.title }))}</small></div>
+              <div><b>${tr('เดินทางต่อ')}</b><small>${esc(displayName(saved.profile.name))} · ${saved.profile.mode === 'hajj' ? tr('ฮัจญ์') : tr('อุมเราะฮ์')} · ${esc(tr('ขั้นที่ {n} {title}', { n: saved.stageIndex + 1, title: savedStageTitle }))}</small></div>
               <button class="btn primary" id="resumeBtn">${tr('ทำต่อ →')}</button>
             </div>` : ''}
           <label class="field"><span>${tr('ชื่อของคุณ')}</span><input id="nameInput" maxlength="16" placeholder="${tr('ผู้แสวงบุญ')}" value="${esc(isDefaultName(p.name) ? '' : p.name)}" /></label>
@@ -160,13 +157,13 @@ export class Hud {
           <div class="field"><span>${tr('พิธีที่จะฝึก')}</span>
             <div class="seg" data-key="mode">
               <button data-v="umrah">${tr('🕋 อุมเราะฮ์')}</button>
-              <button data-v="hajj" ${available.hajj ? '' : `disabled title="${tr('กำลังพัฒนา')}"`}>${tr('🏕️ ฮัจญ์')}${available.hajj ? '' : ` ${tr('(เร็ว ๆ นี้)')}`}</button>
+              <button data-v="hajj">${tr('🏕️ ฮัจญ์')}</button>
             </div>
           </div>
           <div class="field" data-show="umrah"><span>${tr('เส้นทาง')}</span>
             <div class="seg" data-key="route">
               <button data-v="miqat-first">${tr('✈️ มีกอตก่อน')}</button>
-              <button data-v="madinah-first" ${available.madinah ? '' : `disabled title="${tr('กำลังพัฒนา')}"`}>${tr('🕌 มะดีนะฮ์ก่อน')}</button>
+              <button data-v="madinah-first">${tr('🕌 มะดีนะฮ์ก่อน')}</button>
             </div>
             <small class="field-note" data-note="route"></small>
           </div>
@@ -206,7 +203,11 @@ export class Hud {
         el.querySelectorAll<HTMLElement>('[data-note]').forEach((n) => { n.textContent = NOTES[n.dataset.note!][p[n.dataset.note as 'route' | 'hajjType']]; });
       };
       el.querySelectorAll<HTMLElement>('.seg[data-key]').forEach((seg) => seg.querySelectorAll<HTMLButtonElement>('button').forEach((b) => {
-        b.onclick = () => { (p as unknown as Record<string, string>)[seg.dataset.key!] = b.dataset.v!; paint(); };
+        b.onclick = () => {
+          (p as unknown as Record<string, string>)[seg.dataset.key!] = b.dataset.v!;
+          if (seg.dataset.key === 'mode') onModeChange?.(p.mode);
+          paint();
+        };
       }));
       paint();
       const done = (profile: Profile, stage: number) => {
@@ -486,7 +487,10 @@ export class Hud {
     this.stopDuaSpeech();
     audio.sfx('complete');
     audio.narrate(tr('อัลฮัมดุลิลลาฮ์ คุณ{name} ทำพิธี{ritual}ครบทุกขั้นตอนแล้ว ขออัลลอฮ์ทรงรับการงานของคุณ', { name, ritual }));
-    $(this.overlay, '#certBtn').onclick = () => openCertificate(this.root, { ritual: this.ritual, name, stages });
+    const certTask = import('./certificate');
+    $(this.overlay, '#certBtn').onclick = () => {
+      void certTask.then((m) => m.openCertificate(this.root, { ritual: this.ritual, name, stages }));
+    };
     $(this.overlay, '#againBtn').onclick = () => { this.closeOverlays(); onRestart(); };
     $(this.overlay, '#homeBtn').onclick = () => location.reload();
   }

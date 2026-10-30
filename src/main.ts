@@ -1,30 +1,53 @@
 import './ui/styles.css';
-import './i18n/en'; // registers English dictionaries before any UI is built
-import { Engine } from './engine/engine';
-import { Input } from './engine/input';
-import { Player } from './engine/player';
-import { Journey } from './journey/journey';
+import { getLang } from './i18n';
 import { loadProgress, loadSettings, saveProgress, saveSettings } from './journey/progress';
-import { buildStages, HAJJ_AVAILABLE, MADINAH_AVAILABLE } from './journey/stages/registry';
-import { Hud } from './ui/hud';
+import type { Journey } from './journey/journey';
 
 async function boot() {
-  // Canvas labels need the Thai font before they are drawn.
-  await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]);
-  await document.fonts.load('600 44px "Noto Sans Thai"').catch(() => undefined);
+  // Only download the English dictionary chunk when English UI is selected.
+  if (getLang() === 'en') await import('./i18n/en');
 
-  const canvas = document.getElementById('scene') as HTMLCanvasElement;
-  const engine = new Engine(canvas);
-  const hud = new Hud(document.getElementById('ui')!, engine.isTouch);
-  const input = new Input(canvas, hud.joystick, hud.knob, hud.jogBtn);
+  const isTouch = matchMedia('(pointer: coarse)').matches;
+  const { Hud } = await import('./ui/hud');
+  const hud = new Hud(document.getElementById('ui')!, isTouch);
 
   let settings = loadSettings();
   let journey: Journey | undefined;
-  hud.onSettings(() => settings, (s) => { settings = s; if (journey) journey.settings = s; saveSettings(s); }, () => saveProgress(null));
+  hud.onSettings(
+    () => settings,
+    (s) => { settings = s; if (journey) journey.settings = s; saveSettings(s); },
+    () => saveProgress(null),
+  );
+
+  // Preload fonts, 3D runtime and stage chunks in parallel without blocking the start screen.
+  const fontsTask = Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))])
+    .then(() => document.fonts.load('600 44px "Noto Sans Thai"').catch(() => undefined));
+  const runtimeTask = import('./runtime');
+  const registryTask = import('./journey/stages/registry');
 
   const saved = loadProgress();
-  const { profile, stage } = await hud.showCreator(saved, buildStages, { hajj: HAJJ_AVAILABLE, madinah: MADINAH_AVAILABLE });
-  const stages = buildStages(profile);
+  let savedStageTitle: string | undefined;
+  if (saved) {
+    const { loadStages } = await registryTask;
+    const savedStages = await loadStages(saved.profile);
+    savedStageTitle = savedStages[saved.stageIndex]?.title;
+  } else {
+    registryTask.then((r) => r.preloadMode('umrah'));
+  }
+
+  const { profile, stage } = await hud.showCreator(saved, savedStageTitle, (mode) => {
+    registryTask.then((r) => r.preloadMode(mode));
+  });
+
+  const [, { Engine, Input, Player, Journey: JourneyCls }, { loadStages }] = await Promise.all([
+    fontsTask,
+    runtimeTask,
+    registryTask,
+  ]);
+  const stages = await loadStages(profile);
+  const canvas = document.getElementById('scene') as HTMLCanvasElement;
+  const engine = new Engine(canvas);
+  const input = new Input(canvas, hud.joystick, hud.knob, hud.jogBtn);
   hud.setStages(stages, profile);
   const player = new Player({
     gender: profile.gender,
@@ -33,7 +56,7 @@ async function boot() {
     cloth: profile.gender === 'male' ? 0x6c8a7a : 0x2e3440,
     hair: 'normal',
   });
-  journey = new Journey(engine, player, input, hud, stages, profile, settings);
+  journey = new JourneyCls(engine, player, input, hud, stages, profile, settings);
   journey.go(Math.min(stage, stages.length - 1));
   engine.start();
 

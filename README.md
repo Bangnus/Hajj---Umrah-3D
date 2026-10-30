@@ -54,11 +54,12 @@
 
 | ส่วน | เทคโนโลยี |
 |------|-----------|
-| ภาษาและตัวรวมโมดูล | **TypeScript 5.7** + **Vite 6** |
+| ภาษาและตัวรวมโมดูล | **TypeScript 5.7** + **Vite 6** (`es2022` + Dynamic Code-Splitting) |
 | กราฟิก 3 มิติ | **Three.js r170** (Procedural Mesh + `InstancedMesh` + `CanvasTexture`) |
 | ส่วนติดต่อผู้ใช้ (UI) | **Vanilla DOM + CSS Variables** (`src/ui/hud.ts`, `src/ui/styles.css`) ไม่ใช้ React/Vue/Tailwind |
 | เสียง | **Web Speech API** (TTS) + **WebAudio API** (Synthesised SFX) |
 | ใบประกาศ | **HTML5 2D Canvas** (`src/ui/certificate.ts`) |
+| แคชและออฟไลน์ (PWA) | **vite-plugin-pwa (Workbox Service Worker)** แคชไฟล์และฟอนต์ลงเครื่อง รองรับผู้เล่นพร้อมกันจำนวนมากและเล่นออฟไลน์ได้ |
 
 ## การรันโปรเจกต์
 
@@ -86,11 +87,14 @@ npm run preview    # ดูผล build ที่ http://localhost:5181
 
 ```text
 index.html                            จุดเข้า HTML (#scene + #ui)
+vite.config.ts                        ตั้งค่าแยก chunk (three/duas/stages) และสร้าง PWA Service Worker
 src/
-├── main.ts                           บูตแอป: โหลดฟอนต์ สร้าง Engine/Hud/Input/Player/Journey
+├── main.ts                           บูตหน้าแรกทันที + preload ฟอนต์และเอนจิน 3 มิติแบบขนานเบื้องหลัง
+├── runtime.ts                        รวมโมดูลเอนจิน 3 มิติหลักสำหรับโหลดแบบ dynamic chunk
 ├── content/
 │   ├── duas-th.json                  คลังดุอาอ์ ซิกร์ อายะฮ์ หะดีษ และคำแนะนำ (ไทย + อังกฤษ + อาหรับ)
-│   └── duas.ts                       ชนิดข้อมูล Dua, getDua(id), localDua(d) ตามภาษาปัจจุบัน
+│   ├── duaTypes.ts                   ชนิดข้อมูล Dua และฟังก์ชัน localDua(d) ตามภาษาปัจจุบัน
+│   └── duas.ts                       ดัชนีค้นหา getDua(id) จากคลังดุอาอ์
 ├── engine/
 │   ├── engine.ts                     WebGLRenderer, กล้อง, แสง, หมอก, setTimeOfDay และเลือก Quality
 │   ├── input.ts                      คีย์บอร์ด, เมาส์หมุนกล้อง/ซูม, จอยสติ๊กสัมผัส และปุ่มวิ่ง
