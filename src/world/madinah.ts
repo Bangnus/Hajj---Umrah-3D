@@ -5,6 +5,7 @@ import {
   GOLD, PALETTE_TRAVEL, archTexture, bus, carpetTexture, dome, ground, label, latticeTexture, minaret, palm, patch, people,
   rand, repeatMat, sign, wallRun, type Person,
 } from './props';
+import { tr } from '../i18n';
 
 /**
  * Masjid an-Nabawi (compressed, game scale). Qibla is south (+z) in Madinah.
@@ -83,16 +84,16 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
   crescent.position.set(hj.x, H.h + 4.2 + 4.6 * 1.35 + 2.4, hj.z);
   crescent.rotation.z = Math.PI * 0.82;
   group.add(crescent);
-  label(group, 'โดมสีเขียว', hj.x, H.h + 15, hj.z, 1.1);
+  label(group, tr('โดมสีเขียว'), hj.x, H.h + 15, hj.z, 1.1);
 
   // Minarets (the real mosque has ten; six here).
   for (const [x, z] of [[-30, -26], [30, -26], [-30, 26], [30, 26], [-10, -26], [10, -26]] as const) {
     colliders.push(minaret(group, x, z, { h: low ? 52 : 62, r: 1.5 }));
   }
-  label(group, 'มัสยิดนะบะวี', 0, H.h + 6, H.minZ - 1, 1.6);
-  label(group, 'ประตูทางเข้า', 0, 7.6, H.minZ - 1.2, 0.7);
-  label(group, 'บาบุสสลาม', H.minX - 1.4, 7.4, NABAWI.corridorZ, 0.8);
-  label(group, 'บาบุลบะกีอ์', H.maxX + 1.4, 7.4, NABAWI.corridorZ, 0.8);
+  label(group, tr('มัสยิดนะบะวี'), 0, H.h + 6, H.minZ - 1, 1.6);
+  label(group, tr('ประตูทางเข้า'), 0, 7.6, H.minZ - 1.2, 0.7);
+  label(group, tr('บาบุสสลาม'), H.minX - 1.4, 7.4, NABAWI.corridorZ, 0.8);
+  label(group, tr('บาบุลบะกีอ์'), H.maxX + 1.4, 7.4, NABAWI.corridorZ, 0.8);
 
   // Interior columns (instanced) on a 7 m grid, skipping the aisle, Raudhah, chamber and corridor.
   const colPos: [number, number][] = [];
@@ -120,7 +121,7 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
     cyl(group, 0.44, 0.44, 2.2, mat(0xe9e2cf, 0.4), x, 0, z, 12);
     colliders.push({ kind: 'circle', x, z, r: 0.42 });
   }
-  label(group, 'อัรเราเฎาะฮ์ (พรมสีเขียว)', R.x, 4.4, R.z, 0.6);
+  label(group, tr('อัรเราเฎาะฮ์ (พรมสีเขียว)'), R.x, 4.4, R.z, 0.6);
 
   // Prophet's chamber: green-and-gold grille. Its south face is the corridor's north edge.
   const grille = latticeTexture('#1d5c3a', '#d6b25a', 28);
@@ -129,7 +130,7 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
   box(group, hj.w, 6, hj.d, hm, hj.x, 0, hj.z);
   box(group, hj.w + 0.4, 0.6, hj.d + 0.4, GOLD(), hj.x, 6, hj.z);
   colliders.push(boxCollider(hj.x, hj.z, hj.w, hj.d, 0.1));
-  label(group, 'ห้องของท่านนบี ﷺ', hj.x, 7.6, hj.z, 0.6);
+  label(group, tr('ห้องของท่านนบี ﷺ'), hj.x, 7.6, hj.z, 0.6);
   // Three small openings on the south face (Prophet ﷺ, Abu Bakr, Umar).
   const south = hj.z + hj.d / 2 + 0.02;
   for (const [x, r] of [[hj.x - 1.8, 0.36], [hj.x, 0.28], [hj.x + 1.6, 0.28]] as const) {
@@ -137,7 +138,7 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
     ring.position.set(x, 2.2, south);
     group.add(ring);
   }
-  sign(group, ['ให้สลามด้วยความสงบ  ·  ไม่แตะผนัง'], 4.6, 0.55, hj.x, 4.6, south + 0.01, 0, '#1d5c3a', '#f2e3b0');
+  sign(group, [tr('ให้สลามด้วยความสงบ  ·  ไม่แตะผนัง')], 4.6, 0.55, hj.x, 4.6, south + 0.01, 0, '#1d5c3a', '#f2e3b0');
 
   // Minbar: marble steps with a small canopy, west edge of the Raudhah.
   const mb = NABAWI.minbar;
@@ -148,7 +149,7 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
   cone.position.set(mb.x, 4.4, mb.z + 1.4);
   group.add(cone);
   colliders.push(boxCollider(mb.x, mb.z, 1.2, 3.6, 0.1));
-  label(group, 'มิมบัร', mb.x, 5.8, mb.z + 1.4, 0.5);
+  label(group, tr('มิมบัร'), mb.x, 5.8, mb.z + 1.4, 0.5);
 
   // Corridor partition (z = 17) from the west opening to the chamber, and east of it.
   const part = mat(0xe8dfcb, 0.6);
@@ -163,7 +164,7 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
   box(group, 1.8, 3.2, 0.5, mat(0xf3eee2, 0.4), 9.5, 0, 16.6);
   box(group, 1.0, 2.2, 0.06, mat(0x6a5a3a, 0.5), 9.5, 0.3, 16.33);
   colliders.push(boxCollider(9.5, 16.6, 1.8, 0.5));
-  label(group, 'ทางเดินให้สลาม →', -22, 3.2, NABAWI.corridorZ, 0.5);
+  label(group, tr('ทางเดินให้สลาม →'), -22, 3.2, NABAWI.corridorZ, 0.5);
 
   // Interior lights.
   for (const [x, z] of (low ? [[6, 6]] : [[-12, -6], [12, 6], [0, 18]]) as [number, number][]) {
@@ -208,7 +209,7 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
   wallRun(group, colliders, 'x', B.maxZ, B.minX, B.maxX, [], 3, 0.6, bw, 3);
   for (const s of [-1, 1]) box(group, 1, 4.6, 1, mat(0xcdb894, 0.7), B.minX, 0, NABAWI.corridorZ + s * 2.5);
   box(group, 1, 0.9, 6, mat(0xcdb894, 0.7), B.minX, 4.6, NABAWI.corridorZ);
-  label(group, 'สุสานอัลบะเกียะอ์', B.minX - 0.6, 6.4, NABAWI.corridorZ, 0.9);
+  label(group, tr('สุสานอัลบะเกียะอ์'), B.minX - 0.6, 6.4, NABAWI.corridorZ, 0.9);
   const pathEnd = 66;
   patch(group, pathEnd - B.minX, 4, mat(0xe6dccb, 0.6), (B.minX + pathEnd) / 2, NABAWI.corridorZ, 0.02);
   const fence = mat(0x55606a, 0.5, { metalness: 0.4 });
@@ -234,7 +235,7 @@ export function buildNabawi(o: { crowd: number; quality: 'low' | 'high' }): Scen
   colliders.push(bus(group, bs.x - 6, bs.z - 4, false));
   box(group, 5, 0.15, 2, mat(0x2a6b5a, 0.5), bs.x + 1, 2.8, bs.z - 3);
   for (const s of [-1, 1]) box(group, 0.12, 2.8, 0.12, mat(0x8a96a3, 0.5), bs.x + 1 + s * 2.3, 0, bs.z - 3.8);
-  label(group, 'ป้ายรถบัสซิยาเราะฮ์', bs.x + 1, 3.8, bs.z - 3, 0.6);
+  label(group, tr('ป้ายรถบัสซิยาเราะฮ์'), bs.x + 1, 3.8, bs.z - 3, 0.6);
 
   // Palms and a skyline of hotels around the plaza.
   for (const [x, z] of [[-55, -66], [-55, 20], [70, -66], [-55, -30], [36, -66], [-20, 42], [20, 42]] as const) colliders.push(palm(group, x, z, 8));
@@ -297,8 +298,8 @@ export function buildQuba(crowd: number): Scene3D {
   for (const [x, z] of [[-16, -2], [16, -2], [-16, 22], [16, 22]] as const) colliders.push(minaret(group, x, z, { h: 36, r: 1.0, color: 0xf6f4ee, cap: 0xf6f4ee }));
   for (const [x, z] of [[-9, -12], [9, -12], [-9, -24], [9, -24], [-24, -8], [24, -8], [-24, -30], [24, -30]] as const) colliders.push(palm(group, x, z, 7.5));
   colliders.push(bus(group, -14, -34, true));
-  label(group, 'มัสยิดกุบาอ์', 0, 16.5, 0, 1.4);
-  label(group, 'มัสยิดหลังแรกในอิสลาม', 0, 14.6, 0, 0.7);
+  label(group, tr('มัสยิดกุบาอ์'), 0, 16.5, 0, 1.4);
+  label(group, tr('มัสยิดหลังแรกในอิสลาม'), 0, 14.6, 0, 0.7);
   colliders.push({ kind: 'rect-in', minX: -40, maxX: 40, minZ: -42, maxZ: 30 });
   const list: Person[] = [];
   for (let i = 0; i < crowd; i++) {
@@ -343,7 +344,7 @@ export function buildUhud(crowd: number): Scene3D {
     const x = rand(ex0 + 1.5, ex1 - 1.5), z = rand(ez0 + 1.5, ez1 - 1.5);
     box(group, 0.2, 0.4, 0.1, mat(0x8f8574, 0.9), x, 0, z, false);
   }
-  label(group, 'สุสานชุฮะดาอ์อุฮุด', 0, 4.6, ez1, 0.9);
+  label(group, tr('สุสานชุฮะดาอ์อุฮุด'), 0, 4.6, ez1, 0.9);
   // Mount Uhud (reddish, flat-shaded) and the archers' hill.
   const rock = mat(0x9a5b3c, 0.95, { flatShading: true });
   for (const [x, z, sx, sy, sz] of [[-120, -190, 110, 70, 50], [-20, -210, 120, 95, 60], [90, -195, 100, 75, 55], [190, -220, 90, 60, 50], [-220, -230, 90, 55, 45]] as const) {
@@ -352,14 +353,14 @@ export function buildUhud(crowd: number): Scene3D {
     m.position.set(x, sy * 0.15, z);
     group.add(m);
   }
-  label(group, 'ภูเขาอุฮุด', -20, 120, -200, 9);
+  label(group, tr('ภูเขาอุฮุด'), -20, 120, -200, 9);
   const hill = new THREE.Mesh(new THREE.DodecahedronGeometry(1, 1), mat(0xa47a52, 0.95, { flatShading: true }));
   hill.scale.set(12, 6, 9);
   hill.position.set(30, 0.5, -8);
   hill.castShadow = true;
   group.add(hill);
   colliders.push({ kind: 'circle', x: 30, z: -8, r: 10.5 });
-  label(group, 'เนินรุมาฮ์ (เนินนักยิงธนู)', 30, 9, -8, 0.8);
+  label(group, tr('เนินรุมาฮ์ (เนินนักยิงธนู)'), 30, 9, -8, 0.8);
   colliders.push(bus(group, -14, 20, true));
   for (const [x, z] of [[-22, 0], [22, 18], [-22, 24]] as const) colliders.push(palm(group, x, z, 7));
   colliders.push({ kind: 'rect-in', minX: -45, maxX: 45, minZ: -40, maxZ: 30 });

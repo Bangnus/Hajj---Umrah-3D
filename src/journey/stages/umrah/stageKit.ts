@@ -1,6 +1,7 @@
 import { PRAYER_BEATS, type Beat } from '../../prayer';
 import type { StageCtx } from '../../types';
 import type { Zone, Shape } from '../../../world/props';
+import { tr } from '../../../i18n';
 
 /** Small helpers shared by the Madinah, Bir Ali and return-home stages. */
 
@@ -11,11 +12,12 @@ import type { Zone, Shape } from '../../../world/props';
 export function twoRakaat(intent: string, anySurah: boolean): Beat[] {
   return PRAYER_BEATS.map((b, i): Beat => {
     if (i === 0) {
-      return { ...b, text: `หันหน้าไปทางกิบลัต ยกมือขึ้นระดับหูหรือไหล่ กล่าว "อัลลอฮุอักบัร" พร้อมตั้งเจตนาในใจว่าจะ${intent} 2 ร็อกอะฮ์` };
+      return { ...b, text: tr('หันหน้าไปทางกิบลัต ยกมือขึ้นระดับหูหรือไหล่ กล่าว "อัลลอฮุอักบัร" พร้อมตั้งเจตนาในใจว่าจะ{intent} 2 ร็อกอะฮ์', { intent }) };
     }
     if (!anySurah) return b;
-    if (b.title === 'ยืนตรง (ร็อกอะฮ์ที่ 1)') return { ...b, text: 'วางมือขวาทับมือซ้ายที่อก อ่านซูเราะฮ์อัลฟาติหะฮ์ ตามด้วยซูเราะฮ์หรืออายะฮ์ใดก็ได้ที่คุณอ่านได้' };
-    if (b.title === 'ยืนตรง (ร็อกอะฮ์ที่ 2)') return { ...b, text: 'กล่าว "อัลลอฮุอักบัร" แล้วลุกขึ้นยืน อ่านซูเราะฮ์อัลฟาติหะฮ์ ตามด้วยซูเราะฮ์หรืออายะฮ์ใดก็ได้' };
+    // Beat 1 / 7 = standing in rakaah 1 / 2 (by index: titles may be translated).
+    if (i === 1) return { ...b, text: tr('วางมือขวาทับมือซ้ายที่อก อ่านซูเราะฮ์อัลฟาติหะฮ์ ตามด้วยซูเราะฮ์หรืออายะฮ์ใดก็ได้ที่คุณอ่านได้') };
+    if (i === 7) return { ...b, text: tr('กล่าว "อัลลอฮุอักบัร" แล้วลุกขึ้นยืน อ่านซูเราะฮ์อัลฟาติหะฮ์ ตามด้วยซูเราะฮ์หรืออายะฮ์ใดก็ได้') };
     return b;
   });
 }
