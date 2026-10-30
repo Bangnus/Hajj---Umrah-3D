@@ -5,6 +5,7 @@ import {
   PALETTE_IHRAM, archTexture, bus, carpetTexture, dome, ground, label, minaret, palm, patch, people, rand, repeatMat, sign, wallRun,
   type Person,
 } from './props';
+import { tr } from '../i18n';
 
 /**
  * Dhul-Hulayfah (Bir Ali) miqat mosque, ~10 km from Masjid an-Nabawi. Qibla is south (+z).
@@ -52,14 +53,14 @@ export function buildBirAli(o: { crowd: number; quality: 'low' | 'high' }): Scen
     colliders.push(boxCollider(s * 4.6, -18, 1.3, 1.3));
   }
   box(group, 10.6, 1.9, 1.0, mat(0x0d3b2e, 0.6), 0, 8, -18);
-  const lines = ['ميقات ذو الحليفة', 'มีกอตซุลหุลัยฟะฮ์ (บิอ์รอะลี)'];
+  const lines = ['ميقات ذو الحليفة', tr('มีกอตซุลหุลัยฟะฮ์ (บิอ์รอะลี)')];
   sign(group, lines, 10.2, 1.7, 0, 8.95, -18.52, Math.PI);
   sign(group, lines, 10.2, 1.7, 0, 8.95, -17.48, 0);
-  label(group, 'MIQAT · มีกอต', 0, 11.2, -18, 0.9);
+  label(group, tr('MIQAT · มีกอต'), 0, 11.2, -18, 0.9);
 
   // Wudu / changing blocks: men (west) and women (east), doors facing the courtyard centre.
   const blockM = repeatMat(archTexture('#e9e1cf', '#9d8a63', '#6b7a70'), 8, 4);
-  for (const [s, who] of [[-1, 'ชาย'], [1, 'หญิง']] as const) {
+  for (const [s, who] of [[-1, tr('ชาย')], [1, tr('หญิง')]] as const) {
     const cx = s * 14.25;
     box(group, 7.5, 4.2, 8, blockM, cx, 0, -10);
     colliders.push(boxCollider(cx, -10, 7.5, 8));
@@ -67,7 +68,7 @@ export function buildBirAli(o: { crowd: number; quality: 'low' | 'high' }): Scen
     door.position.set(s * 10.48, 1.3, -10);
     door.rotation.y = -s * Math.PI / 2;
     group.add(door);
-    sign(group, ['ที่อาบน้ำ / เปลี่ยนชุด', who], 3.2, 1.0, s * 10.47, 3.3, -10, -s * Math.PI / 2);
+    sign(group, [tr('ที่อาบน้ำ / เปลี่ยนชุด'), who], 3.2, 1.0, s * 10.47, 3.3, -10, -s * Math.PI / 2);
   }
 
   // Prayer hall (south), door in the middle of its north wall.
@@ -91,8 +92,8 @@ export function buildBirAli(o: { crowd: number; quality: 'low' | 'high' }): Scen
   const l = new THREE.PointLight(0xfff1d6, o.quality === 'low' ? 26 : 20, 30);
   l.position.set(0, 7, 25);
   group.add(l);
-  label(group, 'มัสยิดมีกอตซุลหุลัยฟะฮ์', 0, 14.5, H.minZ, 1.0);
-  label(group, 'ห้องละหมาด', 0, 6.4, H.minZ - 0.6, 0.6);
+  label(group, tr('มัสยิดมีกอตซุลหุลัยฟะฮ์'), 0, 14.5, H.minZ, 1.0);
+  label(group, tr('ห้องละหมาด'), 0, 6.4, H.minZ - 0.6, 0.6);
 
   colliders.push(minaret(group, 27, -22, { h: o.quality === 'low' ? 46 : 56, r: 1.5 }));
   for (const [x, z] of [[-6, -3], [6, -3], [-6, 9], [6, 9], [-14, 6], [14, 6]] as const) colliders.push(palm(group, x, z, 7));
