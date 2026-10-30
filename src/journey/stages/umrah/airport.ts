@@ -16,9 +16,9 @@ export const airport: StageDef = {
       const s = AIRPORT.steps[i];
       ctx.rings.add(s.x, s.z, 1.5, () => {
         ctx.progress();
-        if (i < AIRPORT.steps.length - 1) { ctx.toast(tr('ผ่าน{step}แล้ว', { step: tr(s.label) }), 'ok'); next(i + 1); }
+        if (i < AIRPORT.steps.length - 1) { ctx.toast(tr('ผ่าน{step}แล้ว', { step: s.label }), 'ok'); next(i + 1); }
         else { ctx.toast(tr('ขึ้นเครื่องแล้ว ขอให้เดินทางปลอดภัย'), 'ok'); ctx.dua('safar'); }
-      }, { label: tr(s.label) });
+      }, { label: s.label });
     };
     next(0);
     return {
