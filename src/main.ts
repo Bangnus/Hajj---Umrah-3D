@@ -1,4 +1,5 @@
 import './ui/styles.css';
+import './i18n/en'; // registers English dictionaries before any UI is built
 import { Engine } from './engine/engine';
 import { Input } from './engine/input';
 import { Player } from './engine/player';

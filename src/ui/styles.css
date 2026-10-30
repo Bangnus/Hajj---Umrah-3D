@@ -145,6 +145,8 @@ blockquote p[lang="ar"] { font-family: var(--font-ar); font-size: 24px; color: #
 .seg button { padding: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--glass-2); font-size: 16px; font-weight: 600; }
 .seg button.on { background: rgba(52,211,155,.18); border-color: var(--accent); }
 .seg button:disabled { opacity: .4; cursor: not-allowed; }
+.lang-seg { justify-self: end; width: 180px; gap: 4px; }
+.lang-seg button { padding: 6px 8px; font-size: 13px; border-radius: 10px; }
 .seg.three { grid-template-columns: 1fr 1fr 1fr; }
 .seg.three button { font-size: 15px; padding: 11px 6px; }
 .field-note { color: var(--muted); font-size: 12.5px; line-height: 1.55; }

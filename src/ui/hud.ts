@@ -5,6 +5,7 @@ import type { Saved } from '../journey/progress';
 import type { Gender } from '../engine/player';
 import * as audio from '../engine/audio';
 import { openCertificate } from './certificate';
+import { getLang, setLang, type Lang } from '../i18n';
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 const $ = <T extends HTMLElement = HTMLElement>(root: ParentNode, sel: string) => root.querySelector(sel) as T;
@@ -134,6 +135,10 @@ export class Hud {
       el.className = 'creator';
       el.innerHTML = `
         <div class="creator-card">
+          <div class="seg lang-seg" id="langSeg">
+            <button data-lang="th" class="${getLang() === 'th' ? 'on' : ''}">ไทย</button>
+            <button data-lang="en" class="${getLang() === 'en' ? 'on' : ''}">English</button>
+          </div>
           <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
           <h1>จำลองอุมเราะฮ์และฮัจญ์ 3 มิติ</h1>
           <p class="lead">ฝึกพิธีทีละขั้นตอน พร้อมดุอาอ์ คำอ่าน และความหมายภาษาไทย</p>
@@ -174,6 +179,10 @@ export class Hud {
           <p class="disclaimer">เพื่อการเรียนรู้เบื้องต้นเท่านั้น ควรศึกษารายละเอียดเพิ่มเติมกับผู้รู้หรือคณะของคุณ</p>
         </div>`;
       this.root.appendChild(el);
+      // Switching language rebuilds everything (UI and 3D labels) by reloading.
+      el.querySelectorAll<HTMLButtonElement>('#langSeg button').forEach((b) => {
+        b.onclick = () => { if (b.dataset.lang !== getLang()) { setLang(b.dataset.lang as Lang); location.reload(); } };
+      });
       const NOTES: Record<string, Record<string, string>> = {
         route: {
           'miqat-first': 'เนียตอุมเราะฮ์บนเครื่องบินก่อนถึงเจดดาห์ ทำอุมเราะฮ์ที่มักกะฮ์ แล้วไปเยือนมะดีนะฮ์',
