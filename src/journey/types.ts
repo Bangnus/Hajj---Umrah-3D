@@ -29,6 +29,12 @@ export interface Profile {
 
 export interface Settings {
   floorLine: boolean;
+  /** Thai narration with the browser's speech synthesis. */
+  narration: boolean;
+  /** Synthesised sound effects (chimes, clicks). */
+  sfx: boolean;
+  /** Speech rate for narration and du'a reading. */
+  rate: 'slow' | 'normal';
 }
 
 export interface ActionHandle {

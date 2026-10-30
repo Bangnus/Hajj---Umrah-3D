@@ -3,6 +3,8 @@ import type { Beat } from '../journey/prayer';
 import type { ActionHandle, Mission, Profile, Settings, StageDef } from '../journey/types';
 import type { Saved } from '../journey/progress';
 import type { Gender } from '../engine/player';
+import * as audio from '../engine/audio';
+import { openCertificate } from './certificate';
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 const $ = <T extends HTMLElement = HTMLElement>(root: ParentNode, sel: string) => root.querySelector(sel) as T;
@@ -53,6 +55,7 @@ export class Hud {
       <aside class="dua-card" id="duaCard" hidden>
         <div class="dua-head">
           <span class="badge" id="duaType"></span><b id="duaTitle"></b>
+          <button class="speak-btn" id="duaSpeak" hidden></button>
           <button class="icon-btn small" id="duaMin" aria-label="ย่อ">–</button>
           <button class="icon-btn small" id="duaClose" aria-label="ปิด">×</button>
         </div>
@@ -82,7 +85,14 @@ export class Hud {
     $(root, '#nextBtn').onclick = () => this.nav?.next();
     $(root, '#backBtn').onclick = () => this.nav?.back();
     $(root, '#skipBtn').onclick = () => this.nav?.skip();
-    $(root, '#duaClose').onclick = () => { $(root, '#duaCard').hidden = true; };
+    $(root, '#duaClose').onclick = () => { $(root, '#duaCard').hidden = true; this.stopDuaSpeech(); };
+    $(root, '#duaSpeak').onclick = () => this.speakDua();
+    audio.onVoices(() => this.paintSpeak());
+    // Subtle click for every button / toggle press.
+    root.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('button, input[type="checkbox"]') as HTMLButtonElement | null;
+      if (b && !b.disabled && b.id !== 'duaSpeak') audio.sfx('click');
+    }, true);
     $(root, '#duaMin').onclick = () => $(root, '#duaCard').classList.toggle('min');
     $(root, '#menuBtn').onclick = () => $(root, '#sidebar').classList.toggle('open');
     $(root, '#sheetHandle').onclick = () => $(root, '#panel').classList.toggle('collapsed');
@@ -103,6 +113,10 @@ export class Hud {
   private duaTimer = 0;
   /** Thai name of the ritual being practised ("อุมเราะฮ์" or "ฮัจญ์"). */
   private ritual = 'อุมเราะฮ์';
+  /** Du'a currently on the card and which part the 🔊 button reads next. */
+  private curDua: Dua | null = null;
+  private duaStep = 0;
+  private duaSpeaking = false;
 
   /** Start screen. Resolves with the profile and the stage to start from. */
   showCreator(
@@ -228,6 +242,8 @@ export class Hud {
     $(r, '#mission').classList.remove('done');
     $(r, '#actions').innerHTML = '';
     $(r, '#duaCard').hidden = true;
+    this.stopDuaSpeech();
+    audio.narrate(`ขั้นที่ ${i + 1} ${def.title}. ${def.desc}`);
   }
 
   setMission(m: Mission) {
@@ -250,10 +266,17 @@ export class Hud {
     if (last) next.textContent = `จบ${this.ritual} ✨`;
     $(this.root, '#mission').classList.add('done');
     this.setHint('ภารกิจสำเร็จ กด "ไปต่อ" เพื่อไปขั้นถัดไป');
-    this.toast('✅ ภารกิจสำเร็จ', 'ok');
+    this.toast('✅ ภารกิจสำเร็จ', 'ok', false);
+    audio.sfx('complete');
+    this.stopDuaSpeech();
+    audio.narrate(last
+      ? `ภารกิจสำเร็จ คุณทำครบทุกขั้นตอนของ${this.ritual}แล้ว กดปุ่ม จบ${this.ritual} ได้เลย`
+      : 'ภารกิจสำเร็จ กดปุ่ม ไปต่อ เพื่อไปขั้นถัดไป');
   }
 
-  toast(msg: string, kind: 'ok' | 'warn' | 'info' = 'info') {
+  toast(msg: string, kind: 'ok' | 'warn' | 'info' = 'info', sound = true) {
+    if (sound && kind === 'ok') audio.sfx('chime');
+    if (sound && kind === 'warn') audio.sfx('buzz');
     const t = document.createElement('div');
     t.className = `toast ${kind}`;
     t.textContent = msg;
@@ -284,9 +307,58 @@ export class Hud {
     card.classList.remove('min', 'pop');
     void card.offsetWidth;
     card.classList.add('pop');
+    this.stopDuaSpeech();
+    this.curDua = d;
+    this.duaStep = 0;
+    this.paintSpeak();
+    audio.sfx('rise');
     // On phones the card would hide the scene: shrink it to its title after a while.
     clearTimeout(this.duaTimer);
     if (this.isPhone()) this.duaTimer = window.setTimeout(() => card.classList.add('min'), 8000);
+  }
+
+  /**
+   * Parts of the current du'a that can be read aloud: Arabic (or the Thai reading), then the meaning.
+   * Each press reads the next part (interrupting the current one); the label names what comes next.
+   */
+  private duaParts(): { text: string; lang: 'th' | 'ar'; label: string }[] {
+    const d = this.curDua;
+    if (!d) return [];
+    const parts: { text: string; lang: 'th' | 'ar'; label: string }[] = [];
+    if (d.arabic && audio.hasVoice('ar')) parts.push({ text: d.arabic, lang: 'ar', label: d.type === 'quran' ? 'ฟังอายะฮ์' : 'ฟังภาษาอาหรับ' });
+    else if (d.reading_th && audio.hasVoice('th')) parts.push({ text: d.reading_th, lang: 'th', label: 'ฟังคำอ่าน' });
+    if (d.meaning_th && audio.hasVoice('th')) parts.push({ text: d.meaning_th, lang: 'th', label: d.arabic ? 'ฟังความหมาย' : 'ฟัง' });
+    return parts;
+  }
+
+  private paintSpeak() {
+    const btn = $<HTMLButtonElement>(this.root, '#duaSpeak');
+    const parts = this.duaParts();
+    btn.hidden = parts.length === 0;
+    if (!parts.length) return;
+    const next = parts[this.duaStep % parts.length];
+    btn.textContent = `🔊 ${next.label}`;
+    btn.classList.toggle('on', this.duaSpeaking);
+    btn.setAttribute('aria-label', btn.textContent);
+  }
+
+  private speakDua() {
+    const parts = this.duaParts();
+    if (!parts.length) return;
+    const part = parts[this.duaStep % parts.length];
+    clearTimeout(this.duaTimer); // keep the card open while it is being read
+    this.duaSpeaking = audio.speak(part.text, part.lang, () => {
+      this.duaSpeaking = false;
+      this.paintSpeak();
+    });
+    if (this.duaSpeaking) this.duaStep = (this.duaStep + 1) % parts.length;
+    this.paintSpeak();
+  }
+
+  private stopDuaSpeech() {
+    audio.stopSpeech();
+    this.duaSpeaking = false;
+    this.paintSpeak();
   }
 
   action(label: string, onClick: () => void): ActionHandle {
@@ -387,35 +459,87 @@ export class Hud {
           <p>"และจงทำฮัจญ์และอุมเราะฮ์ให้สมบูรณ์เพื่ออัลลอฮ์" — อัลบะเกาะเราะฮ์ 2:196</p>
         </blockquote>
         <ol class="done-list">${stages.map((s) => `<li>✓ ${s.icon} ${esc(s.title)}</li>`).join('')}</ol>
+        <button class="btn accent cert-btn" id="certBtn">🎓 รับใบประกาศ</button>
         <div class="row">
           <button class="btn ghost" id="homeBtn">กลับหน้าแรก</button>
           <button class="btn primary" id="againBtn">ฝึกอีกครั้ง</button>
         </div>
       </div>`;
     $(this.root, '#progressFill').style.width = '100%';
+    this.stopDuaSpeech();
+    audio.sfx('complete');
+    audio.narrate(`อัลฮัมดุลิลลาฮ์ คุณ${profile.name} ทำพิธี${this.ritual}ครบทุกขั้นตอนแล้ว ขออัลลอฮ์ทรงรับการงานของคุณ`);
+    $(this.overlay, '#certBtn').onclick = () => openCertificate(this.root, { ritual: this.ritual, name: profile.name, stages });
     $(this.overlay, '#againBtn').onclick = () => { this.closeOverlays(); onRestart(); };
     $(this.overlay, '#homeBtn').onclick = () => location.reload();
   }
 
   onSettings(get: () => Settings, set: (s: Settings) => void, reset: () => void) {
+    audio.bindSettings(get);
     $(this.root, '#settingsBtn').onclick = () => {
       const s = get();
+      const tts = audio.ttsSupported();
+      const voiceRow = (lang: 'th' | 'ar', label: string) => audio.hasVoice(lang)
+        ? `<li class="ok">✓ ${label}: ${esc(audio.voiceName(lang))}</li>`
+        : `<li>✗ ${label}: ไม่พบในเครื่องนี้</li>`;
       this.overlay.hidden = false;
       this.overlay.innerHTML = `
         <div class="modal settings">
           <h3>ตั้งค่า</h3>
           <label class="switch"><input type="checkbox" id="setLine" ${s.floorLine ? 'checked' : ''}/>
             <span><b>เส้นนำทางบนลานเฏาะวาฟ</b><small>ของจริงไม่มีเส้นบนพื้น จุดเริ่มแต่ละรอบใช้ไฟสีเขียวบนผนัง (มีผลเมื่อเข้าฉากมัสยิดครั้งถัดไป)</small></span></label>
+          <label class="switch"><input type="checkbox" id="setNarr" ${s.narration ? 'checked' : ''} ${tts ? '' : 'disabled'}/>
+            <span><b>เสียงบรรยายภาษาไทย</b><small>อ่านชื่อและคำอธิบายเมื่อเริ่มแต่ละขั้นตอน และแจ้งเมื่อภารกิจสำเร็จ</small></span></label>
+          <label class="switch"><input type="checkbox" id="setSfx" ${s.sfx ? 'checked' : ''}/>
+            <span><b>เสียงประกอบ</b><small>เสียงกระดิ่งเมื่อสำเร็จ เสียงเตือน และเสียงกดปุ่ม</small></span></label>
+          <div class="field" ${tts ? '' : 'hidden'}><span>ความเร็วเสียงอ่าน</span>
+            <div class="seg" id="setRate">
+              <button data-v="slow" class="${s.rate === 'slow' ? 'on' : ''}">🐢 ช้า</button>
+              <button data-v="normal" class="${s.rate === 'normal' ? 'on' : ''}">ปกติ</button>
+            </div>
+          </div>
+          <div class="voice-box">
+            ${tts ? `<ul id="voiceList">${voiceRow('th', 'เสียงภาษาไทย')}${voiceRow('ar', 'เสียงภาษาอาหรับ')}</ul>
+              <button class="btn ghost small" id="testVoice" ${audio.hasVoice('th') ? '' : 'disabled'}>🔊 ทดลองเสียง</button>`
+              : '<p>เบราว์เซอร์นี้ไม่รองรับการอ่านออกเสียง จึงปิดเสียงบรรยายไว้</p>'}
+            <p>ตอนนี้ใช้เสียงอ่านอัตโนมัติของเบราว์เซอร์ (TTS) เป็นการชั่วคราว เราวางแผนจะใช้เสียงตัลบิยะฮ์และดุอาอ์ที่บันทึกโดยผู้อ่านที่มีความรู้ และเสียงบรรยายภาษาไทยโดยผู้บรรยายมืออาชีพ</p>
+          </div>
           <div class="row">
             <button class="btn ghost" id="resetBtn">ล้างความคืบหน้า</button>
             <button class="btn primary" id="closeSet">ปิด</button>
           </div>
         </div>`;
-      $(this.overlay, '#closeSet').onclick = () => {
-        set({ floorLine: $<HTMLInputElement>(this.overlay, '#setLine').checked });
+      const ov = this.overlay;
+      let rate: Settings['rate'] = s.rate;
+      const collect = (): Settings => ({
+        ...get(),
+        floorLine: $<HTMLInputElement>(ov, '#setLine').checked,
+        narration: $<HTMLInputElement>(ov, '#setNarr').checked,
+        sfx: $<HTMLInputElement>(ov, '#setSfx').checked,
+        rate,
+      });
+      const apply = () => {
+        const next = collect();
+        set(next);
+        if (!next.narration && !this.duaSpeaking) audio.stopSpeech();
+      };
+      ov.querySelectorAll<HTMLInputElement>('input[type="checkbox"]').forEach((c) => { c.onchange = apply; });
+      ov.querySelectorAll<HTMLButtonElement>('#setRate button').forEach((b) => {
+        b.onclick = () => {
+          rate = b.dataset.v === 'slow' ? 'slow' : 'normal';
+          ov.querySelectorAll('#setRate button').forEach((x) => x.classList.toggle('on', x === b));
+          apply();
+        };
+      });
+      const test = ov.querySelector<HTMLButtonElement>('#testVoice');
+      let tested = false;
+      if (test) test.onclick = () => { tested = audio.speak('สวัสดี นี่คือตัวอย่างเสียงบรรยายภาษาไทย', 'th') || tested; };
+      $(ov, '#closeSet').onclick = () => {
+        apply();
+        if (tested) audio.stopSpeech();
         this.closeOverlays();
       };
-      $(this.overlay, '#resetBtn').onclick = () => { reset(); location.reload(); };
+      $(ov, '#resetBtn').onclick = () => { reset(); location.reload(); };
     };
   }
 }
