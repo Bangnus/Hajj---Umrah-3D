@@ -35,6 +35,7 @@ export const sai: StageDef = {
       } else {
         ctx.toast('ครบ 7 เที่ยวแล้ว อัลฮัมดุลิลลาฮ์', 'ok');
         ctx.guide(null);
+        ctx.after(3, () => ctx.toast(`ข้อควรรู้: สะแอไม่บังคับต้องมีน้ำละหมาด แต่ถ้ามีจะดีกว่า ขั้นต่อไปคือตะฮัลลุล (${male ? 'โกนหรือตัดผม' : 'ตัดปลายผม'})`, 'info'));
       }
       return false;
     };

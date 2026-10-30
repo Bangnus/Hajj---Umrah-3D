@@ -1,4 +1,5 @@
 import { CABIN, buildCabin } from '../../../world/simple';
+import { IHRAM_PRAYER_BEATS } from '../../prayer';
 import type { StageDef } from '../../types';
 
 export const miqatPlane: StageDef = {
@@ -19,9 +20,22 @@ export const miqatPlane: StageDef = {
         ? 'ครองผ้าอิห์รอมแล้ว'
         : 'พร้อมแล้ว ผู้หญิงสวมชุดปกติที่ปกปิดมิดชิด ไม่ปิดหน้าและไม่สวมถุงมือ', 'ok');
       ctx.dua('guidance_ihram_wear');
-      ctx.hint('กดปุ่ม "กล่าวเนียตอุมเราะฮ์" เมื่อพร้อม');
+      ctx.hint('ถ้าสะดวก ละหมาดซุนนะฮ์อิห์รอม 2 ร็อกอะฮ์ก่อน (ไม่บังคับ) แล้วกดปุ่ม "กล่าวเนียตอุมเราะฮ์" เมื่อพร้อม');
+      // Optional sunnah prayer before the niyyah; does not count toward the mission.
+      const pray = ctx.action('ละหมาดซุนนะฮ์อิห์รอม 2 ร็อกอะฮ์ (ไม่บังคับ)', () => {
+        pray.remove();
+        const pl = ctx.player;
+        pl.frozen = true;
+        ctx.hud.prayer(IHRAM_PRAYER_BEATS, (beat) => pl.setPose(beat.pose), () => {
+          pl.setPose('stand');
+          pl.frozen = false;
+          ctx.toast('ละหมาดซุนนะฮ์อิห์รอมเสร็จแล้ว ต่อไปกล่าวเนียตอุมเราะฮ์ได้เลย', 'ok');
+        });
+      });
+      ctx.after(2, () => ctx.toast('ซุนนะฮ์ให้ละหมาด 2 ร็อกอะฮ์ก่อนเนียตอิห์รอม ถ้าที่บนเครื่องไม่สะดวก จะข้ามไปเนียตเลยก็ได้', 'info'));
       const btn = ctx.action('กล่าวเนียตอุมเราะฮ์', () => {
         btn.remove();
+        pray.remove();
         ctx.progress();
         ctx.dua('niyyah_umrah');
         ctx.toast('เนียตแล้ว ข้อห้ามของอิห์รอมเริ่มมีผล', 'ok');
