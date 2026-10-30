@@ -209,6 +209,7 @@ blockquote p[lang="ar"] { font-family: var(--font-ar); font-size: 24px; color: #
   .controls-hint { display: none; }
   .touch .joystick { bottom: calc(var(--sheet-h, 56vh) + 16px); width: 104px; height: 104px; }
   .touch .jog-btn { bottom: calc(var(--sheet-h, 56vh) + 40px); }
+  .touch .toasts { bottom: calc(var(--sheet-h, 56vh) + 128px); }
   .speak-btn { padding: 4px 8px; font-size: 12px; }
   .modal.cert { padding: 12px; gap: 10px; border-radius: 16px; }
   .modal.cert .row .btn { flex: 1 1 40%; }

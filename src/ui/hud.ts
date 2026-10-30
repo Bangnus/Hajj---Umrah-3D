@@ -198,14 +198,14 @@ export class Hud {
         },
       };
       const paint = () => {
-        el.querySelectorAll<HTMLElement>('.seg').forEach((seg) => {
+        el.querySelectorAll<HTMLElement>('.seg[data-key]').forEach((seg) => {
           const key = seg.dataset.key as keyof Profile;
           seg.querySelectorAll<HTMLButtonElement>('button').forEach((b) => b.classList.toggle('on', b.dataset.v === p[key]));
         });
         el.querySelectorAll<HTMLElement>('[data-show]').forEach((f) => { f.hidden = f.dataset.show !== p.mode; });
         el.querySelectorAll<HTMLElement>('[data-note]').forEach((n) => { n.textContent = NOTES[n.dataset.note!][p[n.dataset.note as 'route' | 'hajjType']]; });
       };
-      el.querySelectorAll<HTMLElement>('.seg').forEach((seg) => seg.querySelectorAll<HTMLButtonElement>('button').forEach((b) => {
+      el.querySelectorAll<HTMLElement>('.seg[data-key]').forEach((seg) => seg.querySelectorAll<HTMLButtonElement>('button').forEach((b) => {
         b.onclick = () => { (p as unknown as Record<string, string>)[seg.dataset.key!] = b.dataset.v!; paint(); };
       }));
       paint();
