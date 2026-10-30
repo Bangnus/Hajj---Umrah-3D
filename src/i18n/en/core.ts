@@ -6,6 +6,7 @@ export const EN_CORE: Record<string, string> = {
 
   // Top bar, sidebar, panel
   'รายการขั้นตอน': "Step list",
+  'ฮัจญ์ & อุมเราะฮ์ 3D': "Hajj & Umrah 3D",
   'จำลองอุมเราะฮ์และฮัจญ์': "Umrah & Hajj Simulator",
   'ฝึกพิธีแบบ 3 มิติ': "Practise the rites in 3D",
   'ความคืบหน้า': "Progress",

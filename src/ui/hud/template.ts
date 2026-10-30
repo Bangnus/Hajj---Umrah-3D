@@ -38,7 +38,7 @@ export function hudMarkup(isTouch: boolean): string {
   return `
       <header class="topbar">
         <button class="icon-btn only-mobile" id="menuBtn" aria-label="${tr('รายการขั้นตอน')}">☰</button>
-        <div class="brand"><span class="logo">🕋</span><div><b>${tr('จำลองอุมเราะฮ์และฮัจญ์')}</b><small>${tr('ฝึกพิธีแบบ 3 มิติ')}</small></div></div>
+        <div class="brand"><span class="logo">🕋</span><div><b>${tr('ฮัจญ์ & อุมเราะฮ์ 3D')}</b><small>${tr('ฝึกพิธีแบบ 3 มิติ')}</small></div></div>
         <div class="progress" aria-label="${tr('ความคืบหน้า')}"><div id="progressFill"></div></div>
         <button class="icon-btn" id="settingsBtn" aria-label="${tr('ตั้งค่า')}">⚙️</button>
       </header>

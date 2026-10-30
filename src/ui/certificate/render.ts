@@ -111,7 +111,7 @@ export function drawCertificate(canvas: HTMLCanvasElement, o: CertOptions) {
   g.textAlign = 'right';
   g.fillStyle = C.ink;
   g.font = `600 24px ${TH}`;
-  g.fillText(tr('จำลองอุมเราะฮ์และฮัจญ์ 3 มิติ'), W - 190, dateY);
+  g.fillText(tr('ฮัจญ์ & อุมเราะฮ์ 3D'), W - 190, dateY);
   g.fillStyle = C.muted;
   g.font = `400 22px ${TH}`;
   g.fillText(tr('โปรแกรมฝึกพิธีเพื่อการเรียนรู้'), W - 190, dateY + 34);

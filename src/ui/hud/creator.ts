@@ -23,7 +23,7 @@ export function showCreator(
           <button data-lang="en" class="${getLang() === 'en' ? 'on' : ''}">English</button>
         </div>
         <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-        <h1>${tr('จำลองอุมเราะฮ์และฮัจญ์ 3 มิติ')}</h1>
+        <h1>${tr('ฮัจญ์ & อุมเราะฮ์ 3D')}</h1>
         <p class="lead">${tr('ฝึกพิธีทีละขั้นตอน พร้อมดุอาอ์ คำอ่าน และความหมายภาษาไทย')}</p>
         ${saved && savedStageTitle ? `
           <div class="resume">
