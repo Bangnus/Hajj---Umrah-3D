@@ -67,7 +67,7 @@ export class Journey {
     this.player.speedMul = 1;
     this.player.frozen = false;
     this.player.setPose('stand');
-    this.player.setLook({ outfit: def.outfit, hair: 'normal' });
+    this.player.setLook({ outfit: def.outfit, hair: 'normal', idtiba: false });
 
     const ctx: StageCtx = {
       root, rings,

@@ -101,51 +101,105 @@ export class Hud {
 
   private isPhone() { return matchMedia('(max-width: 760px)').matches; }
   private duaTimer = 0;
+  /** Thai name of the ritual being practised ("อุมเราะฮ์" or "ฮัจญ์"). */
+  private ritual = 'อุมเราะฮ์';
 
   /** Start screen. Resolves with the profile and the stage to start from. */
-  showCreator(saved: Saved | null, stages: StageDef[]): Promise<{ profile: Profile; stage: number }> {
+  showCreator(
+    saved: Saved | null,
+    stagesFor: (p: Profile) => StageDef[],
+    available: { hajj: boolean; madinah: boolean },
+  ): Promise<{ profile: Profile; stage: number }> {
     return new Promise((resolve) => {
-      let gender: Gender = saved?.profile.gender ?? 'male';
+      const p: Profile = saved
+        ? { ...saved.profile }
+        : { name: '', gender: 'male', mode: 'umrah', route: 'miqat-first', hajjType: 'tamattu' };
+      if (p.mode === 'hajj' && !available.hajj) p.mode = 'umrah';
+      const savedStage = saved ? stagesFor(saved.profile)[saved.stageIndex] : undefined;
       const el = document.createElement('div');
       el.className = 'creator';
       el.innerHTML = `
         <div class="creator-card">
           <div class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
-          <h1>จำลองอุมเราะฮ์ 3 มิติ</h1>
-          <p class="lead">ฝึกพิธีอุมเราะฮ์ทีละขั้นตอน ตั้งแต่เตรียมตัวที่บ้านจนถึงตะฮัลลุล พร้อมดุอาอ์ คำอ่าน และความหมายภาษาไทย</p>
-          ${saved ? `
+          <h1>จำลองอุมเราะฮ์และฮัจญ์ 3 มิติ</h1>
+          <p class="lead">ฝึกพิธีทีละขั้นตอน พร้อมดุอาอ์ คำอ่าน และความหมายภาษาไทย</p>
+          ${saved && savedStage ? `
             <div class="resume">
-              <div><b>เดินทางต่อ</b><small>${esc(saved.profile.name || 'ผู้แสวงบุญ')} · ขั้นที่ ${saved.stageIndex + 1} ${esc(stages[saved.stageIndex]?.title ?? '')}</small></div>
+              <div><b>เดินทางต่อ</b><small>${esc(saved.profile.name || 'ผู้แสวงบุญ')} · ${saved.profile.mode === 'hajj' ? 'ฮัจญ์' : 'อุมเราะฮ์'} · ขั้นที่ ${saved.stageIndex + 1} ${esc(savedStage.title)}</small></div>
               <button class="btn primary" id="resumeBtn">ทำต่อ →</button>
             </div>` : ''}
-          <label class="field"><span>ชื่อของคุณ</span><input id="nameInput" maxlength="16" placeholder="ผู้แสวงบุญ" value="${esc(saved?.profile.name ?? '')}" /></label>
+          <label class="field"><span>ชื่อของคุณ</span><input id="nameInput" maxlength="16" placeholder="ผู้แสวงบุญ" value="${esc(p.name)}" /></label>
           <div class="field"><span>เพศ (มีผลต่อชุดอิห์รอมและข้อปฏิบัติบางอย่าง)</span>
-            <div class="seg" id="genderSeg">
-              <button data-g="male">👳 ชาย</button>
-              <button data-g="female">🧕 หญิง</button>
+            <div class="seg" data-key="gender">
+              <button data-v="male">👳 ชาย</button>
+              <button data-v="female">🧕 หญิง</button>
             </div>
           </div>
-          <button class="btn primary big" id="startBtn">เริ่มเดินทาง ${saved ? 'ใหม่' : ''} →</button>
+          <div class="field"><span>พิธีที่จะฝึก</span>
+            <div class="seg" data-key="mode">
+              <button data-v="umrah">🕋 อุมเราะฮ์</button>
+              <button data-v="hajj" ${available.hajj ? '' : 'disabled title="กำลังพัฒนา"'}>🏕️ ฮัจญ์${available.hajj ? '' : ' (เร็ว ๆ นี้)'}</button>
+            </div>
+          </div>
+          <div class="field" data-show="umrah"><span>เส้นทาง</span>
+            <div class="seg" data-key="route">
+              <button data-v="miqat-first">✈️ มีกอตก่อน</button>
+              <button data-v="madinah-first" ${available.madinah ? '' : 'disabled title="กำลังพัฒนา"'}>🕌 มะดีนะฮ์ก่อน</button>
+            </div>
+            <small class="field-note" data-note="route"></small>
+          </div>
+          <div class="field" data-show="hajj"><span>ประเภทฮัจญ์</span>
+            <div class="seg three" data-key="hajjType">
+              <button data-v="tamattu">ตะมัตตุอ์</button>
+              <button data-v="ifrad">อิฟรอด</button>
+              <button data-v="qiran">กิรอน</button>
+            </div>
+            <small class="field-note" data-note="hajjType"></small>
+          </div>
+          <button class="btn primary big" id="startBtn">เริ่มเดินทาง${saved ? 'ใหม่' : ''} →</button>
           <p class="disclaimer">เพื่อการเรียนรู้เบื้องต้นเท่านั้น ควรศึกษารายละเอียดเพิ่มเติมกับผู้รู้หรือคณะของคุณ</p>
         </div>`;
       this.root.appendChild(el);
-      const seg = $(el, '#genderSeg');
-      const paint = () => seg.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.g === gender));
-      seg.querySelectorAll('button').forEach((b) => (b.onclick = () => { gender = b.dataset.g as Gender; paint(); }));
-      paint();
-      const done = (stage: number) => {
-        const name = ($<HTMLInputElement>(el, '#nameInput').value.trim() || 'ผู้แสวงบุญ').slice(0, 16);
-        el.remove();
-        resolve({ profile: { name, gender }, stage });
+      const NOTES: Record<string, Record<string, string>> = {
+        route: {
+          'miqat-first': 'เนียตอุมเราะฮ์บนเครื่องบินก่อนถึงเจดดาห์ ทำอุมเราะฮ์ที่มักกะฮ์ แล้วไปเยือนมะดีนะฮ์',
+          'madinah-first': 'ไปเยือนมะดีนะฮ์ก่อน แล้วเนียตที่มีกอตบิอ์รอะลี (ซุลหุลัยฟะฮ์) ระหว่างทางไปมักกะฮ์',
+        },
+        hajjType: {
+          tamattu: 'ทำอุมเราะฮ์ก่อน พักจากอิห์รอม แล้วครองอิห์รอมฮัจญ์ใหม่ในวันที่ 8 — ต้องเสียดัม (แบบที่คนไทยส่วนใหญ่ทำ)',
+          ifrad: 'ครองอิห์รอมเพื่อฮัจญ์อย่างเดียวจากมีกอต — ไม่ต้องเสียดัม',
+          qiran: 'ครองอิห์รอมเพื่ออุมเราะฮ์และฮัจญ์ควบกันจากมีกอต — ต้องเสียดัม',
+        },
       };
-      $(el, '#startBtn').onclick = () => done(0);
+      const paint = () => {
+        el.querySelectorAll<HTMLElement>('.seg').forEach((seg) => {
+          const key = seg.dataset.key as keyof Profile;
+          seg.querySelectorAll<HTMLButtonElement>('button').forEach((b) => b.classList.toggle('on', b.dataset.v === p[key]));
+        });
+        el.querySelectorAll<HTMLElement>('[data-show]').forEach((f) => { f.hidden = f.dataset.show !== p.mode; });
+        el.querySelectorAll<HTMLElement>('[data-note]').forEach((n) => { n.textContent = NOTES[n.dataset.note!][p[n.dataset.note as 'route' | 'hajjType']]; });
+      };
+      el.querySelectorAll<HTMLElement>('.seg').forEach((seg) => seg.querySelectorAll<HTMLButtonElement>('button').forEach((b) => {
+        b.onclick = () => { (p as unknown as Record<string, string>)[seg.dataset.key!] = b.dataset.v!; paint(); };
+      }));
+      paint();
+      const done = (profile: Profile, stage: number) => {
+        el.remove();
+        resolve({ profile, stage });
+      };
+      $(el, '#startBtn').onclick = () => {
+        p.name = ($<HTMLInputElement>(el, '#nameInput').value.trim() || 'ผู้แสวงบุญ').slice(0, 16);
+        done(p, 0);
+      };
       const rb = el.querySelector<HTMLElement>('#resumeBtn');
-      if (rb && saved) rb.onclick = () => { gender = saved.profile.gender; done(saved.stageIndex); };
+      if (rb && saved) rb.onclick = () => done({ ...saved.profile }, saved.stageIndex);
     });
   }
 
-  setStages(stages: StageDef[]) {
+  setStages(stages: StageDef[], profile: Profile) {
     this.stageCount = stages.length;
+    this.ritual = profile.mode === 'hajj' ? 'ฮัจญ์' : 'อุมเราะฮ์';
+    $(this.root, '#sidebar h3').textContent = profile.mode === 'hajj' ? 'ขั้นตอนฮัจญ์' : 'ขั้นตอนอุมเราะฮ์';
     const list = $(this.root, '#stageList');
     list.innerHTML = stages.map((s, i) => `<li><button data-i="${i}"><span class="ico">${s.icon}</span><span>${esc(s.title)}</span></button></li>`).join('');
     list.querySelectorAll('button').forEach((b) => (b.onclick = () => {
@@ -193,7 +247,7 @@ export class Hud {
     const next = $<HTMLButtonElement>(this.root, '#nextBtn');
     next.disabled = false;
     next.classList.add('pulse');
-    if (last) next.textContent = 'จบอุมเราะฮ์ ✨';
+    if (last) next.textContent = `จบ${this.ritual} ✨`;
     $(this.root, '#mission').classList.add('done');
     this.setHint('ภารกิจสำเร็จ กด "ไปต่อ" เพื่อไปขั้นถัดไป');
     this.toast('✅ ภารกิจสำเร็จ', 'ok');
@@ -327,7 +381,7 @@ export class Hud {
       <div class="modal complete">
         <div class="big-ar" lang="ar" dir="rtl">الْحَمْدُ لِلَّهِ</div>
         <h2>อัลฮัมดุลิลลาฮ์</h2>
-        <p class="lead">${esc(profile.name)} ทำพิธีอุมเราะฮ์ครบทุกขั้นตอนแล้ว ขออัลลอฮ์ทรงรับการงานของคุณ</p>
+        <p class="lead">${esc(profile.name)} ทำพิธี${this.ritual}ครบทุกขั้นตอนแล้ว ขออัลลอฮ์ทรงรับการงานของคุณ</p>
         <blockquote>
           <p lang="ar" dir="rtl">وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ</p>
           <p>"และจงทำฮัจญ์และอุมเราะฮ์ให้สมบูรณ์เพื่ออัลลอฮ์" — อัลบะเกาะเราะฮ์ 2:196</p>

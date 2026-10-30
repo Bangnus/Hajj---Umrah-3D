@@ -21,6 +21,10 @@ export function loadProgress(): Saved | null {
     if (!raw) return null;
     const v = JSON.parse(raw);
     if (!Number.isInteger(v?.stageIndex) || v.stageIndex < 0 || !['male', 'female'].includes(v?.profile?.gender)) return null;
+    // Older saves have no journey type: default to classic Umrah.
+    v.profile.mode = v.profile.mode === 'hajj' ? 'hajj' : 'umrah';
+    v.profile.route = v.profile.route === 'madinah-first' ? 'madinah-first' : 'miqat-first';
+    v.profile.hajjType = ['tamattu', 'ifrad', 'qiran'].includes(v.profile.hajjType) ? v.profile.hajjType : 'tamattu';
     return v;
   } catch { return null; }
 }

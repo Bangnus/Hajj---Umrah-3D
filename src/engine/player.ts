@@ -10,7 +10,7 @@ export type Collider =
   | { kind: 'disc-in'; x: number; z: number; r: number };
 
 export type Gender = 'male' | 'female';
-export type Pose = 'stand' | 'raise' | 'ruku' | 'sujud' | 'sit';
+export type Pose = 'stand' | 'raise' | 'ruku' | 'sujud' | 'sit' | 'throw';
 
 export interface Look {
   gender: Gender;
@@ -18,6 +18,8 @@ export interface Look {
   skin: number;
   cloth: number;
   hair: 'normal' | 'shaved' | 'trimmed';
+  /** Men in ihram: right shoulder uncovered (during tawaf al-qudum / umrah tawaf). */
+  idtiba?: boolean;
 }
 
 const WHITE = 0xf4f2ec;
@@ -110,11 +112,15 @@ export class Player {
     // Torso.
     const torsoColor = male && ihram ? WHITE : cloth;
     add(this.upper, new THREE.CylinderGeometry(0.2, 0.23, 0.62, 16), torsoColor, 0, 0.33, 0);
-    if (male && ihram) {
+    const idtiba = male && ihram && !!L.idtiba;
+    if (idtiba) {
       // Rida draped over the left shoulder; right shoulder bare (idtiba).
       const sash = add(this.upper, new THREE.BoxGeometry(0.1, 0.72, 0.44), WHITE, -0.12, 0.38, 0);
       sash.rotation.z = 0.5;
       add(this.upper, new THREE.SphereGeometry(0.1, 10, 8), skin, 0.18, 0.6, 0);
+    } else if (male && ihram) {
+      // Rida covering both shoulders.
+      add(this.upper, new THREE.SphereGeometry(0.27, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2.4), WHITE, 0, 0.56, 0);
     }
 
     // Neck + head.
@@ -139,7 +145,7 @@ export class Player {
     this.armL.position.set(-0.27, 0.58, 0);
     this.armR.position.set(0.27, 0.58, 0);
     this.upper.add(this.armL, this.armR);
-    const sleeveR = male && ihram ? skin : torsoColor;
+    const sleeveR = idtiba ? skin : male && ihram ? WHITE : torsoColor;
     add(this.armL, new THREE.CylinderGeometry(0.06, 0.055, 0.58, 10), torsoColor, 0, -0.29, 0);
     add(this.armR, new THREE.CylinderGeometry(0.06, 0.055, 0.58, 10), sleeveR, 0, -0.29, 0);
     add(this.armL, new THREE.SphereGeometry(0.055, 8, 6), skin, 0, -0.6, 0);
@@ -236,6 +242,8 @@ export class Player {
       hipsY = 0.42; upperX = 2.1; legX = -1.6; armLX = -2.0; armRX = -2.0;
     } else if (this.pose === 'sit') {
       hipsY = 0.36; legX = -1.55; upperX = 0.05;
+    } else if (this.pose === 'throw') {
+      armRX = -2.2; armRZ = -0.1; upperX = -0.08;
     }
 
     this.hips.position.y += (hipsY - this.hips.position.y) * k;

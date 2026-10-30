@@ -13,9 +13,18 @@ export interface Mission {
   total: number;
 }
 
+export type Mode = 'umrah' | 'hajj';
+export type Route = 'miqat-first' | 'madinah-first';
+export type HajjType = 'tamattu' | 'ifrad' | 'qiran';
+
 export interface Profile {
   name: string;
   gender: Gender;
+  mode: Mode;
+  /** Umrah only: miqat first (classic) or visit Madinah first. */
+  route: Route;
+  /** Hajj only. */
+  hajjType: HajjType;
 }
 
 export interface Settings {
