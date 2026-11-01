@@ -19,6 +19,8 @@ export interface Dua {
   source_en: string;
   grade_en: string;
   note_en: string;
+  /** Optional URL to a real audio recitation file (e.g. EveryAyah MP3). */
+  audio?: string;
 }
 
 export const DUA_TYPE_TH: Record<Dua['type'], string> = {

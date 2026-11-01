@@ -16,7 +16,7 @@ export function bindShellEvents(root: HTMLElement, getNav: () => Nav | null) {
   $(root, '#skipBtn').onclick = () => getNav()?.skip();
   root.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest('button, input[type="checkbox"]') as HTMLButtonElement | null;
-    if (b && !b.disabled && b.id !== 'duaSpeak') audio.sfx('click');
+    if (b && !b.disabled && !b.classList.contains('dua-audio-btn')) audio.sfx('click');
     if (b && document.activeElement === b) b.blur();
   }, true);
   $(root, '#duaMin').onclick = () => $(root, '#duaCard').classList.toggle('min');
@@ -87,7 +87,6 @@ export function hudMarkup(isTouch: boolean): string {
             <span class="dua-counter" id="duaCounter">1/1</span>
             <button class="icon-btn small" id="duaNext" aria-label="${tr('ถัดไป')}" title="${tr('ดุอาอ์ถัดไป')}">▶</button>
           </div>
-          <button class="speak-btn" id="duaSpeak" hidden></button>
           <button class="icon-btn small" id="duaMin" aria-label="${tr('ย่อ')}">–</button>
           <button class="icon-btn small" id="duaClose" aria-label="${tr('ปิด')}">×</button>
         </div>
@@ -97,6 +96,20 @@ export function hudMarkup(isTouch: boolean): string {
           <p class="meaning" id="duaMeaning"></p>
           <p class="note" id="duaNote"></p>
           <p class="src" id="duaSrc"></p>
+        </div>
+        <div class="dua-audio-bar" id="duaAudioBar">
+          <button class="dua-audio-btn primary" id="duaPlayAr">
+            <span id="duaPlayArIco">🔊</span> <span id="duaPlayArLabel">${tr('ฟังภาษาอาหรับ')}</span>
+          </button>
+          <button class="dua-audio-btn" id="duaPlayTh">
+            <span>🗣️</span> <span>${tr('ฟังคำอ่าน')}</span>
+          </button>
+          <button class="dua-audio-btn" id="duaPlayMeaning">
+            <span>💬</span> <span>${tr('ฟังความหมาย')}</span>
+          </button>
+          <button class="dua-audio-btn stop" id="duaAudioStop" hidden title="${tr('หยุดเสียง')}">
+            <span>⏹</span> <span>${tr('หยุด')}</span>
+          </button>
         </div>
       </aside>
       <div class="toasts" id="toasts" aria-live="polite"></div>

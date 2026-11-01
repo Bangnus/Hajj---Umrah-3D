@@ -1,4 +1,5 @@
 import { localDua, type Dua } from '../../content/duaTypes';
+import { getActiveAudioKind, hasRealAudio, playDuaArabic, playDuaMeaning, playDuaReading, stopDuaAudio } from '../../content/duaAudio';
 import * as audio from '../../engine/audio';
 import { tr } from '../../i18n';
 import { $, isPhone } from './template';
@@ -8,20 +9,28 @@ export class DuaPanel {
   private history: Dua[] = [];
   private curIdx = -1;
   private curDua: Dua | null = null;
-  private duaStep = 0;
-  private duaSpeaking = false;
 
   constructor(private readonly root: HTMLElement) {
     $(root, '#duaClose').onclick = () => { $(root, '#duaCard').hidden = true; this.stopSpeech(); };
-    $(root, '#duaSpeak').onclick = () => this.speak();
     const prev = root.querySelector<HTMLButtonElement>('#duaPrev');
     const next = root.querySelector<HTMLButtonElement>('#duaNext');
-    if (prev) prev.onclick = () => { if (this.curIdx > 0) { this.curIdx--; this.renderCurrent(); } };
-    if (next) next.onclick = () => { if (this.curIdx < this.history.length - 1) { this.curIdx++; this.renderCurrent(); } };
-    audio.onVoices(() => this.paintSpeak());
+    if (prev) prev.onclick = () => { if (this.curIdx > 0) { this.stopSpeech(); this.curIdx--; this.renderCurrent(); } };
+    if (next) next.onclick = () => { if (this.curIdx < this.history.length - 1) { this.stopSpeech(); this.curIdx++; this.renderCurrent(); } };
+
+    const playAr = root.querySelector<HTMLButtonElement>('#duaPlayAr');
+    const playTh = root.querySelector<HTMLButtonElement>('#duaPlayTh');
+    const playMeaning = root.querySelector<HTMLButtonElement>('#duaPlayMeaning');
+    const stopBtn = root.querySelector<HTMLButtonElement>('#duaAudioStop');
+
+    if (playAr) playAr.onclick = () => this.toggleAudio('ar');
+    if (playTh) playTh.onclick = () => this.toggleAudio('th');
+    if (playMeaning) playMeaning.onclick = () => this.toggleAudio('meaning');
+    if (stopBtn) stopBtn.onclick = () => this.stopSpeech();
+
+    audio.onVoices(() => this.updateAudioUi());
   }
 
-  isSpeaking() { return this.duaSpeaking; }
+  isSpeaking() { return !!getActiveAudioKind(); }
 
   show(d: Dua) {
     const existing = this.history.findIndex((x) => x.id === d.id);
@@ -34,11 +43,46 @@ export class DuaPanel {
     audio.sfx('rise');
   }
 
+  private toggleAudio(kind: 'ar' | 'th' | 'meaning') {
+    if (!this.curDua) return;
+    clearTimeout(this.duaTimer);
+    if (getActiveAudioKind() === kind) {
+      this.stopSpeech();
+      return;
+    }
+    const onEnd = () => this.updateAudioUi();
+    if (kind === 'ar') playDuaArabic(this.curDua, onEnd);
+    else if (kind === 'th') playDuaReading(this.curDua, onEnd);
+    else if (kind === 'meaning') playDuaMeaning(this.curDua, onEnd);
+    this.updateAudioUi();
+  }
+
+  private updateAudioUi() {
+    const r = this.root;
+    const kind = getActiveAudioKind();
+    const playAr = r.querySelector<HTMLButtonElement>('#duaPlayAr');
+    const playTh = r.querySelector<HTMLButtonElement>('#duaPlayTh');
+    const playMeaning = r.querySelector<HTMLButtonElement>('#duaPlayMeaning');
+    const stopBtn = r.querySelector<HTMLButtonElement>('#duaAudioStop');
+
+    if (playAr) playAr.classList.toggle('playing', kind === 'ar');
+    if (playTh) playTh.classList.toggle('playing', kind === 'th');
+    if (playMeaning) playMeaning.classList.toggle('playing', kind === 'meaning');
+    if (stopBtn) stopBtn.hidden = !kind;
+
+    if (this.curDua && playAr) {
+      const isReal = hasRealAudio(this.curDua);
+      const ico = r.querySelector('#duaPlayArIco');
+      const lbl = r.querySelector('#duaPlayArLabel');
+      if (ico) ico.textContent = isReal ? '🎙️' : '🔊';
+      if (lbl) lbl.textContent = isReal ? tr('ฟังเสียงจริง') : tr('ฟังภาษาอาหรับ');
+    }
+  }
+
   private renderCurrent() {
     if (this.curIdx < 0 || this.curIdx >= this.history.length) return;
     const d = this.history[this.curIdx];
     this.curDua = d;
-    this.duaStep = 0;
     const r = this.root;
     const card = $(r, '#duaCard');
     const t = localDua(d);
@@ -64,56 +108,24 @@ export class DuaPanel {
     if (prev) prev.disabled = this.curIdx <= 0;
     if (next) next.disabled = this.curIdx >= this.history.length - 1;
 
+    const playTh = r.querySelector<HTMLButtonElement>('#duaPlayTh');
+    const playMeaning = r.querySelector<HTMLButtonElement>('#duaPlayMeaning');
+    if (playTh) playTh.hidden = !t.reading;
+    if (playMeaning) playMeaning.hidden = !t.meaning;
+
     card.hidden = false;
     card.classList.remove('min', 'pop');
     void card.offsetWidth;
     card.classList.add('pop');
     this.stopSpeech();
-    this.paintSpeak();
+    this.updateAudioUi();
 
     clearTimeout(this.duaTimer);
     if (isPhone()) this.duaTimer = window.setTimeout(() => card.classList.add('min'), 45000);
   }
 
-  private duaParts(): { text: string; lang: audio.VoiceLang; label: string }[] {
-    const d = this.curDua;
-    if (!d) return [];
-    const t = localDua(d);
-    const nl = audio.narrationLang();
-    const parts: { text: string; lang: audio.VoiceLang; label: string }[] = [];
-    if (d.arabic && audio.hasVoice('ar')) parts.push({ text: d.arabic, lang: 'ar', label: d.type === 'quran' ? tr('ฟังอายะฮ์') : tr('ฟังภาษาอาหรับ') });
-    else if (t.reading && audio.hasVoice(nl)) parts.push({ text: t.reading, lang: nl, label: tr('ฟังคำอ่าน') });
-    if (t.meaning && audio.hasVoice(nl)) parts.push({ text: t.meaning, lang: nl, label: d.arabic ? tr('ฟังความหมาย') : tr('ฟัง') });
-    return parts;
-  }
-
-  paintSpeak() {
-    const btn = $<HTMLButtonElement>(this.root, '#duaSpeak');
-    const parts = this.duaParts();
-    btn.hidden = parts.length === 0;
-    if (!parts.length) return;
-    const next = parts[this.duaStep % parts.length];
-    btn.textContent = `🔊 ${next.label}`;
-    btn.classList.toggle('on', this.duaSpeaking);
-    btn.setAttribute('aria-label', btn.textContent);
-  }
-
-  private speak() {
-    const parts = this.duaParts();
-    if (!parts.length) return;
-    const part = parts[this.duaStep % parts.length];
-    clearTimeout(this.duaTimer);
-    this.duaSpeaking = audio.speak(part.text, part.lang, () => {
-      this.duaSpeaking = false;
-      this.paintSpeak();
-    });
-    if (this.duaSpeaking) this.duaStep = (this.duaStep + 1) % parts.length;
-    this.paintSpeak();
-  }
-
   stopSpeech() {
-    audio.stopSpeech();
-    this.duaSpeaking = false;
-    this.paintSpeak();
+    stopDuaAudio();
+    this.updateAudioUi();
   }
 }
