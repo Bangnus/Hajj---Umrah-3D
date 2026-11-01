@@ -80,3 +80,4 @@ export function playDuaMeaning(d: Dua, onEnd?: () => void): boolean {
   const lang = audio.narrationLang();
   return audio.speak(t.meaning, lang, () => { currentKind = null; onEnd?.(); });
 }
+
