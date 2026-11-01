@@ -15,7 +15,6 @@ export function twoRakaat(intent: string, anySurah: boolean): Beat[] {
       return { ...b, text: tr('หันหน้าไปทางกิบลัต ยกมือขึ้นระดับหูหรือไหล่ กล่าว "อัลลอฮุอักบัร" พร้อมตั้งเจตนาในใจว่าจะ{intent} 2 ร็อกอะฮ์', { intent }) };
     }
     if (!anySurah) return b;
-    // Beat 1 / 7 = standing in rakaah 1 / 2 (by index: titles may be translated).
     if (i === 1) return { ...b, text: tr('วางมือขวาทับมือซ้ายที่อก อ่านซูเราะฮ์อัลฟาติหะฮ์ ตามด้วยซูเราะฮ์หรืออายะฮ์ใดก็ได้ที่คุณอ่านได้') };
     if (i === 7) return { ...b, text: tr('กล่าว "อัลลอฮุอักบัร" แล้วลุกขึ้นยืน อ่านซูเราะฮ์อัลฟาติหะฮ์ ตามด้วยซูเราะฮ์หรืออายะฮ์ใดก็ได้') };
     return b;
@@ -25,9 +24,11 @@ export function twoRakaat(intent: string, anySurah: boolean): Beat[] {
 /** Freeze the player facing `yaw`, run the prayer overlay, then release. */
 export function pray(ctx: StageCtx, beats: Beat[], yaw: number, done: () => void) {
   const pl = ctx.player;
+  ctx.input.reset();
   pl.yaw = yaw;
   pl.frozen = true;
   ctx.hud.prayer(beats, (b) => pl.setPose(b.pose), () => {
+    ctx.input.reset();
     pl.setPose('stand');
     pl.frozen = false;
     done();
@@ -37,6 +38,7 @@ export function pray(ctx: StageCtx, beats: Beat[], yaw: number, done: () => void
 /** Put the player at a spot (optionally switching the keep-inside zone), camera behind. */
 export function place(ctx: StageCtx, p: { x: number; z: number }, yaw: number, zone?: Zone, shape?: Shape | null) {
   if (zone && shape) zone.set(shape);
+  ctx.input.reset();
   ctx.player.pos.set(p.x, 0, p.z);
   ctx.player.yaw = yaw;
   ctx.input.yaw = yaw + Math.PI;
@@ -47,6 +49,7 @@ export function place(ctx: StageCtx, p: { x: number; z: number }, yaw: number, z
  * then fade back. The overlay always removes itself, even if the stage changes meanwhile.
  */
 export function travel(ctx: StageCtx, caption: string, fn: () => void, hold = 1.6) {
+  ctx.input.reset();
   const el = document.createElement('div');
   el.style.cssText = 'position:fixed;inset:0;z-index:4;pointer-events:none;display:flex;align-items:center;justify-content:center;'
     + 'padding:24px;text-align:center;background:#0d2622;color:#f2d06b;font:600 22px "Noto Sans Thai",sans-serif;opacity:0;transition:opacity .45s';
@@ -55,7 +58,10 @@ export function travel(ctx: StageCtx, caption: string, fn: () => void, hold = 1.
   requestAnimationFrame(() => { el.style.opacity = '1'; });
   ctx.player.frozen = true;
   ctx.after(0.55, () => { fn(); });
-  ctx.after(hold, () => { ctx.player.frozen = false; });
+  ctx.after(hold, () => {
+    ctx.input.reset();
+    ctx.player.frozen = false;
+  });
   window.setTimeout(() => { el.style.opacity = '0'; }, hold * 1000);
   window.setTimeout(() => el.remove(), hold * 1000 + 600);
 }

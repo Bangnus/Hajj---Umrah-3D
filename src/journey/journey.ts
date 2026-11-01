@@ -64,6 +64,7 @@ export class Journey {
     this.player.frozen = false;
     this.player.setPose('stand');
     this.player.setLook({ outfit: def.outfit, hair: 'normal', idtiba: false });
+    this.input.reset();
     this.engine.setTimeOfDay(null);
 
     const ctx: StageCtx = {
@@ -79,7 +80,6 @@ export class Journey {
         this.player.colliders.push(...s.colliders);
         if (s.tick) cur.ticks.push(s.tick);
       },
-      // Callbacks from overlays/timers may land after a stage change: ignore them then.
       progress: (n = 1) => { if (this.cur === cur) this.progress(n); },
       count: () => this.count,
       toast: (m, k) => { if (this.cur === cur) this.hud.toast(m, k); },
@@ -115,6 +115,7 @@ export class Journey {
   private teardown() {
     const c = this.cur;
     if (!c) return;
+    this.input.reset();
     c.timers.forEach(clearTimeout);
     c.actions.forEach((a) => a.remove());
     this.hud.closeOverlays();
@@ -143,7 +144,6 @@ export class Journey {
   private tick(dt: number) {
     const c = this.cur;
     if (!c) return;
-    // No walking or ring triggers while a dialog (settings, prayer, zamzam) is open.
     const modal = this.hud.isOverlayOpen();
     this.input.enabled = !modal;
     this.player.update(dt, this.input);
@@ -153,7 +153,6 @@ export class Journey {
     followCamera(this.engine.camera, this.player, this.input, dt);
     this.engine.followSun(this.player.pos);
 
-    // Update 3D waypoint beacon and floor direction arrow
     const tgt = this.guideTarget ?? c.rings.nearest(this.player.pos);
     const active = this.count < this.total;
     this.guide.update(dt, this.player.pos, tgt, active, this.player.frozen);

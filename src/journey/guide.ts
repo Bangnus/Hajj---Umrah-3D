@@ -109,3 +109,4 @@ export class GuideSystem {
     (this.beaconCone.material as THREE.Material).dispose();
   }
 }
+

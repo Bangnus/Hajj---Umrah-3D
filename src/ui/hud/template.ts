@@ -17,6 +17,7 @@ export function bindShellEvents(root: HTMLElement, getNav: () => Nav | null) {
   root.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest('button, input[type="checkbox"]') as HTMLButtonElement | null;
     if (b && !b.disabled && b.id !== 'duaSpeak') audio.sfx('click');
+    if (b && document.activeElement === b) b.blur();
   }, true);
   $(root, '#duaMin').onclick = () => $(root, '#duaCard').classList.toggle('min');
   $(root, '#menuBtn').onclick = () => $(root, '#sidebar').classList.toggle('open');

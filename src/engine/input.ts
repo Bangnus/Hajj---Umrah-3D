@@ -4,20 +4,32 @@ export class Input {
   pitch = 0.32;
   dist = 7;
   jog = false;
-  enabled = true;
+  private _enabled = true;
+
+  get enabled() { return this._enabled; }
+  set enabled(v: boolean) {
+    if (!v && this._enabled) this.reset();
+    this._enabled = v;
+  }
 
   private readonly keys = new Set<string>();
   private joy = { x: 0, y: 0 };
   private touchJog = false;
+  private resetKnob?: () => void;
 
   constructor(canvas: HTMLCanvasElement, joystick: HTMLElement, knob: HTMLElement, jogBtn: HTMLElement) {
+    const clearAll = () => this.reset();
+
     addEventListener('keydown', (e) => {
-      if (isTyping(e.target)) return;
+      if (!this._enabled || isTyping(e.target)) return;
       this.keys.add(e.code);
       if (e.code === 'Space') e.preventDefault();
     });
     addEventListener('keyup', (e) => this.keys.delete(e.code));
-    addEventListener('blur', () => this.keys.clear());
+    addEventListener('blur', clearAll);
+    addEventListener('focus', clearAll);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) clearAll(); });
+    addEventListener('contextmenu', clearAll);
 
     // Drag anywhere on the canvas to orbit the camera.
     let drag: { id: number; x: number; y: number } | null = null;
@@ -31,9 +43,12 @@ export class Input {
       this.pitch = clamp(this.pitch + (e.clientY - drag.y) * 0.004, 0.06, 1.25);
       drag.x = e.clientX; drag.y = e.clientY;
     });
-    const end = (e: PointerEvent) => { if (drag?.id === e.pointerId) drag = null; };
+    const end = (e: PointerEvent) => { if (!drag || drag.id === e.pointerId) drag = null; };
     canvas.addEventListener('pointerup', end);
     canvas.addEventListener('pointercancel', end);
+    canvas.addEventListener('lostpointercapture', () => { drag = null; });
+    window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', end);
     canvas.addEventListener('wheel', (e) => {
       e.preventDefault();
       this.dist = clamp(this.dist * (1 + Math.sign(e.deltaY) * 0.1), 2.5, 22);
@@ -44,6 +59,8 @@ export class Input {
     let jid: number | null = null;
     let cx = 0, cy = 0;
     const setKnob = (dx: number, dy: number) => { knob.style.transform = `translate(${dx}px, ${dy}px)`; };
+    this.resetKnob = () => { jid = null; setKnob(0, 0); };
+
     joystick.addEventListener('pointerdown', (e) => {
       jid = e.pointerId;
       const r = joystick.getBoundingClientRect();
@@ -60,25 +77,43 @@ export class Input {
       this.joy = { x: dx / R, y: -dy / R };
     };
     joystick.addEventListener('pointermove', move);
-    const jend = (e: PointerEvent) => {
-      if (e.pointerId !== jid) return;
-      jid = null; this.joy = { x: 0, y: 0 }; setKnob(0, 0);
+    const jend = (e?: PointerEvent) => {
+      if (e && jid !== null && e.pointerId !== jid && e.type !== 'lostpointercapture') return;
+      this.resetJoy();
     };
     joystick.addEventListener('pointerup', jend);
     joystick.addEventListener('pointercancel', jend);
+    joystick.addEventListener('lostpointercapture', jend);
+    window.addEventListener('pointerup', jend);
+    window.addEventListener('pointercancel', jend);
+
     jogBtn.addEventListener('click', () => {
       this.touchJog = !this.touchJog;
       jogBtn.classList.toggle('on', this.touchJog);
     });
   }
 
+  private resetJoy() {
+    this.joy = { x: 0, y: 0 };
+    if (this.resetKnob) this.resetKnob();
+  }
+
+  reset() {
+    this.keys.clear();
+    this.resetJoy();
+  }
+
   /** Movement intent: x = right, y = forward, length ≤ 1. */
   axis(): { x: number; y: number } {
-    if (!this.enabled) return { x: 0, y: 0 };
+    if (!this._enabled) {
+      if (this.keys.size > 0 || this.joy.x !== 0 || this.joy.y !== 0) this.reset();
+      return { x: 0, y: 0 };
+    }
     const k = this.keys;
     let x = (k.has('KeyD') || k.has('ArrowRight') ? 1 : 0) - (k.has('KeyA') || k.has('ArrowLeft') ? 1 : 0);
     let y = (k.has('KeyW') || k.has('ArrowUp') ? 1 : 0) - (k.has('KeyS') || k.has('ArrowDown') ? 1 : 0);
-    x += this.joy.x; y += this.joy.y;
+    const jlen = Math.hypot(this.joy.x, this.joy.y);
+    if (jlen > 0.08) { x += this.joy.x; y += this.joy.y; }
     const len = Math.hypot(x, y);
     if (len > 1) { x /= len; y /= len; }
     this.jog = k.has('ShiftLeft') || k.has('ShiftRight') || this.touchJog;
