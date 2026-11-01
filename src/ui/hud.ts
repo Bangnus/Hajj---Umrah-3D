@@ -24,7 +24,6 @@ export class Hud {
   private toastBox: HTMLElement;
   private overlay: HTMLElement;
   private duaPanel: DuaPanel;
-  /** Thai name of the ritual being practised ("อุมเราะฮ์" or "ฮัจญ์"). */
   private ritual = 'อุมเราะฮ์';
 
   constructor(root: HTMLElement, private readonly isTouch: boolean) {
@@ -42,7 +41,6 @@ export class Hud {
 
   onNav(n: Nav) { this.nav = n; }
 
-  /** Start screen. Resolves with the profile and the stage to start from. */
   showCreator(
     saved: Saved | null,
     savedStageTitle?: string,
@@ -80,6 +78,8 @@ export class Hud {
     next.disabled = true;
     next.classList.remove('pulse');
     next.textContent = tr('ไปต่อ →');
+    const prompt = r.querySelector<HTMLElement>('#nextPrompt');
+    if (prompt) prompt.classList.remove('show');
     $(r, '#mission').classList.remove('done');
     $(r, '#actions').innerHTML = '';
     $(r, '#duaCard').hidden = true;
@@ -105,9 +105,14 @@ export class Hud {
     next.disabled = false;
     next.classList.add('pulse');
     if (last) next.textContent = tr('จบ{ritual} ✨', { ritual: ritualName(this.ritual) });
+    const prompt = this.root.querySelector<HTMLElement>('#nextPrompt');
+    if (prompt) {
+      prompt.textContent = last ? `👉 ${tr('กดจบ{ritual}', { ritual: ritualName(this.ritual) })}` : `👉 ${tr('กดไปต่อ')}`;
+      prompt.classList.add('show');
+    }
     $(this.root, '#mission').classList.add('done');
     this.setHint(tr('ภารกิจสำเร็จ กด "ไปต่อ" เพื่อไปขั้นถัดไป'));
-    this.toast(tr('✅ ภารกิจสำเร็จ'), 'ok', false);
+    this.toast(tr('✅ ภารกิจสำเร็จ กด "ไปต่อ" ได้เลย'), 'ok', false);
     audio.sfx('complete');
     this.duaPanel.stopSpeech();
     audio.narrate(last
@@ -123,15 +128,16 @@ export class Hud {
     t.textContent = msg;
     this.toastBox.appendChild(t);
     while (this.toastBox.children.length > 3) this.toastBox.firstElementChild!.remove();
-    setTimeout(() => t.classList.add('out'), 4200);
-    setTimeout(() => t.remove(), 4700);
+    const dur = Math.min(12000, Math.max(5500, msg.length * 85));
+    setTimeout(() => t.classList.add('out'), dur);
+    setTimeout(() => t.remove(), dur + 500);
   }
 
   dua(d: Dua) { this.duaPanel.show(d); }
 
   action(label: string, onClick: () => void): ActionHandle {
     const b = document.createElement('button');
-    b.className = 'btn accent';
+    b.className = 'btn accent action-pulse';
     b.textContent = label;
     b.onclick = onClick;
     $(this.root, '#actions').appendChild(b);
@@ -149,12 +155,10 @@ export class Hud {
     this.overlay.innerHTML = '';
   }
 
-  /** Step-by-step prayer guide with a minimum time per position. */
   prayer(beats: Beat[], onBeat: (b: Beat) => void, onDone: () => void) {
     showPrayerModal(this.overlay, () => this.closeOverlays(), beats, onBeat, onDone);
   }
 
-  /** Drink Zamzam in three sips. */
   zamzam(onDone: () => void) {
     showZamzamModal(this.overlay, () => this.closeOverlays(), onDone);
   }

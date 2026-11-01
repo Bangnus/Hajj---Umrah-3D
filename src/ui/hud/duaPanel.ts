@@ -5,7 +5,8 @@ import { $, isPhone } from './template';
 
 export class DuaPanel {
   private duaTimer = 0;
-  /** Du'a currently on the card and which part the 🔊 button reads next. */
+  private history: Dua[] = [];
+  private curIdx = -1;
   private curDua: Dua | null = null;
   private duaStep = 0;
   private duaSpeaking = false;
@@ -13,12 +14,31 @@ export class DuaPanel {
   constructor(private readonly root: HTMLElement) {
     $(root, '#duaClose').onclick = () => { $(root, '#duaCard').hidden = true; this.stopSpeech(); };
     $(root, '#duaSpeak').onclick = () => this.speak();
+    const prev = root.querySelector<HTMLButtonElement>('#duaPrev');
+    const next = root.querySelector<HTMLButtonElement>('#duaNext');
+    if (prev) prev.onclick = () => { if (this.curIdx > 0) { this.curIdx--; this.renderCurrent(); } };
+    if (next) next.onclick = () => { if (this.curIdx < this.history.length - 1) { this.curIdx++; this.renderCurrent(); } };
     audio.onVoices(() => this.paintSpeak());
   }
 
   isSpeaking() { return this.duaSpeaking; }
 
   show(d: Dua) {
+    const existing = this.history.findIndex((x) => x.id === d.id);
+    if (existing >= 0) this.curIdx = existing;
+    else {
+      this.history.push(d);
+      this.curIdx = this.history.length - 1;
+    }
+    this.renderCurrent();
+    audio.sfx('rise');
+  }
+
+  private renderCurrent() {
+    if (this.curIdx < 0 || this.curIdx >= this.history.length) return;
+    const d = this.history[this.curIdx];
+    this.curDua = d;
+    this.duaStep = 0;
     const r = this.root;
     const card = $(r, '#duaCard');
     const t = localDua(d);
@@ -36,24 +56,25 @@ export class DuaPanel {
     note.textContent = t.note ? `💡 ${t.note}` : '';
     note.hidden = !t.note;
     $(r, '#duaSrc').textContent = tr('ที่มา: {source} · {grade}', { source: t.source, grade: t.grade });
+
+    const counter = r.querySelector('#duaCounter');
+    if (counter) counter.textContent = `${this.curIdx + 1}/${this.history.length}`;
+    const prev = r.querySelector<HTMLButtonElement>('#duaPrev');
+    const next = r.querySelector<HTMLButtonElement>('#duaNext');
+    if (prev) prev.disabled = this.curIdx <= 0;
+    if (next) next.disabled = this.curIdx >= this.history.length - 1;
+
     card.hidden = false;
     card.classList.remove('min', 'pop');
     void card.offsetWidth;
     card.classList.add('pop');
     this.stopSpeech();
-    this.curDua = d;
-    this.duaStep = 0;
     this.paintSpeak();
-    audio.sfx('rise');
-    // On phones the card would hide the scene: shrink it to its title after a while.
+
     clearTimeout(this.duaTimer);
-    if (isPhone()) this.duaTimer = window.setTimeout(() => card.classList.add('min'), 8000);
+    if (isPhone()) this.duaTimer = window.setTimeout(() => card.classList.add('min'), 45000);
   }
 
-  /**
-   * Parts of the current du'a that can be read aloud: Arabic (or the reading), then the meaning, in the UI language.
-   * Each press reads the next part (interrupting the current one); the label names what comes next.
-   */
   private duaParts(): { text: string; lang: audio.VoiceLang; label: string }[] {
     const d = this.curDua;
     if (!d) return [];
@@ -81,7 +102,7 @@ export class DuaPanel {
     const parts = this.duaParts();
     if (!parts.length) return;
     const part = parts[this.duaStep % parts.length];
-    clearTimeout(this.duaTimer); // keep the card open while it is being read
+    clearTimeout(this.duaTimer);
     this.duaSpeaking = audio.speak(part.text, part.lang, () => {
       this.duaSpeaking = false;
       this.paintSpeak();

@@ -3,7 +3,6 @@ import { tr } from '../../i18n';
 
 export const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 export const $ = <T extends HTMLElement = HTMLElement>(root: ParentNode, sel: string) => root.querySelector(sel) as T;
-/** The default name is saved in whichever language was active: show it in the current one. */
 export const isDefaultName = (n: string) => !n.trim() || n === 'ผู้แสวงบุญ' || n === 'Pilgrim';
 export const displayName = (n: string) => (isDefaultName(n) ? tr('ผู้แสวงบุญ') : n);
 export const ritualName = (ritual: string) => (ritual === 'ฮัจญ์' ? tr('ฮัจญ์') : tr('อุมเราะฮ์'));
@@ -15,7 +14,6 @@ export function bindShellEvents(root: HTMLElement, getNav: () => Nav | null) {
   $(root, '#nextBtn').onclick = () => getNav()?.next();
   $(root, '#backBtn').onclick = () => getNav()?.back();
   $(root, '#skipBtn').onclick = () => getNav()?.skip();
-  // Subtle click for every button / toggle press.
   root.addEventListener('click', (e) => {
     const b = (e.target as HTMLElement).closest('button, input[type="checkbox"]') as HTMLButtonElement | null;
     if (b && !b.disabled && b.id !== 'duaSpeak') audio.sfx('click');
@@ -23,8 +21,16 @@ export function bindShellEvents(root: HTMLElement, getNav: () => Nav | null) {
   $(root, '#duaMin').onclick = () => $(root, '#duaCard').classList.toggle('min');
   $(root, '#menuBtn').onclick = () => $(root, '#sidebar').classList.toggle('open');
   $(root, '#sheetHandle').onclick = () => $(root, '#panel').classList.toggle('collapsed');
+  const resetBtn = root.querySelector<HTMLButtonElement>('#resetJourneyBtn');
+  if (resetBtn) {
+    resetBtn.onclick = () => {
+      if (window.confirm(tr('ต้องการเริ่มการเดินทางใหม่ตั้งแต่ขั้นตอนแรกใช่หรือไม่?'))) {
+        localStorage.removeItem('umrahsim:progress:v1');
+        window.location.replace(window.location.pathname + '?new=1');
+      }
+    };
+  }
   setTimeout(() => $(root, '#controlsHint').classList.add('fade'), 12000);
-  // Expose the panel height so phone controls can sit just above the bottom sheet.
   const panel = $(root, '#panel');
   if (isPhone()) panel.classList.add('collapsed');
   $(root, '.dua-head').addEventListener('click', (e) => {
@@ -42,7 +48,13 @@ export function hudMarkup(isTouch: boolean): string {
         <div class="progress" aria-label="${tr('ความคืบหน้า')}"><div id="progressFill"></div></div>
         <button class="icon-btn" id="settingsBtn" aria-label="${tr('ตั้งค่า')}">⚙️</button>
       </header>
-      <aside class="sidebar" id="sidebar"><h3>${tr('ขั้นตอนอุมเราะฮ์')}</h3><ol id="stageList"></ol></aside>
+      <aside class="sidebar" id="sidebar">
+        <h3>${tr('ขั้นตอนอุมเราะฮ์')}</h3>
+        <ol id="stageList"></ol>
+        <div class="sidebar-footer">
+          <button class="btn ghost small w-full" id="resetJourneyBtn">🔄 ${tr('เริ่มการเดินทางใหม่')}</button>
+        </div>
+      </aside>
       <section class="panel" id="panel">
         <button class="sheet-handle only-mobile" id="sheetHandle" aria-label="${tr('ย่อ/ขยาย')}"></button>
         <div class="step-pill" id="stepPill"></div>
@@ -60,12 +72,20 @@ export function hudMarkup(isTouch: boolean): string {
         <nav class="panel-nav">
           <button class="btn ghost" id="backBtn">${tr('← ย้อนกลับ')}</button>
           <button class="btn ghost small" id="skipBtn" title="${tr('ข้ามภารกิจนี้')}">${tr('ข้าม')}</button>
-          <button class="btn primary" id="nextBtn" disabled>${tr('ไปต่อ →')}</button>
+          <div class="next-wrap">
+            <span class="next-prompt" id="nextPrompt">👉 ${tr('กดไปต่อ')}</span>
+            <button class="btn primary" id="nextBtn" disabled>${tr('ไปต่อ →')}</button>
+          </div>
         </nav>
       </section>
       <aside class="dua-card" id="duaCard" hidden>
         <div class="dua-head">
           <span class="badge" id="duaType"></span><b id="duaTitle"></b>
+          <div class="dua-nav" id="duaNav">
+            <button class="icon-btn small" id="duaPrev" aria-label="${tr('ก่อนหน้า')}" title="${tr('ดุอาอ์ก่อนหน้า')}">◀</button>
+            <span class="dua-counter" id="duaCounter">1/1</span>
+            <button class="icon-btn small" id="duaNext" aria-label="${tr('ถัดไป')}" title="${tr('ดุอาอ์ถัดไป')}">▶</button>
+          </div>
           <button class="speak-btn" id="duaSpeak" hidden></button>
           <button class="icon-btn small" id="duaMin" aria-label="${tr('ย่อ')}">–</button>
           <button class="icon-btn small" id="duaClose" aria-label="${tr('ปิด')}">×</button>

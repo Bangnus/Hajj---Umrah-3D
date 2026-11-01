@@ -1,10 +1,10 @@
 import './ui/styles.css';
-import { getLang } from './i18n';
+import { getLang, tr } from './i18n';
+import type { Profile } from './journey/types';
 import { loadProgress, loadSettings, saveProgress, saveSettings } from './journey/progress';
 import type { Journey } from './journey/journey';
 
 async function boot() {
-  // Only download the English dictionary chunk when English UI is selected.
   if (getLang() === 'en') await import('./i18n/en');
 
   const isTouch = matchMedia('(pointer: coarse)').matches;
@@ -19,25 +19,38 @@ async function boot() {
     () => saveProgress(null),
   );
 
-  // Preload fonts, 3D runtime and stage chunks in parallel without blocking the start screen.
   const fontsTask = Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))])
     .then(() => document.fonts.load('600 44px "Noto Sans Thai"').catch(() => undefined));
   const runtimeTask = import('./runtime');
   const registryTask = import('./journey/stages/registry');
 
   const saved = loadProgress();
+  const hasNew = new URLSearchParams(window.location.search).has('new');
   let savedStageTitle: string | undefined;
-  if (saved) {
+  let profile: Profile;
+  let stage: number;
+
+  if (saved && !hasNew) {
     const { loadStages } = await registryTask;
     const savedStages = await loadStages(saved.profile);
-    savedStageTitle = savedStages[saved.stageIndex]?.title;
+    profile = saved.profile;
+    stage = Math.min(saved.stageIndex, savedStages.length - 1);
+    savedStageTitle = savedStages[stage]?.title;
   } else {
-    registryTask.then((r) => r.preloadMode('umrah'));
+    if (saved) {
+      const { loadStages } = await registryTask;
+      const savedStages = await loadStages(saved.profile);
+      savedStageTitle = savedStages[saved.stageIndex]?.title;
+    } else {
+      registryTask.then((r) => r.preloadMode('umrah'));
+    }
+    const created = await hud.showCreator(saved, savedStageTitle, (mode) => {
+      registryTask.then((r) => r.preloadMode(mode));
+    });
+    profile = created.profile;
+    stage = created.stage;
+    if (hasNew) window.history.replaceState({}, '', window.location.pathname);
   }
-
-  const { profile, stage } = await hud.showCreator(saved, savedStageTitle, (mode) => {
-    registryTask.then((r) => r.preloadMode(mode));
-  });
 
   const [, { Engine, Input, Player, Journey: JourneyCls }, { loadStages }] = await Promise.all([
     fontsTask,
@@ -60,7 +73,11 @@ async function boot() {
   journey.go(Math.min(stage, stages.length - 1));
   engine.start();
 
-  // Debug hook for automated checks in the browser.
+  if (saved && !hasNew) {
+    const title = savedStageTitle ?? stages[stage]?.title ?? '';
+    hud.toast(tr('📍 เล่นต่อจาก: {title}', { title }), 'ok');
+  }
+
   (window as unknown as { __sim: unknown }).__sim = { engine, player, journey, input, stages };
 }
 

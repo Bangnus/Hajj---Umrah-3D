@@ -5,6 +5,7 @@ import { followCamera, type Player } from '../engine/player';
 import { disposeTree, Rings } from '../engine/rings';
 import { getDua } from '../content/duas';
 import type { Hud } from '../ui/hud';
+import { GuideSystem, type GuideTarget } from './guide';
 import { saveProgress } from './progress';
 import type { ActionHandle, Profile, Settings, StageBuild, StageCtx, StageDef } from './types';
 
@@ -24,8 +25,8 @@ export class Journey {
   private cur: Current | null = null;
   private count = 0;
   private total = 0;
-  private guideTarget: { x: number; z: number } | null = null;
-  private readonly arrow: THREE.Mesh;
+  private guideTarget: GuideTarget | null = null;
+  private readonly guide: GuideSystem;
 
   constructor(
     private readonly engine: Engine,
@@ -36,13 +37,8 @@ export class Journey {
     public profile: Profile,
     public settings: Settings,
   ) {
-    const shape = new THREE.Shape();
-    shape.moveTo(0, 0.55); shape.lineTo(0.32, 0); shape.lineTo(0.12, 0); shape.lineTo(0.12, -0.4);
-    shape.lineTo(-0.12, -0.4); shape.lineTo(-0.12, 0); shape.lineTo(-0.32, 0); shape.closePath();
-    this.arrow = new THREE.Mesh(new THREE.ShapeGeometry(shape), new THREE.MeshBasicMaterial({ color: 0xf2c94c, transparent: true, opacity: 0.9, depthWrite: false }));
-    this.arrow.rotation.x = -Math.PI / 2;
-    this.arrow.renderOrder = 5;
-    engine.scene.add(this.arrow, player.group);
+    this.guide = new GuideSystem(engine.scene);
+    engine.scene.add(player.group);
 
     hud.onNav({
       next: () => this.next(),
@@ -157,15 +153,9 @@ export class Journey {
     followCamera(this.engine.camera, this.player, this.input, dt);
     this.engine.followSun(this.player.pos);
 
-    // Guide arrow at the player's feet pointing to the target.
+    // Update 3D waypoint beacon and floor direction arrow
     const tgt = this.guideTarget ?? c.rings.nearest(this.player.pos);
-    const p = this.player.pos;
-    const show = !!tgt && this.count < this.total && Math.hypot(tgt.x - p.x, tgt.z - p.z) > 2.5 && !this.player.frozen;
-    this.arrow.visible = show;
-    if (show && tgt) {
-      const a = Math.atan2(tgt.x - p.x, tgt.z - p.z);
-      this.arrow.position.set(p.x + Math.sin(a) * 1.1, 0.06, p.z + Math.cos(a) * 1.1);
-      this.arrow.rotation.z = a + Math.PI;
-    }
+    const active = this.count < this.total;
+    this.guide.update(dt, this.player.pos, tgt, active, this.player.frozen);
   }
 }

@@ -50,7 +50,7 @@ export function bindSettingsModal(
           <p>${tr('ตอนนี้ใช้เสียงอ่านอัตโนมัติของเบราว์เซอร์ (TTS) เป็นการชั่วคราว เราวางแผนจะใช้เสียงตัลบิยะฮ์และดุอาอ์ที่บันทึกโดยผู้อ่านที่มีความรู้ และเสียงบรรยายภาษาไทยโดยผู้บรรยายมืออาชีพ')}</p>
         </div>
         <div class="row">
-          <button class="btn ghost" id="resetBtn">${tr('ล้างความคืบหน้า')}</button>
+          <button class="btn ghost" id="resetBtn">🔄 ${tr('เริ่มการเดินทางใหม่')}</button>
           <button class="btn primary" id="closeSet">${tr('ปิด')}</button>
         </div>
       </div>`;
@@ -78,7 +78,6 @@ export function bindSettingsModal(
     const test = overlay.querySelector<HTMLButtonElement>('#testVoice');
     let tested = false;
     if (test) test.onclick = () => { tested = audio.speak(tr('สวัสดี นี่คือตัวอย่างเสียงบรรยายภาษาไทย'), nl) || tested; };
-    // Switching language rebuilds everything by reloading; the journey resumes from the saved stage.
     overlay.querySelectorAll<HTMLButtonElement>('#setLang button').forEach((b) => {
       b.onclick = () => {
         if (b.dataset.lang === getLang()) return;
@@ -93,6 +92,11 @@ export function bindSettingsModal(
       if (tested) audio.stopSpeech();
       closeOverlays();
     };
-    $(overlay, '#resetBtn').onclick = () => { reset(); location.reload(); };
+    $(overlay, '#resetBtn').onclick = () => {
+      if (window.confirm(tr('ต้องการเริ่มการเดินทางใหม่ตั้งแต่ขั้นตอนแรกใช่หรือไม่?'))) {
+        reset();
+        window.location.replace(window.location.pathname + '?new=1');
+      }
+    };
   };
 }
