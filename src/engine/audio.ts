@@ -73,34 +73,47 @@ export function stopSpeech() {
   session++;
   live = [];
   if (!synth) return;
-  try { synth.cancel(); } catch { /* ignore */ }
+  try {
+    if (synth.speaking || synth.pending) synth.cancel();
+  } catch { /* ignore */ }
 }
 
 export function speak(text: string, lang: Lang, onEnd?: () => void): boolean {
   if (!synth || !text.trim()) return false;
+  const wasSpeaking = synth.speaking || synth.pending;
   stopSpeech();
   const id = session;
   const slow = getSettings().rate === 'slow';
   const voice = voices[lang];
   const langTag = lang === 'ar' ? 'ar-SA' : lang === 'th' ? 'th-TH' : 'en-US';
   const parts = chunks(text);
-  try {
-    if (synth.paused) synth.resume();
-    parts.forEach((part, k) => {
-      const u = new SpeechSynthesisUtterance(part);
-      if (voice) u.voice = voice;
-      u.lang = voice?.lang || langTag;
-      u.rate = slow ? (lang === 'ar' ? 0.75 : 0.8) : (lang === 'ar' ? 0.9 : 1);
-      u.pitch = 1;
-      if (k === parts.length - 1) {
-        const done = () => { if (id === session) { live = []; onEnd?.(); } };
-        u.onend = done;
-        u.onerror = done;
-      }
-      live.push(u);
-      synth.speak(u);
-    });
-  } catch { return false; }
+
+  const doSpeak = () => {
+    if (id !== session || !synth) return;
+    try {
+      if (synth.paused) synth.resume();
+      parts.forEach((part, k) => {
+        const u = new SpeechSynthesisUtterance(part);
+        if (voice) u.voice = voice;
+        u.lang = voice?.lang || langTag;
+        u.rate = slow ? (lang === 'ar' ? 0.75 : 0.8) : (lang === 'ar' ? 0.9 : 1);
+        u.pitch = 1;
+        if (k === parts.length - 1) {
+          const done = () => { if (id === session) { live = []; onEnd?.(); } };
+          u.onend = done;
+          u.onerror = done;
+        }
+        live.push(u);
+        synth.speak(u);
+      });
+    } catch { /* ignore */ }
+  };
+
+  if (wasSpeaking) {
+    window.setTimeout(doSpeak, 30);
+  } else {
+    doSpeak();
+  }
   return true;
 }
 
